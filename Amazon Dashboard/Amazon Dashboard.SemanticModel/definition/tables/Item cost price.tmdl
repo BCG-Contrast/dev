@@ -1,0 +1,79 @@
+table 'Item cost price'
+	lineageTag: 226d3f7b-dadd-44eb-b37c-eb3b62d4f80b
+
+	column 'Item No.'
+		dataType: string
+		lineageTag: d8ef0e0d-cfcf-4e5a-877d-c9010417060f
+		summarizeBy: none
+		sourceColumn: Item No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 5196ce1a-2241-45db-8362-596cbb70bb68
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 15e51f68-3ba7-4435-9d52-477e2aa10cac
+		summarizeBy: none
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: b890752b-3325-4a4f-ac41-43fcaf9aae08
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost price DKK'
+		dataType: double
+		lineageTag: 5f87505c-1b2a-449b-9bab-5705b92e0683
+		summarizeBy: none
+		sourceColumn: Cost price DKK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost price EUR'
+		dataType: double
+		lineageTag: 1b9a886c-ef36-402c-966e-9dcc0856e35c
+		summarizeBy: none
+		sourceColumn: Cost price EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Item cost price' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Report1001 xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Report1001.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Report1001 xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    Sheet1_Sheet = #"Imported Excel Workbook"{[Item="Sheet1",Kind="Sheet"]}[Data],
+				   #"Removed Top Rows" = Table.Skip(Sheet1_Sheet,15),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Filtered Rows" = Table.SelectRows(#"Promoted Headers", each Text.StartsWith([#"Item No."], "M-")),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"Base UoM", "", "Quantity", "Value", "_1", "Quantity_2", "Column9", "Value_3", "_4", "Quantity_5", "Value_6", "_7", "Column15", "_10", "Cost Posted to G/L"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Cost price DKK", each [Value_9]/[Quantity_8]),
+				    Custom1 = Table.AddColumn(#"Added Custom", "Cost price EUR", each [Cost price DKK]*0.1341),
+				    #"Renamed Columns" = Table.RenameColumns(Custom1,{{"Quantity_8", "Quantity"}, {"Value_9", "Value"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Cost price EUR", type number}, {"Cost price DKK", type number}, {"Value", type number}, {"Quantity", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

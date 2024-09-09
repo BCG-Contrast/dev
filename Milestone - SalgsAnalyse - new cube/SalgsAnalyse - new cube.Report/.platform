@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "SalgsAnalyse - new cube"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e971a755-c9db-49d2-bbe7-71135b959b69"
+  }
+}

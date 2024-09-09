@@ -1,0 +1,28 @@
+expression 'Enable Shopify' = true meta [IsParameterQuery=true, Type="Logical", IsParameterQueryRequired=true]
+	lineageTag: 6cc08e63-0c03-46b9-a120-5b085c50cdf6
+
+	annotation PBI_ResultType = Logical
+
+expression 'Errors in Transactions1' =
+		let
+		Source = Transactions1,
+		  #"Detected Type Mismatches" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "The type of the value does not match the type of the column.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Source, pairs),
+		  #"Added Index" = Table.AddIndexColumn(#"Detected Type Mismatches", "Row Number" ,1),
+		  #"Kept Errors" = Table.SelectRowsWithErrors(#"Added Index", {"Index", "Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product SKU final", "ASIN", "Item translator.Amazon", "Parent SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"}),
+		  #"Reordered Columns" = Table.ReorderColumns(#"Kept Errors", {"Row Number", "Index", "Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product SKU final", "ASIN", "Item translator.Amazon", "Parent SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"})
+		in
+		    #"Reordered Columns"
+	lineageTag: 5c262c70-0925-4881-9733-554b1548e1d8
+	queryGroup: 'Query Errors - 4/18/2024 1:16:28 PM'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

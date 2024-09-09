@@ -1,0 +1,2073 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 6378.7567653960623,
+        "y": 743.27158767141248
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 3164.3704213728506,
+            "y": 1265.958484891049
+          },
+          "nodeIndex": "Global Measures",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 33
+        },
+        {
+          "location": {
+            "x": 731.06566865605691,
+            "y": 1990.7205925683145
+          },
+          "nodeIndex": "Acc Plan Account",
+          "nodeLineageTag": "37838415-8512-4d9b-be87-97282331f536",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 34
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 2076.563446163384
+          },
+          "nodeIndex": "Account",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 35
+        },
+        {
+          "location": {
+            "x": 301.22051383084045,
+            "y": 1993.6920189936254
+          },
+          "nodeIndex": "Account Plan",
+          "nodeLineageTag": "4bd7e65b-edee-4ebb-a338-0ca93987f0e9",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 36
+        },
+        {
+          "location": {
+            "x": 651.337539717601,
+            "y": 2573.4334622912825
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 70
+        },
+        {
+          "location": {
+            "x": 2689.1682605828573,
+            "y": 2158.9865380862429
+          },
+          "nodeIndex": "Calendar Delivery Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 37
+        },
+        {
+          "location": {
+            "x": 2254.7554351102613,
+            "y": 2593.5836364487641
+          },
+          "nodeIndex": "Calendar Delivery Delay Due Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 68
+        },
+        {
+          "location": {
+            "x": 889.85351119334109,
+            "y": 547.50867643670585
+          },
+          "nodeIndex": "Calendar Order Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 38
+        },
+        {
+          "location": {
+            "x": 1047.6118268193848,
+            "y": 1061.0926865675222
+          },
+          "nodeIndex": "Calendar Shipment Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 69
+        },
+        {
+          "location": {
+            "x": 1263.4522828350623,
+            "y": 936.04186238109378
+          },
+          "nodeIndex": "Company",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 39
+        },
+        {
+          "location": {
+            "x": 1589.8784302810507,
+            "y": 822.90965550306282
+          },
+          "nodeIndex": "Company Exchange Rate DKK",
+          "nodeLineageTag": "b816d63a-877b-4f9a-83d3-5d008a74c5ba",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 40
+        },
+        {
+          "location": {
+            "x": 3448.3704213728506,
+            "y": 1339.958484891049
+          },
+          "nodeIndex": "Currency Selector",
+          "nodeLineageTag": "ddfdc427-d276-4cc3-a500-35ecdf250dcf",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 41
+        },
+        {
+          "location": {
+            "x": 1530.4873864862943,
+            "y": 1168.8006626543383
+          },
+          "nodeIndex": "Customer",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 42
+        },
+        {
+          "location": {
+            "x": 742.67352404330529,
+            "y": 1575.5232783956608
+          },
+          "nodeIndex": "Customer Sell To",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 43
+        },
+        {
+          "location": {
+            "x": 2107.8170171297252,
+            "y": 2239.5201367447039
+          },
+          "nodeIndex": "Ecom Claim Cause",
+          "nodeLineageTag": "a3c9d170-ca4c-4e91-acdd-189494dea0e4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 44
+        },
+        {
+          "location": {
+            "x": 2689.5023068347496,
+            "y": 1164.054768682362
+          },
+          "nodeIndex": "Ecom Currency",
+          "nodeLineageTag": "343e7aa5-36b1-4c5d-b1b1-d65a14be883e",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 45
+        },
+        {
+          "location": {
+            "x": 2398.9370970066975,
+            "y": 2161.0380000467126
+          },
+          "nodeIndex": "Ecom Customer",
+          "nodeLineageTag": "7e56b351-073f-4f25-9162-aeb3317229f6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 46
+        },
+        {
+          "location": {
+            "x": 2470.54312192503,
+            "y": 650.54216397775735
+          },
+          "nodeIndex": "Ecom Order",
+          "nodeLineageTag": "11fe5a1b-af79-485b-b2f4-ea2ffee90668",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 47
+        },
+        {
+          "location": {
+            "x": 2400.4035161851771,
+            "y": 1317.1541623089802
+          },
+          "nodeIndex": "Ecom Payment Term",
+          "nodeLineageTag": "47a65e3e-9719-4ad8-af8a-09b351673ada",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 48
+        },
+        {
+          "location": {
+            "x": 2114.1167221723026,
+            "y": 1043.0258460240307
+          },
+          "nodeIndex": "Ecom Sales Deliveries",
+          "nodeLineageTag": "e56bfcd4-6a4b-408d-ba7a-5de9acd3ec6d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 49
+        },
+        {
+          "location": {
+            "x": 1931.2027540496747,
+            "y": 1523.9602627279917
+          },
+          "nodeIndex": "Ecom Sales Orders",
+          "nodeLineageTag": "0fa19441-1b42-4bda-b962-02615ca8989b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 71
+        },
+        {
+          "location": {
+            "x": 2890.3704213728506,
+            "y": 1899.8289449015592
+          },
+          "nodeIndex": "Ecom Salesperson",
+          "nodeLineageTag": "1c92a71d-11c5-438e-be16-016dfd052aed",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 50
+        },
+        {
+          "location": {
+            "x": 1698.6283817587505,
+            "y": 2600.0658021940385
+          },
+          "nodeIndex": "Ecom Stock",
+          "nodeLineageTag": "ef66aca3-d5a1-4718-98d4-6e1c4a136c5b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 51
+        },
+        {
+          "location": {
+            "x": 1735.1810582911389,
+            "y": 2241.6028561918583
+          },
+          "nodeIndex": "Ecom Style Variant",
+          "nodeLineageTag": "5d2f0edb-064b-4f8d-8bb2-9a31ea7ef4ce",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 52
+        },
+        {
+          "location": {
+            "x": 1263.9584785432198,
+            "y": 1999.0110847942831
+          },
+          "nodeIndex": "Finance",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 53
+        },
+        {
+          "location": {
+            "x": 1032.2835221214675,
+            "y": 1638.299682767336
+          },
+          "nodeIndex": "Finance Allocated",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 54
+        },
+        {
+          "location": {
+            "x": 1324.426122230534,
+            "y": 1669.4302941544047
+          },
+          "nodeIndex": "Finance Budget",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 55
+        },
+        {
+          "location": {
+            "x": 451.37587586565996,
+            "y": 1633.5658932313131
+          },
+          "nodeIndex": "Item",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 56
+        },
+        {
+          "location": {
+            "x": 3732.3704213728506,
+            "y": 1363.958484891049
+          },
+          "nodeIndex": "Now Date Time",
+          "nodeLineageTag": "f6155dfc-78eb-4d74-89ee-4842691955e3",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 57
+        },
+        {
+          "location": {
+            "x": 781.73988761812791,
+            "y": 2200.2332774671713
+          },
+          "nodeIndex": "Order",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 58
+        },
+        {
+          "location": {
+            "x": 1616.8579790525353,
+            "y": 1640.0918949693889
+          },
+          "nodeIndex": "Precalculations",
+          "nodeLineageTag": "e6bdfb63-88cf-43be-a736-af6aca0ffe41",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 59
+        },
+        {
+          "location": {
+            "x": 628.51342962486433,
+            "y": 1215.2335086460832
+          },
+          "nodeIndex": "Sales Orders",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 60
+        },
+        {
+          "location": {
+            "x": 4016.3704213728506,
+            "y": 1363.958484891049
+          },
+          "nodeIndex": "Time Intelligence",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 61
+        },
+        {
+          "location": {
+            "x": 1587.0031006171512,
+            "y": 417.688079766539
+          },
+          "nodeIndex": "Time Reg Customer",
+          "nodeLineageTag": "a5e3d64d-b32d-4e3b-84f5-013516d509a5",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 62
+        },
+        {
+          "location": {
+            "x": 2170.8464878191376,
+            "y": 322.3028637157413
+          },
+          "nodeIndex": "Time Reg Employee",
+          "nodeLineageTag": "bcbe9e0e-adb2-4a11-98b7-f22e26a8cd94",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 63
+        },
+        {
+          "location": {
+            "x": 1880.6953761148939,
+            "y": 683.22937673410252
+          },
+          "nodeIndex": "Time Reg Entries",
+          "nodeLineageTag": "804e4b4a-3636-4ef2-9a9f-2f3fcbecd351",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 64
+        },
+        {
+          "location": {
+            "x": 1878.6801305433255,
+            "y": 322.30566322694131
+          },
+          "nodeIndex": "Time Reg Project",
+          "nodeLineageTag": "833d68f4-53cc-406f-a8a9-ccc475dba677",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 65
+        },
+        {
+          "location": {
+            "x": 1919.1075817976352,
+            "y": -10
+          },
+          "nodeIndex": "Time Reg Task",
+          "nodeLineageTag": "de97c76d-49f5-4d2d-a96c-67b42b5e217b",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 66
+        },
+        {
+          "location": {
+            "x": 1822.5355650835791,
+            "y": 1168.1851031658066
+          },
+          "nodeIndex": "Turnover Budget",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 67
+        },
+        {
+          "location": {
+            "x": 4290.3704213728506,
+            "y": 1365.7167311456412
+          },
+          "nodeIndex": "Ecom Saleschannel",
+          "nodeLineageTag": "effa11c4-2b0d-45d2-8b90-db2c68b4cdf1",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 4305.4531462907416,
+            "y": 453.45313761488893
+          },
+          "nodeIndex": "Calendar ETA",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 72
+        },
+        {
+          "location": {
+            "x": 5535.9033361747261,
+            "y": 659.56299256007514
+          },
+          "nodeIndex": "Calendar ETD",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 5954.9485805742925,
+            "y": 337.61361918409438
+          },
+          "nodeIndex": "Calendar Receive Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 5406.5311226733429,
+            "y": 311.514403259981
+          },
+          "nodeIndex": "Ecom Purchase Order",
+          "nodeLineageTag": "49c1f700-3536-4309-b946-6456a2684f27",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 4941.3331982330155,
+            "y": 306.73677335473405
+          },
+          "nodeIndex": "Ecom Purchase Orders",
+          "nodeLineageTag": "8b9ea162-05f4-4c23-a15e-d4269e8db3c3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 4995.4949705776735,
+            "y": 634.23165474138887
+          },
+          "nodeIndex": "Ecom Purchase Shippings",
+          "nodeLineageTag": "4c2e9d47-a726-476c-bc92-a172ed389a8c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 5767.7558380395176,
+            "y": 0
+          },
+          "nodeIndex": "Ecom Supplier",
+          "nodeLineageTag": "7bb2b7ff-d600-49bf-95ab-3ec004388b52",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 6252.87389804082,
+            "y": 928.92660116248317
+          },
+          "nodeIndex": "Purchase Invoice",
+          "nodeLineageTag": "839a4511-cb52-4d39-bb31-f91e366a154f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 7458.4477932095515,
+            "y": 874.22584688540928
+          },
+          "nodeIndex": "Purchase Orders",
+          "nodeLineageTag": "36d80766-2b62-49a1-aed3-5df7e8f766ac",
+          "size": {
+            "height": 766.66666666666674,
+            "width": 234
+          },
+          "zIndex": 73
+        },
+        {
+          "location": {
+            "x": 6397.1765568917635,
+            "y": 438.69253481263104
+          },
+          "nodeIndex": "Vendor",
+          "nodeLineageTag": "6fea01b3-a7eb-409f-9c23-222de02545a8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 6671.1765568917635,
+            "y": 0
+          },
+          "nodeIndex": "Stock Transactions",
+          "nodeLineageTag": "072f0aea-e40b-447a-8747-00a398279977",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 6945.1765568917635,
+            "y": 0
+          },
+          "nodeIndex": "Source System",
+          "nodeLineageTag": "6270dd6a-cab9-4d7a-88a6-3c2a7d66482a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 7219.1765568917635,
+            "y": 0
+          },
+          "nodeIndex": "Variant",
+          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 7493.1765568917635,
+            "y": 0
+          },
+          "nodeIndex": "Ecom Style Variant Product",
+          "nodeLineageTag": "37e4a01a-dda6-4dea-bb72-20336501a39e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 7895.4936583726685,
+            "y": 268.94897312596459
+          },
+          "nodeIndex": "Product",
+          "nodeLineageTag": "636ff42f-0e87-43d1-9e87-32643c391822",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 8169.4936583726685,
+            "y": 0
+          },
+          "nodeIndex": "Deal",
+          "nodeLineageTag": "9797b6ca-f8b9-43fd-a0cc-aa1750d19e1e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 8760.3181071490471,
+            "y": 505.1402109606878
+          },
+          "nodeIndex": "Lead",
+          "nodeLineageTag": "77848cf7-c5fd-479f-9012-79ef02b837bc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 8593.7277247225211,
+            "y": 14.906144610835568
+          },
+          "nodeIndex": "Quotations",
+          "nodeLineageTag": "b6a8f528-db6f-41fa-8738-3819ebd27120",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 9034.3181071490471,
+            "y": 0
+          },
+          "nodeIndex": "Employee Phone Calls",
+          "nodeLineageTag": "cef646f3-a5de-403f-9d1e-431770f080f8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 9671.1071076040462,
+            "y": 490.23406634985224
+          },
+          "nodeIndex": "PLM Tasks",
+          "nodeLineageTag": "8d02da01-4087-4948-b616-100f635a585f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 9246.8730412541936,
+            "y": 490.23406634985224
+          },
+          "nodeIndex": "Time",
+          "nodeLineageTag": "5d871d7f-a723-4b2e-aac2-3300b57838c8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 9945.1071076040462,
+            "y": 0
+          },
+          "nodeIndex": "Sales Invoices",
+          "nodeLineageTag": "9f023fe1-7c6e-4ee4-b425-04a3fe26b906",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 9897.44044093738,
+            "y": 931.66666666666674
+          },
+          "nodeIndex": "Purchase Order",
+          "nodeLineageTag": "3e1a5829-b137-4c1a-ba92-c697a2711202",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 10219.107107604046,
+            "y": 0
+          },
+          "nodeIndex": "Purchaser",
+          "nodeLineageTag": "1e470d09-ef46-408a-8603-cd970e4c7e82",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 10607.019420301895,
+            "y": 0
+          },
+          "nodeIndex": "Purchaser Assistant",
+          "nodeLineageTag": "bfe263cb-8f85-42cb-be8f-08e71ed02385",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 10881.019420301895,
+            "y": 0
+          },
+          "nodeIndex": "Variant Product",
+          "nodeLineageTag": "178cd7ef-e90b-4dad-88ed-6cb8d84a1526",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 11938.394141219806,
+            "y": 24
+          },
+          "nodeIndex": "Ecom Expected Stock",
+          "nodeLineageTag": "44fd8e24-c25e-4922-a215-1e6d566f4543",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 11547.461790313071,
+            "y": 0
+          },
+          "nodeIndex": "Expected Stock",
+          "nodeLineageTag": "e2a6163f-619d-421b-b446-bed1240652dd",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 11155.019420301895,
+            "y": 1.9689999872019968
+          },
+          "nodeIndex": "Location",
+          "nodeLineageTag": "109a27a2-e008-42cc-8586-c90aff405594",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 12212.394141219806,
+            "y": 0
+          },
+          "nodeIndex": "Factories",
+          "nodeLineageTag": "f072b785-7874-45e2-adae-592042e824b7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 12636.628207569658,
+            "y": 0
+          },
+          "nodeIndex": "Licenses",
+          "nodeLineageTag": "14dda3ec-bfa1-43d5-ad9f-cf11b33e5a0b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 12910.628207569658,
+            "y": 0
+          },
+          "nodeIndex": "Queue Phone Calls",
+          "nodeLineageTag": "b747e4dd-0e6e-4ab1-b3f5-98317539445f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 13184.628207569658,
+            "y": 0
+          },
+          "nodeIndex": "Employee",
+          "nodeLineageTag": "031f39b7-8213-4c3b-9b34-0a58b47e77c9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 14647.838349277103,
+            "y": 356.95143341857465
+          },
+          "nodeIndex": "Calendar Expected Receipt Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 13458.628207569658,
+            "y": 0
+          },
+          "nodeIndex": "Factory",
+          "nodeLineageTag": "9c07c530-260e-46c7-93ea-a78040c03fad",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 13485.003580323917,
+            "y": 481.46728069329106
+          },
+          "nodeIndex": "Factory Capacity",
+          "nodeLineageTag": "dfa6d759-f4f2-4aff-805d-f7eccadec8c1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 14041.850295541895,
+            "y": 0
+          },
+          "nodeIndex": "Supplier",
+          "nodeLineageTag": "817d1b31-f7e7-44ad-8336-c9d121a8105d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 13858.208661080804,
+            "y": 481.4672804022735
+          },
+          "nodeIndex": "Supplier Factory Certifications",
+          "nodeLineageTag": "4e9ee93f-7901-425a-9052-9d831d81f732",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 14231.413741837692,
+            "y": 481.46728011125481
+          },
+          "nodeIndex": "Supplier Quality Control",
+          "nodeLineageTag": "40388b53-c176-411d-a903-696df7699667",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 15064.262956716513,
+            "y": 370.95143341857465
+          },
+          "nodeIndex": "Variant Customers Items",
+          "nodeLineageTag": "84e76b08-915a-4079-9d60-938194edd069",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 10,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 2318.5063642195942
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 4483.638318242487,
+            "y": 3206.3209760685213
+          },
+          "nodeIndex": "Global Measures",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 3903.5088061537931,
+            "y": 2765.5803534363868
+          },
+          "nodeIndex": "Acc Plan Account",
+          "nodeLineageTag": "37838415-8512-4d9b-be87-97282331f536",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3491.2006687600065,
+            "y": 2657.6445480402326
+          },
+          "nodeIndex": "Account",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 3382.1726659469132,
+            "y": 3077.893027167896
+          },
+          "nodeIndex": "Account Plan",
+          "nodeLineageTag": "4bd7e65b-edee-4ebb-a338-0ca93987f0e9",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2036.917893919099,
+            "y": 2235.9467379551297
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2975.5377004029515,
+            "y": 1444.448304512011
+          },
+          "nodeIndex": "Calendar Delivery Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1242.8903422812314,
+            "y": 557.95454942757146
+          },
+          "nodeIndex": "Calendar Delivery Delay Due Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1526.5474421060244,
+            "y": 3554.885163178008
+          },
+          "nodeIndex": "Calendar ETA",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1429.6599817910724,
+            "y": 3076.577025784221
+          },
+          "nodeIndex": "Calendar ETD",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1676.7183140467862,
+            "y": 4033.1933005717947
+          },
+          "nodeIndex": "Calendar Expected Receipt Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1985.5013525724244,
+            "y": 3577.0457586322073
+          },
+          "nodeIndex": "Calendar Order Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 830.5822048874445,
+            "y": 757.585287847178
+          },
+          "nodeIndex": "Calendar Receive Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 3071.2490795879194,
+            "y": 487.83202972443723
+          },
+          "nodeIndex": "Calendar Shipment Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 1686.1308940689346,
+            "y": 1785.6386005613426
+          },
+          "nodeIndex": "Company",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 2410.1868000952072,
+            "y": 1010.8055931223462
+          },
+          "nodeIndex": "Company Exchange Rate DKK",
+          "nodeLineageTag": "b816d63a-877b-4f9a-83d3-5d008a74c5ba",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 4894.4203819633422,
+            "y": 3280.3209760685213
+          },
+          "nodeIndex": "Currency Selector",
+          "nodeLineageTag": "ddfdc427-d276-4cc3-a500-35ecdf250dcf",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 2666.5843939724327,
+            "y": 3022.5169958414226
+          },
+          "nodeIndex": "Customer",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 2397.809489966211,
+            "y": 3586.2491728909017
+          },
+          "nodeIndex": "Customer Sell To",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 861.51461928136086,
+            "y": 1714.2015626347518
+          },
+          "nodeIndex": "Deal",
+          "nodeLineageTag": "9797b6ca-f8b9-43fd-a0cc-aa1750d19e1e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 262.56019021140423,
+            "y": 2473.8653652196567
+          },
+          "nodeIndex": "Ecom Claim Cause",
+          "nodeLineageTag": "a3c9d170-ca4c-4e91-acdd-189494dea0e4",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 1444.0410589875182,
+            "y": 1644.5921897460698
+          },
+          "nodeIndex": "Ecom Currency",
+          "nodeLineageTag": "343e7aa5-36b1-4c5d-b1b1-d65a14be883e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 4072.8562545216319,
+            "y": 1206.4011425138781
+          },
+          "nodeIndex": "Ecom Customer",
+          "nodeLineageTag": "7e56b351-073f-4f25-9162-aeb3317229f6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 1658.383427723297,
+            "y": 2166.3108188007991
+          },
+          "nodeIndex": "Ecom Expected Stock",
+          "nodeLineageTag": "44fd8e24-c25e-4922-a215-1e6d566f4543",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 1087.176464998978,
+            "y": 2714.1581989884016
+          },
+          "nodeIndex": "Ecom Order",
+          "nodeLineageTag": "11fe5a1b-af79-485b-b2f4-ea2ffee90668",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 412.30813739378686,
+            "y": 2748.5198399825717
+          },
+          "nodeIndex": "Ecom Payment Term",
+          "nodeLineageTag": "47a65e3e-9719-4ad8-af8a-09b351673ada",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 674.8683276051911,
+            "y": 3191.5769805293794
+          },
+          "nodeIndex": "Ecom Purchase Order",
+          "nodeLineageTag": "49c1f700-3536-4309-b946-6456a2684f27",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 1457.3167372714827,
+            "y": 1285.5391666735893
+          },
+          "nodeIndex": "Ecom Purchase Orders",
+          "nodeLineageTag": "8b9ea162-05f4-4c23-a15e-d4269e8db3c3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 1423.6785575680115,
+            "y": 2755.7506603771253
+          },
+          "nodeIndex": "Ecom Purchase Shippings",
+          "nodeLineageTag": "4c2e9d47-a726-476c-bc92-a172ed389a8c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 3208.9785485443904,
+            "y": 3979.1332706289968
+          },
+          "nodeIndex": "Ecom Sales Deliveries",
+          "nodeLineageTag": "e56bfcd4-6a4b-408d-ba7a-5de9acd3ec6d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 500.9897543805705,
+            "y": 1809.3452181381663
+          },
+          "nodeIndex": "Ecom Sales Orders",
+          "nodeLineageTag": "0fa19441-1b42-4bda-b962-02615ca8989b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 913.29789177435737,
+            "y": 2187.511093925596
+          },
+          "nodeIndex": "Ecom Saleschannel",
+          "nodeLineageTag": "effa11c4-2b0d-45d2-8b90-db2c68b4cdf1",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 2053.2273254695697,
+            "y": 964.02574804758115
+          },
+          "nodeIndex": "Ecom Salesperson",
+          "nodeLineageTag": "1c92a71d-11c5-438e-be16-016dfd052aed",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 1087.1764649989777,
+            "y": 2425.2084645336436
+          },
+          "nodeIndex": "Ecom Stock",
+          "nodeLineageTag": "ef66aca3-d5a1-4718-98d4-6e1c4a136c5b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 33
+        },
+        {
+          "location": {
+            "x": 1192.0938806043146,
+            "y": 1520.5921897460698
+          },
+          "nodeIndex": "Ecom Style Variant",
+          "nodeLineageTag": "5d2f0edb-064b-4f8d-8bb2-9a31ea7ef4ce",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 34
+        },
+        {
+          "location": {
+            "x": 794.41037347142083,
+            "y": 3729.5203557983432
+          },
+          "nodeIndex": "Ecom Style Variant Product",
+          "nodeLineageTag": "37e4a01a-dda6-4dea-bb72-20336501a39e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 35
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2464.2121695132687
+          },
+          "nodeIndex": "Ecom Supplier",
+          "nodeLineageTag": "7bb2b7ff-d600-49bf-95ab-3ec004388b52",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 36
+        },
+        {
+          "location": {
+            "x": 2563.2295630091648,
+            "y": 1236.534123666559
+          },
+          "nodeIndex": "Employee",
+          "nodeLineageTag": "031f39b7-8213-4c3b-9b34-0a58b47e77c9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 37
+        },
+        {
+          "location": {
+            "x": 3067.6049125938393,
+            "y": 2273.0034858199569
+          },
+          "nodeIndex": "Employee Phone Calls",
+          "nodeLineageTag": "cef646f3-a5de-403f-9d1e-431770f080f8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 38
+        },
+        {
+          "location": {
+            "x": 1273.8227566751477,
+            "y": 1998.9003271398567
+          },
+          "nodeIndex": "Expected Stock",
+          "nodeLineageTag": "e2a6163f-619d-421b-b446-bed1240652dd",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 39
+        },
+        {
+          "location": {
+            "x": 2563.2295630091648,
+            "y": 1473.2953573644563
+          },
+          "nodeIndex": "Factories",
+          "nodeLineageTag": "f072b785-7874-45e2-adae-592042e824b7",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 40
+        },
+        {
+          "location": {
+            "x": 2658.9409421941323,
+            "y": 478.30813739378686
+          },
+          "nodeIndex": "Factory",
+          "nodeLineageTag": "9c07c530-260e-46c7-93ea-a78040c03fad",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 41
+        },
+        {
+          "location": {
+            "x": 3586.7217537833876,
+            "y": 996.69020963437481
+          },
+          "nodeIndex": "Factory Capacity",
+          "nodeLineageTag": "dfa6d759-f4f2-4aff-805d-f7eccadec8c1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 42
+        },
+        {
+          "location": {
+            "x": 3174.413616389601,
+            "y": 966.1401671182241
+          },
+          "nodeIndex": "Finance",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 43
+        },
+        {
+          "location": {
+            "x": 2655.2967752000523,
+            "y": 2316.3609642866982
+          },
+          "nodeIndex": "Finance Allocated",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 44
+        },
+        {
+          "location": {
+            "x": 2281.9330120590566,
+            "y": 1309.7575900604024
+          },
+          "nodeIndex": "Finance Budget",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 45
+        },
+        {
+          "location": {
+            "x": 3121.4120360753377,
+            "y": 2677.9780869997153
+          },
+          "nodeIndex": "Item",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 46
+        },
+        {
+          "location": {
+            "x": 1017.3518443972854,
+            "y": 3251.2122184045566
+          },
+          "nodeIndex": "Lead",
+          "nodeLineageTag": "77848cf7-c5fd-479f-9012-79ef02b837bc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 47
+        },
+        {
+          "location": {
+            "x": 1640.919188075783,
+            "y": 807.23102927980244
+          },
+          "nodeIndex": "Licenses",
+          "nodeLineageTag": "14dda3ec-bfa1-43d5-ad9f-cf11b33e5a0b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 48
+        },
+        {
+          "location": {
+            "x": 3824.7802118373579,
+            "y": 1684.7092799076649
+          },
+          "nodeIndex": "Location",
+          "nodeLineageTag": "109a27a2-e008-42cc-8586-c90aff405594",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 49
+        },
+        {
+          "location": {
+            "x": 5305.2024456841973,
+            "y": 3292.3209760685213
+          },
+          "nodeIndex": "Now Date Time",
+          "nodeLineageTag": "f6155dfc-78eb-4d74-89ee-4842691955e3",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 50
+        },
+        {
+          "location": {
+            "x": 2709.1038986815506,
+            "y": 2651.8046869665181
+          },
+          "nodeIndex": "Order",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 51
+        },
+        {
+          "location": {
+            "x": 2317.9085195853568,
+            "y": 2238.3738648479762
+          },
+          "nodeIndex": "PLM Tasks",
+          "nodeLineageTag": "8d02da01-4087-4948-b616-100f635a585f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 52
+        },
+        {
+          "location": {
+            "x": 2563.2295630091648,
+            "y": 1760.0657274541891
+          },
+          "nodeIndex": "Precalculations",
+          "nodeLineageTag": "e6bdfb63-88cf-43be-a736-af6aca0ffe41",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 53
+        },
+        {
+          "location": {
+            "x": 590.4046692872389,
+            "y": 1235.8934252409649
+          },
+          "nodeIndex": "Product",
+          "nodeLineageTag": "636ff42f-0e87-43d1-9e87-32643c391822",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 54
+        },
+        {
+          "location": {
+            "x": 2896.2522320634657,
+            "y": 3500.8251332352093
+          },
+          "nodeIndex": "Purchase Invoice",
+          "nodeLineageTag": "839a4511-cb52-4d39-bb31-f91e366a154f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 55
+        },
+        {
+          "location": {
+            "x": 2254.2762565786461,
+            "y": 2714.2548753489164
+          },
+          "nodeIndex": "Purchase Order",
+          "nodeLineageTag": "3e1a5829-b137-4c1a-ba92-c697a2711202",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 56
+        },
+        {
+          "location": {
+            "x": 2397.809489966211,
+            "y": 3140.563012742703
+          },
+          "nodeIndex": "Purchase Orders",
+          "nodeLineageTag": "36d80766-2b62-49a1-aed3-5df7e8f766ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 57
+        },
+        {
+          "location": {
+            "x": 2275.5059323420051,
+            "y": 4064.5573102846884
+          },
+          "nodeIndex": "Purchaser",
+          "nodeLineageTag": "1e470d09-ef46-408a-8603-cd970e4c7e82",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 58
+        },
+        {
+          "location": {
+            "x": 3438.0074655040048,
+            "y": 3600.8251332352097
+          },
+          "nodeIndex": "Purchaser Assistant",
+          "nodeLineageTag": "bfe263cb-8f85-42cb-be8f-08e71ed02385",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 59
+        },
+        {
+          "location": {
+            "x": 2822.4949374889943,
+            "y": 966.1401671182241
+          },
+          "nodeIndex": "Queue Phone Calls",
+          "nodeLineageTag": "b747e4dd-0e6e-4ab1-b3f5-98317539445f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 60
+        },
+        {
+          "location": {
+            "x": 1552.7456759254185,
+            "y": 2430.8054046087573
+          },
+          "nodeIndex": "Quotations",
+          "nodeLineageTag": "b6a8f528-db6f-41fa-8738-3819ebd27120",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 61
+        },
+        {
+          "location": {
+            "x": 1841.968119184859,
+            "y": 3083.1156729682461
+          },
+          "nodeIndex": "Sales Invoices",
+          "nodeLineageTag": "9f023fe1-7c6e-4ee4-b425-04a3fe26b906",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 62
+        },
+        {
+          "location": {
+            "x": 1982.10861598991,
+            "y": 2716.6820022417628
+          },
+          "nodeIndex": "Sales Orders",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 63
+        },
+        {
+          "location": {
+            "x": 3387.8458377967381,
+            "y": 1797.3932728944912
+          },
+          "nodeIndex": "Source System",
+          "nodeLineageTag": "6270dd6a-cab9-4d7a-88a6-3c2a7d66482a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 64
+        },
+        {
+          "location": {
+            "x": 3078.8925313662194,
+            "y": 3046.9314397401249
+          },
+          "nodeIndex": "Stock Transactions",
+          "nodeLineageTag": "072f0aea-e40b-447a-8747-00a398279977",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 65
+        },
+        {
+          "location": {
+            "x": 1992.0220925293975,
+            "y": 4055.3538960259948
+          },
+          "nodeIndex": "Supplier",
+          "nodeLineageTag": "817d1b31-f7e7-44ad-8336-c9d121a8105d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 66
+        },
+        {
+          "location": {
+            "x": 3479.9130499876264,
+            "y": 2039.0174173014518
+          },
+          "nodeIndex": "Supplier Factory Certifications",
+          "nodeLineageTag": "4e9ee93f-7901-425a-9052-9d831d81f732",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 67
+        },
+        {
+          "location": {
+            "x": 1869.6248746652695,
+            "y": 1289.9508970312909
+          },
+          "nodeIndex": "Supplier Quality Control",
+          "nodeLineageTag": "40388b53-c176-411d-a903-696df7699667",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 68
+        },
+        {
+          "location": {
+            "x": 674.8683276051911,
+            "y": 2287.6533555319529
+          },
+          "nodeIndex": "Time",
+          "nodeLineageTag": "5d871d7f-a723-4b2e-aac2-3300b57838c8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 69
+        },
+        {
+          "location": {
+            "x": 5715.9845094050524,
+            "y": 3304.3209760685213
+          },
+          "nodeIndex": "Time Intelligence",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 70
+        },
+        {
+          "location": {
+            "x": 2098.4390314627217,
+            "y": 1631.719840654893
+          },
+          "nodeIndex": "Time Reg Customer",
+          "nodeLineageTag": "a5e3d64d-b32d-4e3b-84f5-013516d509a5",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 71
+        },
+        {
+          "location": {
+            "x": 2575.5896987030478,
+            "y": 0
+          },
+          "nodeIndex": "Time Reg Employee",
+          "nodeLineageTag": "bcbe9e0e-adb2-4a11-98b7-f22e26a8cd94",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 72
+        },
+        {
+          "location": {
+            "x": 3304.8035600827025,
+            "y": 1444.448304512011
+          },
+          "nodeIndex": "Time Reg Entries",
+          "nodeLineageTag": "804e4b4a-3636-4ef2-9a9f-2f3fcbecd351",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 73
+        },
+        {
+          "location": {
+            "x": 2903.4610046755938,
+            "y": 9.52389233065037
+          },
+          "nodeIndex": "Time Reg Project",
+          "nodeLineageTag": "833d68f4-53cc-406f-a8a9-ccc475dba677",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 74
+        },
+        {
+          "location": {
+            "x": 2246.6328048003452,
+            "y": 199.44426610099572
+          },
+          "nodeIndex": "Time Reg Task",
+          "nodeLineageTag": "de97c76d-49f5-4d2d-a96c-67b42b5e217b",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 75
+        },
+        {
+          "location": {
+            "x": 2093.9319843505696,
+            "y": 1882.4120909357084
+          },
+          "nodeIndex": "Turnover Budget",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 76
+        },
+        {
+          "location": {
+            "x": 161.12516795966454,
+            "y": 3196.7459842229828
+          },
+          "nodeIndex": "Variant",
+          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 80
+        },
+        {
+          "location": {
+            "x": 74.539787570415456,
+            "y": 3654.0932090793381
+          },
+          "nodeIndex": "Variant Customers Items",
+          "nodeLineageTag": "84e76b08-915a-4079-9d60-938194edd069",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 79
+        },
+        {
+          "location": {
+            "x": 1263.9792985459762,
+            "y": 4033.1933005717947
+          },
+          "nodeIndex": "Variant Product",
+          "nodeLineageTag": "178cd7ef-e90b-4dad-88ed-6cb8d84a1526",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 77
+        },
+        {
+          "location": {
+            "x": 3055.7157266082595,
+            "y": 1838.0528268929113
+          },
+          "nodeIndex": "Vendor",
+          "nodeLineageTag": "6fea01b3-a7eb-409f-9c23-222de02545a8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 78
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 58.960372983928821,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Layout 1",
+  "defaultDiagram": "All tables"
+}

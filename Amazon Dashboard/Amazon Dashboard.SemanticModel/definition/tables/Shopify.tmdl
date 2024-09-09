@@ -1,0 +1,28 @@
+table Shopify
+	lineageTag: 437b0be5-9a5a-4048-b32a-de7523077c2e
+
+	measure 'Shopify Value' = SELECTEDVALUE('Shopify'[Shopify])
+		formatString: 0
+		lineageTag: 114cdd45-7390-41e3-9091-6c5a11695c6e
+
+	column Shopify
+		dataType: int64
+		formatString: 0
+		lineageTag: 6eb4e575-f049-4d2b-b9c5-75f45238eef2
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Shopify = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 1)
+
+	annotation PBI_Id = 310c88190f024d7c8b35dc3b7c732513
+

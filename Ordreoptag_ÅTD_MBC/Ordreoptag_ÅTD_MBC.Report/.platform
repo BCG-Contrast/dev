@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Ordreoptag_ÅTD_MBC"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e8cfc0ad-4958-4f4d-9917-ee525ac55d8f"
+  }
+}

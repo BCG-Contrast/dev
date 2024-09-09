@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Purchase - new cube"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "115d4c8b-ffab-49b7-be5b-c601a5313267"
+  }
+}

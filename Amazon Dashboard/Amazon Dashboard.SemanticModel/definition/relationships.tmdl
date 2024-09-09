@@ -1,0 +1,92 @@
+relationship 2a48fa4e-68ac-4cae-a7f4-ae81caf34048
+	fromColumn: 'Sponsored Display Advertised Pr1'.'Advertised ASIN'
+	toColumn: 'Item translator'.ASIN
+
+relationship e7cb8dc6-471f-4eaa-88f9-e5d4e8538049
+	fromColumn: Transactions1.'Product SKU final'
+	toColumn: 'Item translator'.Amazon
+
+relationship a9a779dc-8bfb-4a8f-9695-fdaf7d327463
+	fromColumn: 'Item translator'.'Parent SKU'
+	toColumn: 'Item cost price'.'Item No.'
+
+relationship df979c59-986e-441d-bae8-f2eac2310787
+	fromColumn: 'Sponsored Product Advertised Pr'.'Advertised SKU'
+	toColumn: 'Item translator'.Amazon
+
+relationship 61673426-303b-45cf-afbc-1121c55e327f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: LastWeekTable.'Last Week'
+	toColumn: LocalDateTable_7acedcad-b84c-4597-aec3-5e3a970b6130.Date
+
+relationship ae7f9271-f9f2-443d-bd94-19c4310fec33
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Amazon Restock Report CSV'.'Recommended ship date'
+	toColumn: LocalDateTable_3f0ba3cb-3ddd-48e7-8d75-fc5e8091d521.Date
+
+relationship 82f33a45-b864-0522-32df-29c64ccf1dbe
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Item translator'.ASIN
+	toColumn: 'Amazon Restock Report CSV'.ASIN
+
+relationship 56ae3d03-fab2-4c7a-b325-5ad3899f58cd
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Item translator'.'Parent ASIN'
+	toColumn: 'Amazon factors'.ASIN
+
+relationship d3f1bee8-027b-4f7a-b05f-6427cc3f4fdf
+	fromColumn: 'Shopify Denmark'.variant_sku
+	toColumn: 'Item translator'.'Navision - Item 2'
+
+relationship 25adc4b0-2d90-4387-ab00-e385c21bf0fd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DateTable.Date
+	toColumn: LocalDateTable_4bc69125-f2e9-44ec-8fa8-a96a46d94c13.Date
+
+relationship 9236a5db-e43c-4ffd-868a-f01f7dde9274
+	fromColumn: 'Sponsored Display Advertised Pr1'.Date
+	toColumn: DateTable.Date
+
+relationship 8c82b0ae-a364-4423-baa1-e0ff80ca35e3
+	fromColumn: Transactions1.Date
+	toColumn: DateTable.Date
+
+relationship 0e5ab6d6-9a62-45f3-8cc6-bde8c134d3e2
+	fromColumn: 'Sponsored Product Advertised Pr'.Date
+	toColumn: DateTable.Date
+
+relationship 9519e5fe-9f82-439d-b68c-7c17a397a28f
+	fromColumn: 'Sponsored Brands Campaign Repor'.Date
+	toColumn: DateTable.Date
+
+relationship 0bb361af-4b4b-4aea-8a57-07c8ec731e57
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'KPI data'.Month
+	toColumn: DateTable.Date
+
+relationship f99061e1-960a-4886-b644-699618a72bff
+	fromColumn: OrderSummaryTable.Date
+	toColumn: DateTable.Date
+
+relationship 80b371a9-d89d-4a6e-b984-7f38b02bb71f
+	fromColumn: 'Shopify Denmark'.Date
+	toColumn: DateTable.Date
+
+relationship 20fb7d1a-d003-4635-b69d-3c24a0f506f2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: LastWeekTable.Date
+	toColumn: LocalDateTable_00da6b4d-c0b8-4757-b382-56ab0d876e2a.Date
+
+relationship fe4e1531-42b7-47ec-97ba-31d70f268256
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Meta Ads'.Date
+	toColumn: DateTable.Date
+
+relationship 943ac088-38c5-411e-b4a8-c9aed7bc39d2
+	fromColumn: 'Google Ads'.Date
+	toColumn: DateTable.Date
+

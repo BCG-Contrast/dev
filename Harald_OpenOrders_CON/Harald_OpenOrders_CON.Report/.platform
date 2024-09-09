@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Harald_OpenOrders_CON"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "94f56ffd-e4a8-46fd-8c5d-8b9edf137132"
+  }
+}

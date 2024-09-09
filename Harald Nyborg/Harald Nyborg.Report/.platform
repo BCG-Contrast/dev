@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Harald Nyborg"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "20a08a85-5729-4dc3-aba2-ea6f3e9b95be"
+  }
+}

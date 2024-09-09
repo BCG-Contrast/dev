@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Milestone_Ugerapport"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "29cba29b-01fa-4419-8d0f-4d602570e56c"
+  }
+}

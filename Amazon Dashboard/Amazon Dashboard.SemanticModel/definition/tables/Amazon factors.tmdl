@@ -1,0 +1,109 @@
+table 'Amazon factors'
+	lineageTag: faa71922-f960-451b-b6e6-28369d81d03d
+
+	measure 'Factor % measure' = CALCULATE(SUM('Amazon factors'[Factor %]),LEN('Amazon factors'[ASIN])>2)
+		lineageTag: cf6b41d0-9310-4d77-b04b-5d1abbce0879
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Produktnavn: Navision'
+		dataType: string
+		lineageTag: af1e8cb1-ed12-49d2-9f2f-6759f3b6b9ce
+		summarizeBy: none
+		sourceColumn: Produktnavn: Navision
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIN
+		dataType: string
+		lineageTag: 3d1fe921-a1d8-43ed-b643-21e306a58fbf
+		summarizeBy: none
+		sourceColumn: ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_39
+		dataType: int64
+		formatString: 0
+		lineageTag: 94709c46-1b77-4b80-ac10-2b65af905c48
+		summarizeBy: sum
+		sourceColumn: Total_39
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average factor'
+		dataType: string
+		lineageTag: 5bbdc604-1bee-4a65-8a1e-a03daa96b75a
+		summarizeBy: none
+		sourceColumn: Average factor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month number'
+		dataType: int64
+		formatString: 0
+		lineageTag: bd232722-7463-43fd-9b99-1b598cdbf2e2
+		summarizeBy: sum
+		sourceColumn: Month number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Factor - Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c91f4b1-659f-498f-b5f3-a0e33302bc29
+		summarizeBy: sum
+		sourceColumn: Factor - Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Factor %'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dea6e6ed-feb7-423c-8b23-89c6517a3fda
+		summarizeBy: sum
+		sourceColumn: Factor %
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current month number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 329f5376-ac45-4468-a3a5-94bdadba163a
+		summarizeBy: sum
+		sourceColumn: Current month number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Amazon factors' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Stamdata-ark xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Stamdata-ark.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Stamdata-ark xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"Amazon Kalkulationer_Sheet" = #"Imported Excel Workbook"{[Item="Amazon Kalkulationer",Kind="Sheet"]}[Data],
+				    #"Removed Top Rows" = Table.Skip(#"Amazon Kalkulationer_Sheet",1),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Removed Top Rows", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Columns" = Table.RemoveColumns(#"Removed Blank Rows",{"Column3"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Produktnavn: Navision", type text}, {"Amazon - Parent ASIN", type text}, {"Indkøbsfragt (%)", type number}, {"Told (%)", type number}, {"Indkøbspris (DKK)", type number}, {"Salgsfragt/Amazon (%)", type number}, {"Amazon fee (%)", type number}, {"Håndtering Amazon/FBA (%)", type number}, {"PPC/Amazon (%)", type number}, {"Kostpris/Amazon (DKK)", type number}, {"Kurs/Amazon (DKK)", Int64.Type}, {"Salgspris/Amazon (Euro)", type number}, {"Salgspris/Amazon (DKK)", type number}, {"Avance/Amazon (%)", type number}, {"Avance/Amazon (DKK)", type number}, {"Antal salgsenheder/Amazon (DKK)", Int64.Type}, {"Omsætning/Amazon (DKK)", type number}, {"Indkøbsfragt (DKK)", type number}, {"Told (DKK)", type number}, {"Lager (DKK)", type number}, {"Salgsfragt/Amazon (DKK)", type number}, {"Amazon fee (DKK)", type number}, {"Håndtering Amazon/FBA (DKK)", type number}, {"PPC/Amazon (DKK)", type number}, {"Tax (DKK)", type number}, {"Konverteringsrate for kategori", type number}, {"Return ratio", type number}, {"Konverteringsrate for produkt", type number}, {"Amazon salg pr. måned", Int64.Type}, {"Amazon salg pr. år", Int64.Type}, {"Jan.", type number}, {"Feb.", type number}, {"Mar.", type number}, {"Apr.", type number}, {"Maj", type number}, {"Jun.", type number}, {"Jul.", type number}, {"Aug.", type number}, {"Sep.", type number}, {"Okt.", type number}, {"Nov.", type number}, {"Dec.", type number}, {"Total", type number}, {"Jan._1", type number}, {"Feb._2", type number}, {"Mar._3", type number}, {"Apr._4", type number}, {"Maj_5", type number}, {"Jun._6", type number}, {"Jul._7", type number}, {"Aug._8", type number}, {"Sep._9", type number}, {"Okt._10", type number}, {"Nov._11", type number}, {"Dec._12", type number}, {"Total_13", type number}, {"Jan._14", type number}, {"Feb._15", type number}, {"Mar._16", type number}, {"Apr._17", type number}, {"Maj_18", type number}, {"Jun._19", type number}, {"Jul._20", type number}, {"Aug._21", type number}, {"Sep._22", type number}, {"Okt._23", type number}, {"Nov._24", type number}, {"Dec._25", type number}, {"Total_26", type number}, {"Jan._27", Int64.Type}, {"Feb._28", Int64.Type}, {"Mar._29", Int64.Type}, {"Apr._30", Int64.Type}, {"Maj_31", Int64.Type}, {"Jun._32", Int64.Type}, {"Jul._33", Int64.Type}, {"Aug._34", Int64.Type}, {"Sep._35", Int64.Type}, {"Okt._36", Int64.Type}, {"Nov._37", Int64.Type}, {"Dec._38", Int64.Type}, {"Total_39", Int64.Type}, {"Column83", type any}, {"Column84", type any}, {"Faste Værdier", type text}, {"Column86", type number}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type",{"Indkøbsfragt (%)", "Told (%)", "Indkøbspris (DKK)", "Salgsfragt/Amazon (%)", "Amazon fee (%)", "Håndtering Amazon/FBA (%)", "PPC/Amazon (%)", "Kostpris/Amazon (DKK)", "Kurs/Amazon (DKK)", "Salgspris/Amazon (Euro)", "Salgspris/Amazon (DKK)", "Avance/Amazon (%)", "Avance/Amazon (DKK)", "Antal salgsenheder/Amazon (DKK)", "Omsætning/Amazon (DKK)", "Indkøbsfragt (DKK)", "Told (DKK)", "Lager (DKK)", "Salgsfragt/Amazon (DKK)", "Amazon fee (DKK)", "Håndtering Amazon/FBA (DKK)", "PPC/Amazon (DKK)", "Tax (DKK)", "Konverteringsrate for kategori", "Return ratio", "Konverteringsrate for produkt", "Amazon salg pr. måned", "Amazon salg pr. år", "Jan.", "Feb.", "Mar.", "Apr.", "Maj", "Jun.", "Jul.", "Aug.", "Sep.", "Okt.", "Nov.", "Dec.", "Total", "Jan._1", "Feb._2", "Mar._3", "Apr._4", "Maj_5", "Jun._6", "Jul._7", "Aug._8", "Sep._9", "Okt._10", "Nov._11", "Dec._12", "Total_13", "Jan._14", "Feb._15", "Mar._16", "Apr._17", "Maj_18", "Jun._19", "Jul._20", "Aug._21", "Sep._22", "Okt._23", "Nov._24", "Dec._25", "Total_26"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"Jan._27", "1"}, {"Feb._28", "2"}, {"Mar._29", "3"}, {"Apr._30", "4"}, {"Maj_31", "5"}, {"Jun._32", "6"}, {"Jul._33", "7"}, {"Aug._34", "8"}, {"Sep._35", "9"}, {"Okt._36", "10"}, {"Nov._37", "11"}, {"Dec._38", "12"}}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Renamed Columns",{"Column83", "Column84", "Faste Værdier", "Column86"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns2", "Average factor", each [Total_39]/12),
+				    #"Removed Duplicates" = Table.Distinct(#"Added Custom", {"Amazon - Parent ASIN"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Removed Duplicates", {"Produktnavn: Navision", "Amazon - Parent ASIN", "Total_39", "Average factor"}, "Attribute", "Value"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Month number"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns1", "Custom", each [Value]/[Average factor]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Custom", Percentage.Type}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Changed Type1",{{"Value", "Factor - Month"}, {"Custom", "Factor %"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns2", "Current month number", each Date.Month(DateTime.LocalNow())),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom2",{{"Month number", Int64.Type}, {"Current month number", Int64.Type}}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Changed Type2",{{"Amazon - Parent ASIN", "ASIN"}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Renamed Columns3", each ([ASIN] <> "(UKENDT)" and [ASIN] <> "-"))
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_ResultType = Table
+

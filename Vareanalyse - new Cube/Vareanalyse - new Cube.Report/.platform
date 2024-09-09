@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Vareanalyse - new Cube"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4d0c366e-decc-4119-ab64-75a792cf6ea1"
+  }
+}

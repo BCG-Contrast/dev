@@ -1,0 +1,52 @@
+table LastWeekTable
+	lineageTag: cb57542f-0366-4206-8ad2-5f1379588b99
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dea2ea46-5919-4c27-9b28-a0abc6c4e7b1
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: DateTable[Date]
+
+		variation Variation
+			isDefault
+			relationship: 20fb7d1a-d003-4635-b69d-3c24a0f506f2
+			defaultHierarchy: LocalDateTable_00da6b4d-c0b8-4757-b382-56ab0d876e2a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Week'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0b74b01c-18c3-456e-87d2-31fd30b6d256
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Last Week]
+
+		variation Variation
+			isDefault
+			relationship: 61673426-303b-45cf-afbc-1121c55e327f
+			defaultHierarchy: LocalDateTable_7acedcad-b84c-4597-aec3-5e3a970b6130.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LastWeekTable = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE(
+				    DateTable,
+				    'DateTable'[Date],
+				    "Last Week", 
+				        CALCULATE(
+				            MAX('DateTable'[Date]),
+				            'DateTable'[Date] >= MAX('DateTable'[Date]) - 7 && 'DateTable'[Date] <= MAX('DateTable'[Date]) - 1
+				        )
+				)
+				```
+
+	annotation PBI_Id = 13e8f495c79040c9aac7a8d3a8efd808
+

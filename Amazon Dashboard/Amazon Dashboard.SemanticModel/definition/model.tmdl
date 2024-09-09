@@ -1,0 +1,48 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Errors in queries that were loaded on 4/18/2024 1:16:28 PM.
+queryGroup 'Query Errors - 4/18/2024 1:16:28 PM'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Transactions1","Sponsored Display Advertised Pr1","Sponsored Product Advertised Pr","Sponsored Brands Campaign Repor","Item inverntory1","Item cost price","Item translator","Amazon aug23 - items","KPI data","Amazon Restock Report CSV","Amazon factors","Shopify Denmark","Enable Shopify","Google Ads","Meta Ads","Errors in Transactions1"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.132.1053.0 (24.08)
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_1d0933be-6c6b-4409-ae86-2a15d7443de4
+ref table Transactions1
+ref table 'Sponsored Display Advertised Pr1'
+ref table 'Item inverntory1'
+ref table 'Item cost price'
+ref table 'Sponsored Brands Campaign Repor'
+ref table 'Sponsored Product Advertised Pr'
+ref table 'Item translator'
+ref table 'Amazon aug23 - items'
+ref table DateTable
+ref table OrderSummaryTable
+ref table 'KPI data'
+ref table LastWeekTable
+ref table LocalDateTable_7acedcad-b84c-4597-aec3-5e3a970b6130
+ref table 'Amazon Restock Report CSV'
+ref table LocalDateTable_3f0ba3cb-3ddd-48e7-8d75-fc5e8091d521
+ref table 'Amazon factors'
+ref table 'Shopify Denmark'
+ref table Shopify
+ref table LocalDateTable_4bc69125-f2e9-44ec-8fa8-a96a46d94c13
+ref table LocalDateTable_00da6b4d-c0b8-4757-b382-56ab0d876e2a
+ref table 'Google Ads'
+ref table 'Meta Ads'
+
+ref cultureInfo en-US
+

@@ -1,0 +1,14 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": null,
+    "byConnection": {
+      "connectionString": "Data Source=asazure://westeurope.asazure.windows.net/aascontrastbiprod;Initial Catalog=ContrastBI;Cube=ContrastBI;Access Mode=readonly;Integrated Security=ClaimsToken",
+      "pbiServiceModelId": 2766982,
+      "pbiModelVirtualServerName": "sobe_onpremisevirtualserver",
+      "pbiModelDatabaseName": "fe93d93f-b668-49ea-9df6-7f1b74f0a136",
+      "name": "EntityDataSource",
+      "connectionType": "pbiserviceOnPremLive"
+    }
+  }
+}

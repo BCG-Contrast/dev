@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Sales_Followup"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "51ab0a0b-207e-4013-90d2-dbb4a2f36d6b"
+  }
+}

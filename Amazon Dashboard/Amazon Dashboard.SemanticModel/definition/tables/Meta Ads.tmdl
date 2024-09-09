@@ -1,0 +1,85 @@
+table 'Meta Ads'
+	lineageTag: 0e318fd8-a202-418c-9e73-34cebd4a453e
+
+	column 'Account name'
+		dataType: string
+		lineageTag: fa474140-5029-4760-9cb8-8b80666b5dcb
+		summarizeBy: none
+		sourceColumn: Account name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 99c6b92c-228d-4e44-9c31-f0823ba19811
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Reach
+		dataType: int64
+		formatString: 0
+		lineageTag: f8f85666-d9e6-4955-85ba-0664a6722824
+		summarizeBy: sum
+		sourceColumn: Reach
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: d6353c2d-3adf-4f24-81ae-5864c012117b
+		summarizeBy: sum
+		sourceColumn: Impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Frequency
+		dataType: double
+		lineageTag: 7e8ec649-62f1-411a-b9dd-5084b12c0553
+		summarizeBy: sum
+		sourceColumn: Frequency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: f52c5d49-414f-4189-a2c1-4846c299de35
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount spent (DKK)'
+		dataType: double
+		lineageTag: 11b09ad0-5e02-4e97-b9b0-ea0d70959715
+		summarizeBy: sum
+		sourceColumn: Amount spent (DKK)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Meta Ads' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Meta-Ad-Spend xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Meta-Ad-Spend.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Meta-Ad-Spend xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"Raw Data Report_Sheet" = #"Imported Excel Workbook"{[Item="Raw Data Report",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Raw Data Report_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account name", type text}, {"Day", type date}, {"Reach", Int64.Type}, {"Impressions", Int64.Type}, {"Frequency", type number}, {"Currency", type text}, {"Amount spent (DKK)", type number}, {"Attribution setting", type text}, {"Reporting starts", type date}, {"Reporting ends", type date}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Reporting ends", "Reporting starts", "Attribution setting"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Day", "Date"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

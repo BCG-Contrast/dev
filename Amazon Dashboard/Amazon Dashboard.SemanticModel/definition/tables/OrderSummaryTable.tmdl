@@ -1,0 +1,70 @@
+table OrderSummaryTable
+	lineageTag: 98e9ea52-15da-4d58-809a-29f625df932e
+
+	measure 'Count 1 item orders' = SUMX(FILTER(OrderSummaryTable, OrderSummaryTable[Order Size]=1), OrderSummaryTable[Order Size])
+		formatString: 0
+		lineageTag: 3db0342e-c8a2-4aef-aae5-59f908250ab7
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: c0065fc4-8d0a-446f-a3d4-3e750edf50e9
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Transactions1[Order ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Size'
+		dataType: int64
+		formatString: 0
+		lineageTag: cdf0d1a8-ab13-420a-abff-7239e9df0472
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Order Size]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Revenue'
+		dataType: double
+		lineageTag: a48b2809-79eb-4054-8841-de14272e3be8
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Total Revenue]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7b87314d-ecd3-41fe-a01a-3c99fbf73895
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OrderSummaryTable = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE(
+				    FILTER(
+				        Transactions1,
+				        Transactions1[Transaction Type] = "Order"
+				    ),
+				    Transactions1[Order ID],
+				    "Date", MINX(VALUES(Transactions1[Date]), Transactions1[Date]),
+				    "Order Size", SUM(Transactions1[Quantity Sold]),
+				    "Total Revenue", SUMX(Transactions1, Transactions1[Total Revenue])
+				)
+				
+				```
+
+	annotation PBI_Id = 5be880ecb9874cdbb01c93d198ba0430
+

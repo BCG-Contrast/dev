@@ -1,0 +1,71 @@
+table 'Google Ads'
+	lineageTag: 584bdd9a-6080-4e8a-b7b9-75450cf4e016
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: afd24ceb-05ea-4133-abd0-7d0ba9328f50
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Type
+		dataType: string
+		lineageTag: 51967b0a-f672-4fa5-b27d-4c6bb5d5286b
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Beskrivelse
+		dataType: string
+		lineageTag: 1929ea96-103f-416e-9eeb-a955dec6e0a3
+		summarizeBy: none
+		sourceColumn: Beskrivelse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Interaktioner
+		dataType: string
+		lineageTag: 4a4e2b68-e965-4484-9d25-ab34c1f10ea4
+		summarizeBy: none
+		sourceColumn: Interaktioner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Costs DKK'
+		dataType: double
+		lineageTag: 8407505b-cc9f-44d2-ba01-4261144b620f
+		summarizeBy: sum
+		sourceColumn: Costs DKK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Google Ads' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Google-Ads-Spend xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Google-Ads-Spend.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Google-Ads-Spend xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"Rapporten Faktureringsaktivitet_Sheet" = #"Imported Excel Workbook"{[Item="Rapporten Faktureringsaktivitet",Kind="Sheet"]}[Data],
+				    #"Removed Top Rows" = Table.Skip(#"Rapporten Faktureringsaktivitet_Sheet",2),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Dato", type date}, {"Type", type text}, {"Beskrivelse", type text}, {"Interaktioner", type text}, {"Costs", type text}, {"Credits", type text}, {"Running balance", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Credits", "Running balance"}),
+				    #"Added Custom Column" = Table.AddColumn(#"Removed Columns", "Custom", each let splitCosts = Splitter.SplitTextByDelimiter("kr.", QuoteStyle.None)([Costs]), splitCosts2 = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)([Costs])), splitsplitCosts20 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitCosts2{0}?) in Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(splitCosts{1}?), 7)), Text.Combine(splitsplitCosts20, ".")}), type text),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Added Custom Column",{"Costs"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"Custom", "Costs DKK"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([Costs DKK] <> " --")),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Filtered Rows",{{"Dato", "Date"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Costs DKK", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

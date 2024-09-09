@@ -1,0 +1,238 @@
+table 'Sponsored Product Advertised Pr'
+	lineageTag: d5f8a8d3-dc0a-4943-97c2-91fbef539154
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 37f75abc-1313-4170-8729-f9d53ed338f1
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Portfolio name'
+		dataType: string
+		lineageTag: 6b712993-1cb9-4bd8-9d2d-b1309fbeec08
+		summarizeBy: none
+		sourceColumn: Portfolio name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: edea4e84-63ff-4304-a91f-05a343305dbe
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campaign Name'
+		dataType: string
+		lineageTag: 864999e4-9aa5-48fa-8e6f-1f250a6ce03d
+		summarizeBy: none
+		sourceColumn: Campaign Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ad Group Name'
+		dataType: string
+		lineageTag: 8d72b097-d2e7-49d5-bbb0-34af767b7c53
+		summarizeBy: none
+		sourceColumn: Ad Group Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Advertised SKU'
+		dataType: string
+		lineageTag: dea2693c-e646-47fd-a699-718b215b2f10
+		summarizeBy: none
+		sourceColumn: Advertised SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Advertised ASIN'
+		dataType: string
+		lineageTag: 25156e99-8314-4d57-85e5-8a19351cedd6
+		summarizeBy: none
+		sourceColumn: Advertised ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: eeffd683-e227-4120-834b-e53192ac8bda
+		summarizeBy: sum
+		sourceColumn: Impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clicks
+		dataType: int64
+		formatString: 0
+		lineageTag: 832e033a-e020-42c2-aeb4-de969df86a60
+		summarizeBy: sum
+		sourceColumn: Clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Click-Thru Rate (CTR)'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bdcaa20d-7893-4f10-9d1c-9c434dfd90bb
+		summarizeBy: sum
+		sourceColumn: Click-Thru Rate (CTR)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Per Click (CPC)'
+		dataType: double
+		lineageTag: 19bbd339-ec31-4cb4-862a-740625c646bc
+		summarizeBy: sum
+		sourceColumn: Cost Per Click (CPC)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Spend
+		dataType: double
+		lineageTag: ffe88071-7f1f-4d84-965b-683efe099c78
+		summarizeBy: sum
+		sourceColumn: Spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '7 Day Total Sales'
+		dataType: double
+		lineageTag: 01c94499-d009-4e44-a9e6-b52dcc5091e8
+		summarizeBy: sum
+		sourceColumn: 7 Day Total Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Advertising Cost of Sales (ACOS) '
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e82e5aa1-0379-4bbb-9311-2cf0bcf1e68e
+		summarizeBy: sum
+		sourceColumn: "Total Advertising Cost of Sales (ACOS) "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Return on Advertising Spend (ROAS)'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1b0d5d0f-4c5b-4a42-b67c-a50ec102d182
+		summarizeBy: sum
+		sourceColumn: Total Return on Advertising Spend (ROAS)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '7 Day Total Orders (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c13fe5d-2938-4826-88a6-5493b624ae23
+		summarizeBy: sum
+		sourceColumn: 7 Day Total Orders (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '7 Day Total Units (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: c8c0c2e3-5a1d-4484-ae6a-60edc938af00
+		summarizeBy: sum
+		sourceColumn: 7 Day Total Units (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '7 Day Conversion Rate'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7a25ff67-b6a0-4c3c-9186-b5fa474ad39b
+		summarizeBy: sum
+		sourceColumn: 7 Day Conversion Rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column '7 Day Advertised SKU Units (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 99e32d44-da07-4e43-9e88-85df0b579c21
+		summarizeBy: sum
+		sourceColumn: 7 Day Advertised SKU Units (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '7 Day Other SKU Units (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f3f9840f-1fc0-4e35-b263-3ef096fd8f07
+		summarizeBy: sum
+		sourceColumn: 7 Day Other SKU Units (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '7 Day Advertised SKU Sales'
+		dataType: double
+		lineageTag: ec8c6b80-a3f2-4bef-b526-369e7e2c30ea
+		summarizeBy: sum
+		sourceColumn: 7 Day Advertised SKU Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '7 Day Other SKU Sales'
+		dataType: double
+		lineageTag: c9502a7c-216e-4017-ba7a-673f128f11a3
+		summarizeBy: sum
+		sourceColumn: 7 Day Other SKU Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Sponsored Product Advertised Pr' = m
+		mode: import
+		source = ```
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Sponsored Products Advertised product report (3) xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Sponsored Products Advertised product report (3).xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Sponsored Products Advertised product report (3) xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"Sponsored Product Advertised Pr_Sheet" = #"Imported Excel Workbook"{[Item="Sponsored Product Advertised Pr",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sponsored Product Advertised Pr_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Portfolio name", type text}, {"Currency", type text}, {"Campaign Name", type text}, {"Ad Group Name", type text}, {"Advertised SKU", type text}, {"Advertised ASIN", type text}, {"Impressions", Int64.Type}, {"Clicks", Int64.Type}, {"Click-Thru Rate (CTR)", type number}, {"Cost Per Click (CPC)", type number}, {"Spend", type number}, {"7 Day Total Sales", type number}, {"Total Advertising Cost of Sales (ACOS) ", type number}, {"Total Return on Advertising Spend (ROAS)", type number}, {"7 Day Total Orders (#)", Int64.Type}, {"7 Day Total Units (#)", Int64.Type}, {"7 Day Conversion Rate", type number}, {"7 Day Advertised SKU Units (#)", Int64.Type}, {"7 Day Other SKU Units (#)", Int64.Type}, {"7 Day Advertised SKU Sales", type number}, {"7 Day Other SKU Sales", type number}}),
+				     #"Replaced Value14" = Table.ReplaceValue(#"Changed Type","M-211350001","M-21135-10-M-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14","M-211350002","M-21135-10-L-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Replaced Value15","M-211350003","M-21135-10-XL-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value16","M-211350004","M-21135-10-XXL-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Replaced Value17","M-211350005","M-21135-11-M-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Replaced Value18","M-211350006","M-21135-11-L-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Replaced Value19","M-211350007","M-21135-11-XL-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value20","M-211350008","M-21135-11-XXL-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value21","M-211350009","M-21135-14-M-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value23" = Table.ReplaceValue(#"Replaced Value22","M-211350010","M-21135-14-L-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value24" = Table.ReplaceValue(#"Replaced Value23","M-211350011","M-21135-14-XL-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value25" = Table.ReplaceValue(#"Replaced Value24","M-211350012","M-21135-14-XXL-NV",Replacer.ReplaceText,{"Advertised SKU"}), 
+				    #"Reordered Columns" = Table.ReorderColumns(#"Replaced Value25",{"Date", "Portfolio name", "Currency", "Campaign Name", "Ad Group Name", "Advertised SKU", "Advertised ASIN", "Impressions", "Clicks", "Click-Thru Rate (CTR)", "Cost Per Click (CPC)", "Spend", "7 Day Total Sales", "Total Advertising Cost of Sales (ACOS) ", "Total Return on Advertising Spend (ROAS)", "7 Day Total Orders (#)", "7 Day Total Units (#)", "7 Day Conversion Rate", "7 Day Advertised SKU Units (#)", "7 Day Other SKU Units (#)", "7 Day Advertised SKU Sales", "7 Day Other SKU Sales"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Reordered Columns","M21306-10-LXL","M-21306-10-LXL",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","M21306-10-SM","M-21306-10-SM",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","21306-10-SM","M-21306-10-SM",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","21306-10-LXL","M-21306-10-LXL",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","M-M-21306-10-SM","M-21306-10-SM",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","M-M-21306-10-LXL","M-21306-10-LXL",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Sorted Rows2" = Table.Sort(#"Replaced Value5",{{"Spend", Order.Descending}})
+				in
+				    #"Sorted Rows2"
+				```
+
+	annotation PBI_ResultType = Table
+

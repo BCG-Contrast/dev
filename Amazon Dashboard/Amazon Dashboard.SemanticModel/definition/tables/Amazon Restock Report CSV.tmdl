@@ -1,0 +1,424 @@
+table 'Amazon Restock Report CSV'
+	lineageTag: 87896c09-6237-4341-ac57-2f3d7b9ee7c2
+
+	measure 'Stock replenishment + factor' = ```
+			IF([Stock for 2 more months] * AVERAGE('Amazon factors'[Factor %])>SUM('Amazon Restock Report CSV'[Available]),[Stock for 2 more months] * AVERAGE('Amazon factors'[Factor %]),0)
+			
+			
+			```
+		lineageTag: 53d60251-6db6-46ab-875d-e9a4a4dd31ac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Stock replenishment + factor MONTHS' = ```
+			
+			VAR StockAmount = [Stock for 2 more months]/2 * AVERAGEx(FILTER('Amazon factors','Amazon factors'[Month number]=MONTH(TODAY())+1),'Amazon factors'[Factor %])+[Stock for 2 more months]/2*AVERAGEx(FILTER('Amazon factors','Amazon factors'[Month number]=MONTH(TODAY())+2),'Amazon factors'[Factor %])
+			RETURN
+			-IF(StockAmount>SUM('Amazon Restock Report CSV'[Available]),SUM('Amazon Restock Report CSV'[Available])-StockAmount,0)
+			
+			```
+		lineageTag: 81c620fd-017b-4553-a34a-7d7195e6d4d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'No cartons to be sent 60 days' =
+			
+			VAR nrpalets =ROUNDUP(IFERROR(DIVIDE([Stock for 60 days],MAX('Item translator'[Sales Units pr. master carton]),0),0),0)
+			RETURN
+			IF(nrpalets>0,nrpalets,0)
+		formatString: #,0
+		lineageTag: 51babfa8-2e47-4842-8a0c-6a626f86f058
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Factor deviation' = [Stock replenishment + factor MONTHS]-[Stock replenishment]
+		lineageTag: f63f8a17-8fe6-4b8d-a42f-f0344e536d44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sent Quantity' = [No cartons to be sent 60 days]* MAX('Item translator'[Sales Units pr. master carton])
+		formatString: 0
+		lineageTag: 5a6a45a3-c554-4b61-9001-6619e170d372
+
+	measure 'Prep Owner' = "Seller"
+		lineageTag: 116b66d4-6386-4350-b2fd-b5d55fe7d17b
+
+	measure 'Labeling owner' = "Seller"
+		lineageTag: 27bee41d-71dc-426d-9b38-e1e4c5139c9f
+
+	measure 'Stock for 30 days' = ```
+			
+			VAR DaysToEndOfMonth = DATEDIFF(TODAY(), EOMONTH(TODAY(), 0), DAY)
+			VAR DaysInNextMonth = 30 - DaysToEndOfMonth
+			VAR CurrentMonthFactor = CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()))
+			VAR NextMonthFactor = 
+			    IF(
+			        MONTH(TODAY()) + 1 <= 12,
+			        CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()) + 1),
+			        CALCULATE('Amazon factors'[Factor % measure],  'Amazon factors'[Month number] = 1)
+			    )
+			RETURN
+			(
+			    ([Average quantity last 30 days at average factor] * CurrentMonthFactor / 30) * (DaysToEndOfMonth) +
+			    ([Average quantity last 30 days at average factor] * NextMonthFactor / 30) * (MIN(30, DaysInNextMonth))-MAX('Amazon Restock Report CSV'[Available]
+			)
+			)
+			```
+		formatString: 0
+		lineageTag: 1acb5204-2fab-47f9-9e05-cafcb02ee7fe
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Stock for 45 days' = ```
+			
+			VAR DaysToEndOfMonth = DATEDIFF(TODAY(), EOMONTH(TODAY(), 0), DAY)
+			VAR DaysInNextMonth = 45 - DaysToEndOfMonth
+			VAR CurrentMonthFactor = CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()))
+			VAR NextMonthFactor = 
+			    IF(
+			        MONTH(TODAY()) + 1 <= 12,
+			        CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()) + 1),
+			        CALCULATE('Amazon factors'[Factor % measure],  'Amazon factors'[Month number] = 1)
+			    )
+			VAR ThirdMonthFactor = 
+			    IF(
+			        MONTH(TODAY()) + 2 <= 12,
+			        CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()) + 2),
+			        CALCULATE('Amazon factors'[Factor % measure],  'Amazon factors'[Month number] = 1)
+			    )
+			RETURN
+			(
+			    ([Average quantity last 30 days at average factor] * CurrentMonthFactor / 30) * (DaysToEndOfMonth) +
+			    ([Average quantity last 30 days at average factor] * NextMonthFactor / 30) * (MIN(30, DaysInNextMonth)) +
+			    ([Average quantity last 30 days at average factor] * ThirdMonthFactor / 30) * (MIN(30, 45 - DaysToEndOfMonth - 30))
+			    -MAX('Amazon Restock Report CSV'[Available]
+			)
+			)
+			```
+		formatString: 0
+		lineageTag: 2e4751bc-f6da-4351-8f80-d8bd6122531c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Stock for 60 days' = ```
+			
+			VAR DaysToEndOfMonth = DATEDIFF(TODAY(), EOMONTH(TODAY(), 0), DAY)
+			VAR DaysInNextMonth = 60 - DaysToEndOfMonth
+			VAR CurrentMonthFactor = CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()))
+			VAR NextMonthFactor = 
+			    IF(
+			        MONTH(TODAY()) + 1 <= 12,
+			        CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()) + 1),
+			        CALCULATE('Amazon factors'[Factor % measure],  'Amazon factors'[Month number] = 1)
+			    )
+			VAR ThirdMonthFactor = 
+			    IF(
+			        MONTH(TODAY()) + 2 <= 12,
+			        CALCULATE('Amazon factors'[Factor % measure], 'Amazon factors'[Month number] = MONTH(TODAY()) + 2),
+			        CALCULATE('Amazon factors'[Factor % measure],  'Amazon factors'[Month number] = 1)
+			    )
+			RETURN
+			(
+			    ([Average quantity last 30 days at average factor] * CurrentMonthFactor / 30) * (DaysToEndOfMonth) +
+			    ([Average quantity last 30 days at average factor] * NextMonthFactor / 30) * (MIN(30, DaysInNextMonth)) +
+			    ([Average quantity last 30 days at average factor] * ThirdMonthFactor / 30) * (MAX(0, 60 - DaysToEndOfMonth - 30))
+			    -MAX('Amazon Restock Report CSV'[Available]
+			)
+			)
+			```
+		formatString: 0
+		lineageTag: 5b233517-a160-4b00-b927-afbb44682e23
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'No cartons to be sent 30 days' =
+			
+			VAR nrpalets =ROUNDUP(IFERROR(DIVIDE([Stock for 30 days],MAX('Item translator'[Sales Units pr. master carton]),0),0),0)
+			RETURN
+			IF(nrpalets>0,nrpalets,0)
+		lineageTag: 300621e7-35ca-4866-8929-f1bf1ef88cbf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'No cartons to be sent 45 days' =
+			
+			VAR nrpalets =ROUNDUP(IFERROR(DIVIDE([Stock for 45 days],MAX('Item translator'[Sales Units pr. master carton]),0),0),0)
+			RETURN
+			IF(nrpalets>0,nrpalets,0)
+		lineageTag: 891a3db1-10b1-46b6-bdf4-6f5c302ae1f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Country
+		dataType: string
+		lineageTag: ea6afbdb-7f52-4110-b21f-844b48802a7f
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: abdefb1a-cb92-4e3b-869a-35722fd1040d
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column FNSKU
+		dataType: string
+		lineageTag: bcac9708-0df2-466f-bb31-1d8239f11287
+		summarizeBy: none
+		sourceColumn: FNSKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Merchant SKU'
+		dataType: string
+		lineageTag: 9a381b1d-4146-4102-a8b7-84e04b471bcb
+		summarizeBy: none
+		sourceColumn: Merchant SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIN
+		dataType: string
+		lineageTag: e1b378fc-775a-4f4f-8101-d0985ab5c169
+		summarizeBy: none
+		sourceColumn: ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Condition
+		dataType: string
+		lineageTag: dee3299d-40c2-40b6-b181-62008220a4d6
+		summarizeBy: none
+		sourceColumn: Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: a823d220-3812-4c8e-a4c1-19953379f0d3
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Supplier part no.'
+		dataType: string
+		lineageTag: 19cd204c-c4d9-49e8-8809-742179724975
+		summarizeBy: none
+		sourceColumn: Supplier part no.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency code'
+		dataType: string
+		lineageTag: 4ff4bfcf-bbc5-4215-af2a-2ccecfde2b7b
+		summarizeBy: none
+		sourceColumn: Currency code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 025ed226-c41a-4ffc-b770-44e74737fa2b
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales last 30 days'
+		dataType: double
+		lineageTag: 6983245f-e581-45d7-8078-419510c57af3
+		summarizeBy: sum
+		sourceColumn: Sales last 30 days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Units Sold Last 30 Days'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ed46721-e159-498c-8cba-fed0569c9384
+		summarizeBy: sum
+		sourceColumn: Units Sold Last 30 Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Units'
+		dataType: int64
+		formatString: 0
+		lineageTag: e3c16570-0bd7-4cb3-b58f-49c4afab256a
+		summarizeBy: sum
+		sourceColumn: Total Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inbound
+		dataType: int64
+		formatString: 0
+		lineageTag: e9b0a093-a76b-454c-b0fe-e0a296583bf0
+		summarizeBy: sum
+		sourceColumn: Inbound
+
+		annotation SummarizationSetBy = Automatic
+
+	column Available
+		dataType: int64
+		formatString: 0
+		lineageTag: 37075dce-5090-4f56-ab21-931ef6ca8667
+		summarizeBy: sum
+		sourceColumn: Available
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FC transfer'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cd62656-4bb1-4f66-a2b1-d6d5b0ab87e3
+		summarizeBy: sum
+		sourceColumn: FC transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FC Processing'
+		dataType: int64
+		formatString: 0
+		lineageTag: ad734e6c-1694-46bf-92ac-a98a1d9fe413
+		summarizeBy: sum
+		sourceColumn: FC Processing
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c950ce8-2bc8-4ce9-a654-ff8a4ccd64a6
+		summarizeBy: sum
+		sourceColumn: Customer Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unfulfillable
+		dataType: int64
+		formatString: 0
+		lineageTag: b2304378-76f7-4383-a8c5-aad907b4ed7c
+		summarizeBy: sum
+		sourceColumn: Unfulfillable
+
+		annotation SummarizationSetBy = Automatic
+
+	column Working
+		dataType: int64
+		formatString: 0
+		lineageTag: 509454f2-e77e-434f-8d00-3aa9f845650c
+		summarizeBy: sum
+		sourceColumn: Working
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipped
+		dataType: int64
+		formatString: 0
+		lineageTag: 649753df-153f-4bf2-83bd-b999506d6975
+		summarizeBy: sum
+		sourceColumn: Shipped
+
+		annotation SummarizationSetBy = Automatic
+
+	column Receiving
+		dataType: int64
+		formatString: 0
+		lineageTag: b32e46c8-2a4d-4964-8c74-9ad42024bb8b
+		summarizeBy: sum
+		sourceColumn: Receiving
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fulfilled by'
+		dataType: string
+		lineageTag: c3bb95c6-4329-4860-875a-17b243220b59
+		summarizeBy: none
+		sourceColumn: Fulfilled by
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Days of Supply (including units from open shipments)'
+		dataType: int64
+		formatString: 0
+		lineageTag: a1814fae-3b01-4691-83a8-729076bff97d
+		summarizeBy: sum
+		sourceColumn: Total Days of Supply (including units from open shipments)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days of Supply at Amazon Fulfillment Network'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5089f138-40a5-4e66-8811-0ed66b42bb30
+		summarizeBy: sum
+		sourceColumn: Days of Supply at Amazon Fulfillment Network
+
+		annotation SummarizationSetBy = Automatic
+
+	column Alert
+		dataType: string
+		lineageTag: 093b18f7-5fef-4040-a558-752e48a03efb
+		summarizeBy: none
+		sourceColumn: Alert
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recommended replenishment qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0159480d-66ca-4cf8-b79c-9bf75ef2f581
+		summarizeBy: sum
+		sourceColumn: Recommended replenishment qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recommended ship date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 96840e76-aee9-40a8-a0fa-6c1ac2632dbc
+		summarizeBy: none
+		sourceColumn: Recommended ship date
+
+		variation Variation
+			isDefault
+			relationship: ae7f9271-f9f2-443d-bd94-19c4310fec33
+			defaultHierarchy: LocalDateTable_3f0ba3cb-3ddd-48e7-8d75-fc5e8091d521.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Unit storage size'
+		dataType: string
+		lineageTag: d9d18fd6-f24f-49c4-a773-5f3550e62340
+		summarizeBy: none
+		sourceColumn: Unit storage size
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Amazon Restock Report CSV' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Amazon Restock Report CSV csv_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Amazon Restock Report CSV.csv",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"Amazon Restock Report CSV csv_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/",[Delimiter=",", Columns=29, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Country", type text}, {"Product Name", type text}, {"FNSKU", type text}, {"Merchant SKU", type text}, {"ASIN", type text}, {"Condition", type text}, {"Supplier", type text}, {"Supplier part no.", type text}, {"Currency code", type text}, {"Price", type number}, {"Sales last 30 days", type number}, {"Units Sold Last 30 Days", Int64.Type}, {"Total Units", Int64.Type}, {"Inbound", Int64.Type}, {"Available", Int64.Type}, {"FC transfer", Int64.Type}, {"FC Processing", Int64.Type}, {"Customer Order", Int64.Type}, {"Unfulfillable", Int64.Type}, {"Working", Int64.Type}, {"Shipped", Int64.Type}, {"Receiving", Int64.Type}, {"Fulfilled by", type text}, {"Total Days of Supply (including units from open shipments)", Int64.Type}, {"Days of Supply at Amazon Fulfillment Network", Int64.Type}, {"Alert", type text}, {"Recommended replenishment qty", Int64.Type}, {"Recommended ship date", type date}, {"Unit storage size", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Country] = "DE"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

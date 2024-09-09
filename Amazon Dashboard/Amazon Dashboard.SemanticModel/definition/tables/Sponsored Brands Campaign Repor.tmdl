@@ -1,0 +1,357 @@
+table 'Sponsored Brands Campaign Repor'
+	lineageTag: 2670316d-960a-4b7a-a7f6-8d93988e2da7
+
+	measure 'Total Spent' = SUM('Sponsored Brands Campaign Repor'[Spend])
+		lineageTag: 7ec13c68-1fc8-4457-bb08-07aaf79d58c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4b8b0ecb-0140-4800-bb49-d053e230db6b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Portfolio name'
+		dataType: string
+		lineageTag: 0f42923c-479a-4e59-91c2-22f3ebc22635
+		summarizeBy: none
+		sourceColumn: Portfolio name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 775857bf-b5e4-4308-9ba0-10fa21c4ae9a
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campaign Name'
+		dataType: string
+		lineageTag: f6ca85de-280a-4e0e-8c27-3116d470c322
+		summarizeBy: none
+		sourceColumn: Campaign Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: 814be9c7-1815-42be-a2d9-b47917cff6ad
+		summarizeBy: sum
+		sourceColumn: Impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clicks
+		dataType: int64
+		formatString: 0
+		lineageTag: f5ac37f2-30f2-4eed-b97c-a0da2e503557
+		summarizeBy: sum
+		sourceColumn: Clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Click-Thru Rate (CTR)'
+		dataType: double
+		lineageTag: 70e7bc4e-b90e-4108-9006-19d35a6fc92b
+		summarizeBy: sum
+		sourceColumn: Click-Thru Rate (CTR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Per Click (CPC)'
+		dataType: double
+		lineageTag: b7b8fa81-a4d9-4674-bb8c-daa3ce4c814a
+		summarizeBy: sum
+		sourceColumn: Cost Per Click (CPC)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Spend
+		dataType: double
+		lineageTag: d2112f8f-89d9-4e05-bc8d-95242ca286ea
+		summarizeBy: sum
+		sourceColumn: Spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Advertising Cost of Sales (ACOS) '
+		dataType: double
+		lineageTag: f63cb1d5-8a72-4be9-a4aa-9961a7790956
+		summarizeBy: sum
+		sourceColumn: "Total Advertising Cost of Sales (ACOS) "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Return on Advertising Spend (ROAS)'
+		dataType: double
+		lineageTag: 737e4f5b-e99c-46c1-b1ee-b0cca6483425
+		summarizeBy: sum
+		sourceColumn: Total Return on Advertising Spend (ROAS)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14 Day Total Sales'
+		dataType: double
+		lineageTag: 216f0593-54cd-40f7-8391-076d586638c7
+		summarizeBy: sum
+		sourceColumn: 14 Day Total Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14 Day Total Orders (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: cb416bfe-028b-4f1a-bc26-9d6c28a5319f
+		summarizeBy: sum
+		sourceColumn: 14 Day Total Orders (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14 Day Total Units (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: dbe48233-ef37-4e5b-958a-a506564cf582
+		summarizeBy: sum
+		sourceColumn: 14 Day Total Units (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14 Day Conversion Rate'
+		dataType: double
+		lineageTag: 813a1df4-f7f9-4594-be20-5819c0ede91f
+		summarizeBy: sum
+		sourceColumn: 14 Day Conversion Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Viewable impressions'
+		dataType: int64
+		formatString: 0
+		lineageTag: eeabe524-ddd1-4980-882c-b06fef784a27
+		summarizeBy: sum
+		sourceColumn: Viewable impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'View-through rate (VTR)'
+		dataType: double
+		lineageTag: c3d9d327-aedd-42a9-904c-fad49b492232
+		summarizeBy: sum
+		sourceColumn: View-through rate (VTR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Click-through rate for views (vCTR)'
+		dataType: double
+		lineageTag: 4b616e21-ca28-48de-b9bb-fcb853d1a847
+		summarizeBy: sum
+		sourceColumn: Click-through rate for views (vCTR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Video first quartile views'
+		dataType: int64
+		formatString: 0
+		lineageTag: ef33b10c-c11d-465e-9cba-dbebfeacac6e
+		summarizeBy: sum
+		sourceColumn: Video first quartile views
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Video midpoint views'
+		dataType: int64
+		formatString: 0
+		lineageTag: c72af2bc-4986-4395-896d-2f26e08a32f9
+		summarizeBy: sum
+		sourceColumn: Video midpoint views
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Video third quartile views'
+		dataType: int64
+		formatString: 0
+		lineageTag: e3d4a4de-1811-4711-a6d6-6aa20d717a44
+		summarizeBy: sum
+		sourceColumn: Video third quartile views
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Video complete views'
+		dataType: int64
+		formatString: 0
+		lineageTag: b9fc9b7a-2904-4788-a8df-a8bc6c7c6e2a
+		summarizeBy: sum
+		sourceColumn: Video complete views
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Video unmutes'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5382b43a-3d79-404e-8540-08071d6fc044
+		summarizeBy: sum
+		sourceColumn: Video unmutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column '5-second views'
+		dataType: int64
+		formatString: 0
+		lineageTag: 44e4431f-8f1d-4511-b3ef-bdc069991ab1
+		summarizeBy: sum
+		sourceColumn: 5-second views
+
+		annotation SummarizationSetBy = Automatic
+
+	column '5 Second View Rate'
+		dataType: double
+		lineageTag: b1dbb237-7fcf-4777-8dfe-f3a4879c9d1e
+		summarizeBy: sum
+		sourceColumn: 5 Second View Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14-Day Branded Searches'
+		dataType: int64
+		formatString: 0
+		lineageTag: ece24f34-a846-41df-ae2d-220fe980ff00
+		summarizeBy: sum
+		sourceColumn: 14-Day Branded Searches
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14-day Detail Page Views (DPV)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f8fc1a3d-29e3-484c-b15e-151b51346b3d
+		summarizeBy: sum
+		sourceColumn: 14-day Detail Page Views (DPV)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14 Day New-to-brand Orders (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: bf542944-d18e-4d21-9aab-4479142a3d22
+		summarizeBy: sum
+		sourceColumn: 14 Day New-to-brand Orders (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14 Day % of Orders New-to-brand'
+		dataType: double
+		lineageTag: ca2cefef-c535-484b-915f-9435e1e6bd1b
+		summarizeBy: sum
+		sourceColumn: 14 Day % of Orders New-to-brand
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14 Day New-to-brand Sales'
+		dataType: double
+		lineageTag: 17ee8d0d-3f9a-4db1-819c-2b47d68a5789
+		summarizeBy: sum
+		sourceColumn: 14 Day New-to-brand Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14 Day % of Sales New-to-brand'
+		dataType: double
+		lineageTag: 42f50279-9ce8-432b-b63f-17b8de7d5218
+		summarizeBy: sum
+		sourceColumn: 14 Day % of Sales New-to-brand
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14 Day New-to-brand Units (#)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a8e5ff8-6100-40b6-82ea-81dcb93b8f58
+		summarizeBy: sum
+		sourceColumn: 14 Day New-to-brand Units (#)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14 Day % of Units New-to-brand'
+		dataType: double
+		lineageTag: 784227ce-8816-40bf-9053-94c7d591784c
+		summarizeBy: sum
+		sourceColumn: 14 Day % of Units New-to-brand
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '14 Day New-to-brand Order Rate'
+		dataType: double
+		lineageTag: 5b327f28-752b-43d5-8903-826663dbf18b
+		summarizeBy: sum
+		sourceColumn: 14 Day New-to-brand Order Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Sponsored Brands Campaign Repor' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Sponsored Brands Campaign report xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Sponsored Brands Campaign report.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Sponsored Brands Campaign report xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"Sponsored Brands Campaign Repor_Sheet" = #"Imported Excel Workbook"{[Item="Sponsored Brands Campaign Repor",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sponsored Brands Campaign Repor_Sheet", [PromoteAllScalars=true]),
+				    #"Removed Bottom Rows" = Table.RemoveLastN(#"Promoted Headers",1),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Bottom Rows",{{"Date", type date}, {"Portfolio name", type text}, {"Currency", type text}, {"Campaign Name", type text}, {"Impressions", Int64.Type}, {"Clicks", Int64.Type}, {"Click-Thru Rate (CTR)", type number}, {"Cost Per Click (CPC)", type number}, {"Spend", type number}, {"Total Advertising Cost of Sales (ACOS) ", type number}, {"Total Return on Advertising Spend (ROAS)", type number}, {"14 Day Total Sales", type number}, {"14 Day Total Orders (#)", Int64.Type}, {"14 Day Total Units (#)", Int64.Type}, {"14 Day Conversion Rate", type number}, {"Viewable impressions", Int64.Type}, {"View-through rate (VTR)", Int64.Type}, {"Click-through rate for views (vCTR)", type any}, {"Video first quartile views", Int64.Type}, {"Video midpoint views", Int64.Type}, {"Video third quartile views", Int64.Type}, {"Video complete views", Int64.Type}, {"Video unmutes", Int64.Type}, {"5-second views", Int64.Type}, {"5 Second View Rate", Int64.Type}, {"14-Day Branded Searches", Int64.Type}, {"14-day Detail Page Views (DPV)", Int64.Type}, {"14 Day New-to-brand Orders (#)", Int64.Type}, {"14 Day % of Orders New-to-brand", Int64.Type}, {"14 Day New-to-brand Sales", type number}, {"14 Day % of Sales New-to-brand", Int64.Type}, {"14 Day New-to-brand Units (#)", Int64.Type}, {"14 Day % of Units New-to-brand", Int64.Type}, {"14 Day New-to-brand Order Rate", type number}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type",null,0,Replacer.ReplaceValue,{"Click-Thru Rate (CTR)"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,0,Replacer.ReplaceValue,{"Cost Per Click (CPC)"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",null,0,Replacer.ReplaceValue,{"Total Advertising Cost of Sales (ACOS) "}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2",null,0,Replacer.ReplaceValue,{"Total Return on Advertising Spend (ROAS)"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3",null,0,Replacer.ReplaceValue,{"14 Day Conversion Rate"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4",null,0,Replacer.ReplaceValue,{"View-through rate (VTR)"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5",null,0,Replacer.ReplaceValue,{"Click-through rate for views (vCTR)"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6",null,0,Replacer.ReplaceValue,{"14 Day % of Sales New-to-brand"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7",null,0,Replacer.ReplaceValue,{"14 Day % of Units New-to-brand"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value8",null,0,Replacer.ReplaceValue,{"14 Day New-to-brand Order Rate"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9",null,0,Replacer.ReplaceValue,{"14 Day % of Orders New-to-brand"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10",null,0,Replacer.ReplaceValue,{"5 Second View Rate"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value11",{{"Total Advertising Cost of Sales (ACOS) ", Percentage.Type}, {"Total Return on Advertising Spend (ROAS)", Percentage.Type}, {"Click-Thru Rate (CTR)", Percentage.Type}, {"14 Day % of Sales New-to-brand", Percentage.Type}, {"14 Day % of Units New-to-brand", Percentage.Type}, {"14 Day New-to-brand Order Rate", Percentage.Type}, {"14 Day % of Orders New-to-brand", Percentage.Type}, {"14 Day Conversion Rate", Percentage.Type}, {"View-through rate (VTR)", Percentage.Type}, {"Click-through rate for views (vCTR)", Percentage.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,109 @@
+table 'KPI data'
+	lineageTag: cbc2204f-6abe-4364-9614-1557f5f3a892
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0955671f-b252-4071-a9be-00e7dc2d50fe
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Turnover Amazon'
+		dataType: double
+		lineageTag: 0737c5ab-f257-494f-8f52-66ab38971656
+		summarizeBy: sum
+		sourceColumn: Turnover Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Basket Size - Amazon'
+		dataType: double
+		lineageTag: 9c1eb299-cb90-4dbd-b848-fa08e84c4e82
+		summarizeBy: sum
+		sourceColumn: Basket Size - Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Profit per order - Amazon'
+		dataType: double
+		lineageTag: 916e6bd5-aeb3-4324-a6a2-8344be5f4b6d
+		summarizeBy: sum
+		sourceColumn: Profit per order - Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Profit percentage - Amazon'
+		dataType: double
+		lineageTag: 2fa393ab-b836-46b6-bdb3-3fb4af1d6e94
+		summarizeBy: sum
+		sourceColumn: Profit percentage - Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Number - Amazon'
+		dataType: int64
+		formatString: 0
+		lineageTag: e8222e34-5874-462b-bf47-e513c552b5ac
+		summarizeBy: sum
+		sourceColumn: Order Number - Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Return Rate - Amazon'
+		dataType: double
+		lineageTag: 358c484e-3be7-465b-b31f-fcbd4f64dd86
+		summarizeBy: sum
+		sourceColumn: Return Rate - Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'KPI data' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"KPI'er xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="KPI'er.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"KPI'er xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"BT KPI'er_Sheet" = #"Imported Excel Workbook"{[Item="BT KPI'er",Kind="Sheet"]}[Data],
+				    #"Removed Top Rows" = Table.Skip(#"BT KPI'er_Sheet",2),
+				    #"Removed Columns" = Table.RemoveColumns(#"Removed Top Rows",{"Column3", "Column1"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Removed Columns",{"Column19", "Column20", "Column21", "Column22"}),
+				    #"Transposed Table" = Table.Transpose(#"Removed Columns1"),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Transposed Table", [PromoteAllScalars=true]),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Promoted Headers1",{"Column7", "Column9", "Column20", "BT WEB", "Column22", "Kurvstørrelse", "DB per ordre_1", "DG_2", "Antal besøg_3", "Antal ordre_4", "Genkøb ", "Konverteringsgrad _5", "Trustpilot rating ", "Returrate "}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Columns2",{{"Indeksering af oms", Percentage.Type}, {"Oms. BT Web", type number}, {"Oms. Amazon", type number}, {"Oms. B2B", type number}, {"Total oms.", type number}, {"Måned", type date}, {"Kurvstørrelse ", type number}, {"Andel organisk salg ", Percentage.Type}, {"DB per ordre", type number}, {"DG", Percentage.Type}, {"Konverteringsgrad ", Percentage.Type}, {"Returrate", Percentage.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Måned", "Month"}, {"Indeksering af oms", "Indexation of turnover"}, {"Antal ordre", "Order Number"}}),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Renamed Columns",{"Oms. BT Web"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns3",{{"Oms. Amazon", "Turnover Amazon"}}),
+				    #"Removed Columns4" = Table.RemoveColumns(#"Renamed Columns1",{"Oms. B2B", "Total oms."}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns4",{{"Kurvstørrelse ", "Basket Size"}, {"Returrate", "Return Rate"}}),
+				    #"Removed Columns5" = Table.RemoveColumns(#"Renamed Columns2",{"Rating/reviewe", "Konverteringsgrad ", "Antal besøg"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Removed Columns5",{{"Basket Size", "Basket Size - Amazon"}}),
+				    #"Removed Columns6" = Table.RemoveColumns(#"Renamed Columns3",{"Andel organisk salg "}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Removed Columns6",{{"Order Number", "Order Number - Amazon"}, {"Return Rate", "Return Rate - Amazon"}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Renamed Columns4", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Columns7" = Table.RemoveColumns(#"Removed Blank Rows",{"AMAZON", "Indexation of turnover", "Genkøb"}),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Removed Columns7",{{"DB per ordre", "Profit per order - Amazon"}, {"DG", "Profit percentage - Amazon"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns5",{{"Order Number - Amazon", Int64.Type}}),
+				    #"Divided Column" = Table.TransformColumns(#"Changed Type1", {{"Turnover Amazon", each _ / 7.5, type number}}),
+				    #"Divided Column1" = Table.TransformColumns(#"Divided Column", {{"Basket Size - Amazon", each _ / 7.5, type number}}),
+				    #"Divided Column2" = Table.TransformColumns(#"Divided Column1", {{"Profit per order - Amazon", each _ / 7.5, type number}})
+				in
+				    #"Divided Column2"
+
+	annotation PBI_ResultType = Table
+

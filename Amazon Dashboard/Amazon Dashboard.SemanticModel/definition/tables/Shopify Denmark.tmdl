@@ -1,0 +1,177 @@
+table 'Shopify Denmark'
+	lineageTag: a19eb5e9-135b-41bd-9596-b903378f2738
+
+	measure 'Item Cost shopify' = ```
+			SUM('Shopify Denmark'[net_quantity])*AVERAGE('Item cost price'[Cost price EUR]) 
+			```
+		lineageTag: cf119747-f535-4eb6-a4e7-cf2fa3c40d65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Refunds number Shopify' = ```
+			-SUMX(FILTER('Shopify Denmark', 'Shopify Denmark'[net_quantity] < 0), 'Shopify Denmark'[net_quantity])
+			
+			```
+		formatString: 0
+		lineageTag: bb7a6394-36fa-403d-b708-59e6b1b5f4bf
+
+	measure 'Profit Shopify' = SUM('Shopify Denmark'[net_sales])-[Item Cost shopify]-[Marketing costs Shopify DK]
+		lineageTag: 2106a269-8407-45ad-8562-1994d707c4e8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Shopify %' = DIVIDE([Profit Shopify],SUM('Shopify Denmark'[net_sales]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9c4b4271-f467-4a14-8c48-a7d126ab2151
+
+	measure 'Refunds % Shopify' = ```
+			DIVIDE([Refunds number Shopify],SUMX(FILTER('Shopify Denmark', 'Shopify Denmark'[net_quantity] > 0), 'Shopify Denmark'[net_quantity]),0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 81930539-a1ab-4419-a591-db2c280ebf0f
+
+	measure 'Discounts positive' = -SUM('Shopify Denmark'[discounts])
+		lineageTag: 142bf128-f0b5-43eb-9f78-53b2c9d7bed5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Discount %' = DIVIDE([Discounts positive],SUM('Shopify Denmark'[gross_sales]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4ea3f5fe-ce9a-4b63-9434-5dbf0e519db6
+
+	measure 'Marketing costs Shopify DK' = SUM('Google Ads'[Costs DKK])+SUM('Meta Ads'[Amount spent (DKK)])
+		formatString: 0
+		lineageTag: cf70d74c-0b93-4687-a9d6-d03b35399804
+
+	measure 'Marketing Shopify %' = DIVIDE([Marketing costs Shopify DK],SUM('Shopify Denmark'[net_sales]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8c427cb0-eb58-4a43-a42f-8cce50059e83
+
+	column product_title
+		dataType: string
+		lineageTag: 8d98cb7d-795f-43d4-8b8e-f93e2eb5850d
+		summarizeBy: none
+		sourceColumn: product_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column variant_title
+		dataType: string
+		lineageTag: d4257a98-f480-4612-a466-93097a3d3dd8
+		summarizeBy: none
+		sourceColumn: variant_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column variant_sku
+		dataType: string
+		lineageTag: 36bbca41-0ad2-4b7c-bcb2-c3111e0eba25
+		summarizeBy: none
+		sourceColumn: variant_sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8778c96f-c50c-4e22-85f8-826a948c8781
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column net_quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 472b425d-ade7-4f06-a3c8-31a1d2882fd2
+		summarizeBy: sum
+		sourceColumn: net_quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column gross_sales
+		dataType: double
+		formatString: 0
+		lineageTag: 971c8622-999f-401b-9da9-eaf54be31c25
+		summarizeBy: sum
+		sourceColumn: gross_sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column discounts
+		dataType: double
+		formatString: 0
+		lineageTag: 7ba08de7-f472-457e-88d7-cf3897288b5f
+		summarizeBy: sum
+		sourceColumn: discounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column returns
+		dataType: double
+		formatString: 0
+		lineageTag: dd8be3aa-8e4b-4f76-aff2-811a707107b7
+		summarizeBy: sum
+		sourceColumn: returns
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_sales
+		dataType: double
+		formatString: 0
+		lineageTag: 0b442eb9-0c1b-442e-949f-09ad393df8a7
+		summarizeBy: sum
+		sourceColumn: net_sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxes
+		dataType: double
+		formatString: 0
+		lineageTag: f3e26872-4b96-4458-8837-de76e2edb065
+		summarizeBy: sum
+		sourceColumn: taxes
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_sales
+		dataType: double
+		formatString: 0
+		lineageTag: 2c832b17-5555-4513-886d-62a1893c2332
+		summarizeBy: sum
+		sourceColumn: total_sales
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Shopify Denmark' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Shopify Danish Shop xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Shopify Danish Shop.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Shopify Danish Shop xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    #"sales_2024-01-01_Sheet" = #"Imported Excel Workbook"{[Item="sales_2024-01-01",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"sales_2024-01-01_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_title", type text}, {"variant_title", type text}, {"variant_sku", type text}, {"day", type date}, {"net_quantity", Int64.Type}, {"gross_sales", Int64.Type}, {"discounts", Int64.Type}, {"returns", Int64.Type}, {"net_sales", Int64.Type}, {"taxes", Int64.Type}, {"total_sales", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"day", "Date"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"gross_sales", type number}, {"discounts", type number}, {"returns", type number}, {"net_sales", type number}, {"taxes", type number}, {"total_sales", type number}}),
+				    #"Divided Column" = Table.TransformColumns(#"Changed Type1", {{"gross_sales", each _ / 1000, type number}}),
+				    #"Divided Column1" = Table.TransformColumns(#"Divided Column", {{"discounts", each _ / 1000, type number}}),
+				    #"Divided Column2" = Table.TransformColumns(#"Divided Column1", {{"returns", each _ / 1000, type number}}),
+				    #"Divided Column3" = Table.TransformColumns(#"Divided Column2", {{"net_sales", each _ / 1000, type number}}),
+				    #"Divided Column4" = Table.TransformColumns(#"Divided Column3", {{"taxes", each _ / 1000, type number}}),
+				    #"Divided Column5" = Table.TransformColumns(#"Divided Column4", {{"total_sales", each _ / 1000, type number}}),
+				    #"Divided Column6" = Table.TransformColumns(#"Divided Column5", {{"gross_sales", each _ / 7.5, type number}}),
+				    #"Divided Column7" = Table.TransformColumns(#"Divided Column6", {{"discounts", each _ / 7.5, type number}}),
+				    #"Divided Column8" = Table.TransformColumns(#"Divided Column7", {{"returns", each _ / 7.5, type number}}),
+				    #"Divided Column9" = Table.TransformColumns(#"Divided Column8", {{"net_sales", each _ / 7.5, type number}}),
+				    #"Divided Column10" = Table.TransformColumns(#"Divided Column9", {{"taxes", each _ / 7.5, type number}}),
+				    #"Divided Column11" = Table.TransformColumns(#"Divided Column10", {{"total_sales", each _ / 7.5, type number}})
+				in
+				    #"Divided Column11"
+
+	annotation PBI_ResultType = Table
+

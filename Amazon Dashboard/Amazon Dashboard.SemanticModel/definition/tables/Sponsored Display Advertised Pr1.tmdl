@@ -1,0 +1,207 @@
+table 'Sponsored Display Advertised Pr1'
+	lineageTag: db850d1e-aaa8-4a71-99ca-062d27cdd37a
+
+	measure 'Cost per Click' = DIVIDE(SUM('Sponsored Display Advertised Pr1'[Spend]),SUM('Sponsored Display Advertised Pr1'[Clicks]),0)
+		lineageTag: ba2452f3-ce89-4f94-b824-ff5907e3b02a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 100% = 1
+		formatString: 0
+		lineageTag: 27beca69-1b0d-4618-a828-9536b9924e4f
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2b293263-1a91-4610-a5ee-bbe9d579165f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Currency
+		dataType: string
+		lineageTag: 76c49531-3e6a-42bc-bba2-a812d507580a
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campaign Name'
+		dataType: string
+		lineageTag: 8f8e40b2-bf05-42ed-8eb5-92a6918f2257
+		summarizeBy: none
+		sourceColumn: Campaign Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Portfolio name'
+		dataType: string
+		lineageTag: 6dd2afde-637e-40fb-b36a-bf6d253b7c48
+		summarizeBy: none
+		sourceColumn: Portfolio name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Type'
+		dataType: string
+		lineageTag: ba9c247e-d44a-42cd-bd11-ca530928f642
+		summarizeBy: none
+		sourceColumn: Cost Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ad Group Name'
+		dataType: string
+		lineageTag: 033d6eb6-9ff4-4082-a9e5-9245d785ab19
+		summarizeBy: none
+		sourceColumn: Ad Group Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bid Optimisation'
+		dataType: string
+		lineageTag: 4299c813-96d6-4d7f-99a6-d10dc5d2756a
+		summarizeBy: none
+		sourceColumn: Bid Optimisation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Advertised SKU'
+		dataType: string
+		lineageTag: fdca8e8e-c353-4157-8951-b371c3e2fc53
+		summarizeBy: none
+		sourceColumn: Advertised SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Advertised ASIN'
+		dataType: string
+		lineageTag: c226da2c-2103-4369-acd4-a760228d9697
+		summarizeBy: none
+		sourceColumn: Advertised ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: 422f1c39-c6a6-4894-bfe1-86c39a85aabb
+		summarizeBy: sum
+		sourceColumn: Impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Viewable impressions'
+		dataType: int64
+		formatString: 0
+		lineageTag: 33a1cd09-8a00-43d7-b5e9-77080393a2f4
+		summarizeBy: sum
+		sourceColumn: Viewable impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clicks
+		dataType: int64
+		formatString: 0
+		lineageTag: 055d5c39-bbe1-484f-83bb-b5da13a6a3b4
+		summarizeBy: sum
+		sourceColumn: Clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Click-Thru Rate (CTR)'
+		dataType: string
+		lineageTag: d6a996c3-84d9-4394-b922-9915432bbdd3
+		summarizeBy: none
+		sourceColumn: Click-Thru Rate (CTR)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '14-day Detail Page Views (DPV)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 81e979e8-8cc9-448b-a5a9-6513a8afde8a
+		summarizeBy: sum
+		sourceColumn: 14-day Detail Page Views (DPV)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend
+		dataType: double
+		formatString: 0
+		lineageTag: e650aeb1-dfb2-41cf-8107-a7b809881ce6
+		summarizeBy: sum
+		sourceColumn: Spend
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Per Click (CPC)'
+		dataType: string
+		lineageTag: 12bc33e9-33c3-4b3f-9e57-a92d5d8c55dc
+		summarizeBy: none
+		sourceColumn: Cost Per Click (CPC)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost per 1,000 viewable impressions (VCPM)'
+		dataType: string
+		lineageTag: 3632293c-a6d2-4a4b-90fb-5fda56a4c137
+		summarizeBy: none
+		sourceColumn: Cost per 1,000 viewable impressions (VCPM)
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKU
+		dataType: string
+		lineageTag: 1408dd60-1f74-41b3-941d-2ac244bb6798
+		summarizeBy: none
+		sourceColumn: SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sponsored Display Advertised Pr1' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Sponsored Display Advertised Pr_Sheet" = Source{[Name="Sponsored Display Advertised product report (3).xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Sponsored Display Advertised Pr_Sheet"),
+				    Custom1 = #"Imported Excel Workbook"{[Item="Sponsored Display Advertised Pr",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Custom1, [PromoteAllScalars=true]),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Promoted Headers",{"14-Day New-to-Brand Units (#) – (Click)", "14-Day New-to-brand Sales – (Click)", "14-Day New-to-brand Orders (#) – (Click)", "14-Day Total Sales – (Click)", "14-Day Total Units (#) – (Click)", "14-Day Total Orders (#) – (Click)", "Total Return on Advertising Spend (ROAS) – (Click)", "Total Advertising Cost of Sales (ACOS) – (Click)", "14 Day New-to-brand Units (#)", "14 Day New-to-brand Sales", "14 Day New-to-brand Orders (#)", "14 Day Total Sales", "14 Day Total Units (#)", "14 Day Total Orders (#)", "Total Return on Advertising Spend (ROAS)", "Total Advertising Cost of Sales (ACOS) "}),
+				    #"Filtered Rows3" = Table.SelectRows(#"Removed Columns2", each ([Date] <> null)),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows3", each ([Spend] <> 0)),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Filtered Rows2",{{"Spend", type text}}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Changed Type3","€","",Replacer.ReplaceText,{"Spend"}),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Replaced Value5",{{"Spend", type number}}),
+				    #"Filtered Rows4" = Table.SelectRows(#"Changed Type4", each ([Spend] <> 0)),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows4",{{"Date", type date}, {"Currency", type text}, {"Campaign Name", type text}, {"Portfolio name", type text}, {"Cost Type", type text}, {"Ad Group Name", type text}, {"Bid Optimisation", type text}, {"Advertised SKU", type any}, {"Advertised ASIN", type any}, {"Impressions", Int64.Type}, {"Viewable impressions", Int64.Type}, {"Clicks", Int64.Type}, {"Click-Thru Rate (CTR)", type any}, {"14-day Detail Page Views (DPV)", Int64.Type},  {"Cost Per Click (CPC)", type any}, {"Cost per 1,000 viewable impressions (VCPM)", type any}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Spend", type number}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type1", each ([Advertised SKU] <> null)),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Filtered Rows1","M-211350001","M-21135-10-M-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14","M-211350002","M-21135-10-L-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Replaced Value15","M-211350003","M-21135-10-XL-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value16","M-211350004","M-21135-10-XXL-SC",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Replaced Value17","M-211350005","M-21135-11-M-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Replaced Value18","M-211350006","M-21135-11-L-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Replaced Value19","M-211350007","M-21135-11-XL-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value20","M-211350008","M-21135-11-XXL-WE",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value21","M-211350009","M-21135-14-M-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value23" = Table.ReplaceValue(#"Replaced Value22","M-211350010","M-21135-14-L-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value24" = Table.ReplaceValue(#"Replaced Value23","M-211350011","M-21135-14-XL-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value25" = Table.ReplaceValue(#"Replaced Value24","M-211350012","M-21135-14-XXL-NV",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Added SKU" = Table.AddColumn(#"Replaced Value25", "SKU", each let splitAdvertisedSKU = Splitter.SplitTextByDelimiter("M-", QuoteStyle.None)([Advertised SKU]), splitsplitAdvertisedSKU0 = Splitter.SplitTextByDelimiter("-", QuoteStyle.None)(splitAdvertisedSKU{0}?) in Text.Combine({"M-", Text.End(splitsplitAdvertisedSKU0{0}?, 5), Text.Start(splitAdvertisedSKU{1}?, 5)}), type text),
+				    #"Added Conditional Column" = Table.AddColumn(#"Added SKU", "SKU1", each if [SKU] = "M-" then null else [SKU], type text),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Conditional Column",{"SKU"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"SKU1", "SKU"}}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Renamed Columns","21306-10-SM","M-21306-10-SM",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","21306-10-LXL","M-21306-10-LXL",Replacer.ReplaceText,{"Advertised SKU"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Replaced Value4", each ([Advertised SKU] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

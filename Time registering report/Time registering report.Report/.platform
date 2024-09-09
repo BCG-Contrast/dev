@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Time registering report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e39b56cc-31b4-4159-960a-f5a1b152f2bf"
+  }
+}
