@@ -1,0 +1,466 @@
+table 'All countries'
+	lineageTag: ee46b2c7-c657-474d-a5b8-5f5cd3f82737
+
+	measure 'Profits eur' = SUM('All countries'[Transaction Revenues EUR])+SUM('All countries'[Sales Fees EUR])+SUM('All countries'[Fulfillment Fees EUR])+SUM('All countries'[Other Transaction Fees EUR])+SUM('All countries'[Shipping Credits EUR])+SUM('All countries'[Promotion Discounts EUR])+SUM('All countries'[Withheld Marketplace Tax EUR])+SUM('All countries'[Gift Wrap Credits EUR])
+		lineageTag: 172cae49-8382-4c91-af76-4f4e1db21d09
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantity Sold (+/-)' = ```
+			
+			SUMX(
+			    FILTER(
+			        'All countries',
+			        'All countries'[Transaction Type] = "Order"
+			    ),
+			    'All countries'[Quantity Sold]
+			) - 
+			SUMX(
+			    FILTER(
+			        'All countries',
+			        'All countries'[Transaction Type] = "Refund"
+			    ),
+			    'All countries'[Quantity Sold]
+			)
+			
+			```
+		lineageTag: 4d6cbc12-ae80-49fa-8b0e-99bb6159e425
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Order count' = SUMX(FILTER('All countries','All countries'[Transaction Type]="Order"), 'All countries'[Quantity Sold])
+		lineageTag: e7ac55de-cf21-49b5-9df9-8bcf32db28d7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Refund count' = SUMX(FILTER('All countries','All countries'[Transaction Type]="Refund"), 'All countries'[Quantity Sold])
+		lineageTag: 23720966-427b-4160-ad46-9c1a73ae274d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'VAT% calculated' = DIVIDE(SUM('All countries'[Collected VAT EUR]),SUM('All countries'[Transaction Revenues EUR]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: faeacf68-4a5e-411a-b8bc-02bdd273523d
+
+	measure 'Total revenue all' = SUM('All countries'[Transaction Revenues EUR])+SUM('All countries'[Shipping Credits EUR])+SUM('All countries'[Gift Wrap Credits EUR])+SUM('All countries'[Promotion Discounts EUR])
+		lineageTag: 377dbff0-09a1-4376-9386-47fb790d8b85
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transaction Date/Time'
+		dataType: string
+		lineageTag: dd6b5f7d-11aa-42ae-a0b6-1b367388ae14
+		summarizeBy: none
+		sourceColumn: Transaction Date/Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Number'
+		dataType: string
+		lineageTag: 6fb0d323-102b-43c7-8b46-15a4ed07882d
+		summarizeBy: none
+		sourceColumn: Invoice Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Type'
+		dataType: string
+		lineageTag: ac4e94c7-2508-473c-be51-49e6c89a993c
+		summarizeBy: none
+		sourceColumn: Transaction Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: c596bf33-4215-4837-bcda-6d51c7fe0ac9
+		summarizeBy: none
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product SKU'
+		dataType: string
+		lineageTag: 60d0907b-65be-4c33-a7ab-e89f45181723
+		summarizeBy: none
+		sourceColumn: Product SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Description'
+		dataType: string
+		lineageTag: 15b22f1f-49c9-40ad-8b52-e92d59c8b310
+		summarizeBy: none
+		sourceColumn: Product Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantity Sold'
+		dataType: double
+		lineageTag: 5e2ee773-2b7f-4156-a5b9-55ba0d7ee8e3
+		summarizeBy: sum
+		sourceColumn: Quantity Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transaction Marketplace'
+		dataType: string
+		lineageTag: e86c237b-eac6-467e-ad2b-111d1dec8073
+		summarizeBy: none
+		sourceColumn: Transaction Marketplace
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Cost'
+		dataType: string
+		lineageTag: c7547c5f-82c9-422b-a4f4-2c570e662b99
+		summarizeBy: none
+		sourceColumn: Shipping Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Location'
+		dataType: string
+		lineageTag: e9fd31b3-2b53-4ecc-9e6f-cd4d5f4dd648
+		summarizeBy: none
+		sourceColumn: Order Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 69c53659-2363-4d14-9879-eed7fa153a19
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code'
+		dataType: string
+		lineageTag: 0a52ff42-9bd3-4791-94f2-6ba7ab8110b5
+		summarizeBy: none
+		sourceColumn: Postal Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Collection Model'
+		dataType: string
+		lineageTag: 4617defa-664b-4eaf-8ae4-893f8b868405
+		summarizeBy: none
+		sourceColumn: Tax Collection Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: af933267-1e4b-46b7-acca-a464436a2a37
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Conversion rate to EUR'
+		dataType: double
+		lineageTag: f59b1584-6d3d-4f62-a2e7-6da7f5737dbe
+		summarizeBy: sum
+		sourceColumn: Conversion rate to EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transaction Revenues EUR'
+		dataType: double
+		lineageTag: 80513dbe-ea25-44a8-b773-cfbb2448d574
+		summarizeBy: sum
+		sourceColumn: Transaction Revenues EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Collected VAT EUR'
+		dataType: double
+		lineageTag: 2d77e98b-8f3a-47ff-ae5b-8fe87f502837
+		summarizeBy: sum
+		sourceColumn: Collected VAT EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Shipping Credits EUR'
+		dataType: double
+		lineageTag: 31c75e76-58cb-435f-9070-c1a2a1da3ed1
+		summarizeBy: sum
+		sourceColumn: Shipping Credits EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax on Shipping Credits EUR'
+		dataType: double
+		lineageTag: 1a36d5f9-bc48-4f20-9673-3da16d8c2543
+		summarizeBy: sum
+		sourceColumn: Tax on Shipping Credits EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gift Wrap Credits EUR'
+		dataType: double
+		lineageTag: 07921e9f-d7ea-404d-afd8-cb02155dbf90
+		summarizeBy: sum
+		sourceColumn: Gift Wrap Credits EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax on Gift Wrap Credits EUR'
+		dataType: double
+		lineageTag: 7e9440b4-9432-4843-92eb-d1df1e711f25
+		summarizeBy: sum
+		sourceColumn: Tax on Gift Wrap Credits EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Promotion Discounts EUR'
+		dataType: double
+		lineageTag: 42504fab-800a-4673-8938-6118900e2e9e
+		summarizeBy: sum
+		sourceColumn: Promotion Discounts EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax on Promotion Discounts EUR'
+		dataType: double
+		lineageTag: c3659679-6b96-48a8-a674-7ded68cb4307
+		summarizeBy: sum
+		sourceColumn: Tax on Promotion Discounts EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Withheld Marketplace Tax EUR'
+		dataType: double
+		lineageTag: 9354f1c8-7e9a-40db-bb14-f9408e23ea8b
+		summarizeBy: sum
+		sourceColumn: Withheld Marketplace Tax EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Fees EUR'
+		dataType: double
+		lineageTag: c755624a-2931-4c49-aa49-a44cef652c18
+		summarizeBy: sum
+		sourceColumn: Sales Fees EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fulfillment Fees EUR'
+		dataType: double
+		lineageTag: 345cf113-1b0e-4f87-81c4-6c0831268fe8
+		summarizeBy: sum
+		sourceColumn: Fulfillment Fees EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Other Transaction Fees EUR'
+		dataType: double
+		lineageTag: 6ed0bac0-a1e6-41f2-8624-8753c3403567
+		summarizeBy: sum
+		sourceColumn: Other Transaction Fees EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Miscellaneous EUR'
+		dataType: double
+		lineageTag: a338768c-9448-4ec9-bd9b-224757894a99
+		summarizeBy: sum
+		sourceColumn: Miscellaneous EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Amount EUR'
+		dataType: double
+		lineageTag: bfce05ff-3cba-47f1-b9b8-83038020eb43
+		summarizeBy: sum
+		sourceColumn: Total Amount EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 33108ba6-5626-41ca-a00a-4b08072714c7
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column VAT%
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4af87ca9-98f8-4ef9-aca2-d5088c783299
+		summarizeBy: sum
+		sourceColumn: VAT%
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'All countries' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Contrast-Financial", [ApiVersion = 15]),
+				    #"CustomTransaction All countries csv_https://contrastcompany sharepoint com/sites/Contrast-Financial/Business Controlling/Amazon/" = Source{[Name="CustomTransaction All countries.csv",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Contrast-Financial/Business Controlling/Amazon/"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"CustomTransaction All countries csv_https://contrastcompany sharepoint com/sites/Contrast-Financial/Business Controlling/Amazon/",[Delimiter=",", Columns=29, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				     #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}, {"Column14", type text}, {"Column15", type text}, {"Column16", type text}, {"Column17", type text}, {"Column18", type text}, {"Column19", type text}, {"Column20", type text}, {"Column21", type text}, {"Column22", type text}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}, {"Column26", type text}, {"Column27", type text}, {"Column28", type text}, {"Column29", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",7),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Promoted Headers","M-211350001","M-21135-10-M-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14","M-211350002","M-21135-10-L-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Replaced Value15","M-211350003","M-21135-10-XL-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value16","M-211350004","M-21135-10-XXL-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Replaced Value17","M-211350005","M-21135-11-M-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Replaced Value18","M-211350006","M-21135-11-L-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Replaced Value19","M-211350007","M-21135-11-XL-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value20","M-211350008","M-21135-11-XXL-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value21","M-211350009","M-21135-14-M-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value23" = Table.ReplaceValue(#"Replaced Value22","M-211350010","M-21135-14-L-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value24" = Table.ReplaceValue(#"Replaced Value23","M-211350011","M-21135-14-XL-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value25" = Table.ReplaceValue(#"Replaced Value24","M-211350012","M-21135-14-XXL-NV",Replacer.ReplaceText,{"SKU"}),
+				  #"Renamed Columns" = Table.RenameColumns(#"Replaced Value25",
+				    {
+				        {"Date/Time", "Transaction Date/Time"},
+				        {"Payment Number", "Invoice Number"},
+				        {"Type", "Transaction Type"},
+				        {"Order Number", "Order ID"},
+				        {"SKU", "Product SKU"},
+				        {"Description", "Product Description"},
+				        {"Quantity", "Quantity Sold"},
+				        {"Marketplace", "Transaction Marketplace"},
+				        {"Handling", "Shipping Cost"},
+				        {"Command City", "Order Location"},
+				        {"Command Region", "State"},
+				        {"Order ZIP Code", "Postal Code"},
+				        {"Tax Collection Model", "Tax Collection Model"},
+				        {"Product Sales", "Transaction Revenues"},
+				        {"Product Sales Tax", "Collected VAT"},
+				        {"Shipping Credits", "Shipping Credits"},
+				        {"Shipping Credits Tax", "Tax on Shipping Credits"},
+				        {"Gift Wrap Credits", "Gift Wrap Credits"},
+				        {"Gift Wrap Credits Tax", "Tax on Gift Wrap Credits"},
+				        {"Promotional Discounts", "Promotion Discounts"},
+				        {"Promotional Discounts Tax", "Tax on Promotion Discounts"},
+				        {"Marketplace Withheld Taxes", "Withheld Marketplace Tax"},
+				        {"Selling Fees", "Sales Fees"},
+				        {"Amazon Fulfilled Fees", "Fulfillment Fees"},
+				        {"Other Transaction Fees", "Other Transaction Fees"},
+				        {"Other", "Miscellaneous"},
+				        {"Total", "Total Amount"}
+				    }),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns",".","",Replacer.ReplaceText,{"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",",",".",Replacer.ReplaceText,{"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1"," ","",Replacer.ReplaceText,{"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    #"Replace blank spaces" = Table.ReplaceValue(#"Replaced Value1", Character.FromNumber(160), "", Replacer.ReplaceText, {"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    ReplaceCollectedVAT = Table.TransformColumns(#"Replace blank spaces", {{"Collected VAT", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceShippingCredits = Table.TransformColumns(ReplaceCollectedVAT, {{"Shipping Credits", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceTaxonShippingCredits = Table.TransformColumns(ReplaceShippingCredits, {{"Tax on Shipping Credits", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceGiftWrapCredits = Table.TransformColumns(ReplaceTaxonShippingCredits, {{"Gift Wrap Credits", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceTaxonGiftWrapCredits = Table.TransformColumns(ReplaceGiftWrapCredits, {{"Tax on Gift Wrap Credits", each Text.Replace(_, " ", ""), type text}}),
+				    ReplacePromotionDiscounts = Table.TransformColumns(ReplaceTaxonGiftWrapCredits, {{"Promotion Discounts", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceTaxonPromotionDiscounts = Table.TransformColumns(ReplacePromotionDiscounts, {{"Tax on Promotion Discounts", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceWithheldMarketplaceTax = Table.TransformColumns(ReplaceTaxonPromotionDiscounts, {{"Withheld Marketplace Tax", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceSalesFees = Table.TransformColumns(ReplaceWithheldMarketplaceTax, {{"Sales Fees", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceFulfillmentFees = Table.TransformColumns(ReplaceSalesFees, {{"Fulfillment Fees", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceOtherTransactionFees = Table.TransformColumns(ReplaceFulfillmentFees, {{"Other Transaction Fees", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceMiscellaneous = Table.TransformColumns(ReplaceOtherTransactionFees, {{"Miscellaneous", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceTotalAmount = Table.TransformColumns(ReplaceMiscellaneous, {{"Total Amount", each Text.Replace(_, " ", ""), type text}}),
+				    ReplaceTransactionRevenues = Table.TransformColumns(ReplaceTotalAmount, {{"Transaction Revenues", each Text.Replace(_, " ", ""), type text}}),
+				    #"Replaced Value3" = Table.ReplaceValue(ReplaceTransactionRevenues,"−","-",Replacer.ReplaceText,{"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value3",{{"Miscellaneous", type number}, {"Other Transaction Fees", type number}, {"Fulfillment Fees", type number}, {"Sales Fees", type number}, {"Withheld Marketplace Tax", type number}, {"Tax on Promotion Discounts", type number}, {"Promotion Discounts", type number}, {"Tax on Gift Wrap Credits", type number}, {"Gift Wrap Credits", type number}, {"Tax on Shipping Credits", type number}, {"Shipping Credits", type number}, {"Collected VAT", type number}, {"Transaction Revenues", type number}, {"Quantity Sold", type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type2",{{"Conversion rate to EUR", type number}, {"Total Amount", type number}}),
+				    #"Added Transaction Revenues EUR" = Table.AddColumn(#"Changed Type1", "Transaction Revenues EUR", each [Transaction Revenues] * [Conversion rate to EUR]),
+				#"Added Collected VAT EUR" = Table.AddColumn(#"Added Transaction Revenues EUR", "Collected VAT EUR", each [Collected VAT] * [Conversion rate to EUR]),
+				#"Added Shipping Credits EUR" = Table.AddColumn(#"Added Collected VAT EUR", "Shipping Credits EUR", each [Shipping Credits] * [Conversion rate to EUR]),
+				#"Added Tax on Shipping Credits EUR" = Table.AddColumn(#"Added Shipping Credits EUR", "Tax on Shipping Credits EUR", each [Tax on Shipping Credits] * [Conversion rate to EUR]),
+				#"Added Gift Wrap Credits EUR" = Table.AddColumn(#"Added Tax on Shipping Credits EUR", "Gift Wrap Credits EUR", each [Gift Wrap Credits] * [Conversion rate to EUR]),
+				#"Added Tax on Gift Wrap Credits EUR" = Table.AddColumn(#"Added Gift Wrap Credits EUR", "Tax on Gift Wrap Credits EUR", each [Tax on Gift Wrap Credits] * [Conversion rate to EUR]),
+				#"Added Promotion Discounts EUR" = Table.AddColumn(#"Added Tax on Gift Wrap Credits EUR", "Promotion Discounts EUR", each [Promotion Discounts] * [Conversion rate to EUR]),
+				#"Added Tax on Promotion Discounts EUR" = Table.AddColumn(#"Added Promotion Discounts EUR", "Tax on Promotion Discounts EUR", each [Tax on Promotion Discounts] * [Conversion rate to EUR]),
+				#"Added Withheld Marketplace Tax EUR" = Table.AddColumn(#"Added Tax on Promotion Discounts EUR", "Withheld Marketplace Tax EUR", each [Withheld Marketplace Tax] * [Conversion rate to EUR]),
+				#"Added Sales Fees EUR" = Table.AddColumn(#"Added Withheld Marketplace Tax EUR", "Sales Fees EUR", each [Sales Fees] * [Conversion rate to EUR]),
+				#"Added Fulfillment Fees EUR" = Table.AddColumn(#"Added Sales Fees EUR", "Fulfillment Fees EUR", each [Fulfillment Fees] * [Conversion rate to EUR]),
+				#"Added Other Transaction Fees EUR" = Table.AddColumn(#"Added Fulfillment Fees EUR", "Other Transaction Fees EUR", each [Other Transaction Fees] * [Conversion rate to EUR]),
+				#"Added Miscellaneous EUR" = Table.AddColumn(#"Added Other Transaction Fees EUR", "Miscellaneous EUR", each [Miscellaneous] * [Conversion rate to EUR]),
+				#"Added Total Amount EUR" = Table.AddColumn(#"Added Miscellaneous EUR", "Total Amount EUR", each [Total Amount] * [Conversion rate to EUR]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Total Amount EUR",{"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Removed Columns",{{"Transaction Revenues EUR", type number}, {"Collected VAT EUR", type number}, {"Shipping Credits EUR", type number}, {"Tax on Shipping Credits EUR", type number}, {"Gift Wrap Credits EUR", type number}, {"Tax on Gift Wrap Credits EUR", type number}, {"Promotion Discounts EUR", type number}, {"Tax on Promotion Discounts EUR", type number}, {"Withheld Marketplace Tax EUR", type number}, {"Sales Fees EUR", type number}, {"Fulfillment Fees EUR", type number}, {"Other Transaction Fees EUR", type number}, {"Miscellaneous EUR", type number}, {"Total Amount EUR", type number}}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Changed Type3","Commande","Order",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","Aanpassing","Adjustment",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","Ajustement","Adjustment",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Transfert","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","Frais de stock Expédié par Amazon","FBA Inventory Fees",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value8","Transferir","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","Ordine","Order",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10","Costo di stoccaggio Logistica di Amazon","Amazon Logistics Storage Cost",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Replaced Value11","Remboursement","Refund",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value13" = Table.ReplaceValue(#"Replaced Value12","Trasferimento","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value26" = Table.ReplaceValue(#"Replaced Value13","Pedido","Order",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value27" = Table.ReplaceValue(#"Replaced Value26","Transférer","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value28" = Table.ReplaceValue(#"Replaced Value27","Bestelling","Order",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value29" = Table.ReplaceValue(#"Replaced Value28","Terugbetaling","Refund",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value30" = Table.ReplaceValue(#"Replaced Value29","Overboeking","Overbooking",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value31" = Table.ReplaceValue(#"Replaced Value30","FBA-kosten retourzending klant","FBA customer return shipping costs",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value32" = Table.ReplaceValue(#"Replaced Value31","Zamówienie","Order",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value33" = Table.ReplaceValue(#"Replaced Value32","Przelew","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value34" = Table.ReplaceValue(#"Replaced Value33","Korekta","Adjustment",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value35" = Table.ReplaceValue(#"Replaced Value34","Överföring","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value36" = Table.ReplaceValue(#"Replaced Value35","Justering","Adjustment",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value37" = Table.ReplaceValue(#"Replaced Value36","Saldo negativo","Negative balance",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value38" = Table.ReplaceValue(#"Replaced Value37","FBA customer return shipping costs","FBA Customer Return Fee",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value39" = Table.ReplaceValue(#"Replaced Value38","Servicekosten","Service charge",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value40" = Table.ReplaceValue(#"Replaced Value39","FBA Inventory Fees","FBA Inventory Fee",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Replaced Value40",{{"Transaction Date/Time", Text.Clean, type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Cleaned Text",{{"Transaction Date/Time", Text.Trim, type text}}),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Trimmed Text", "Text Before Delimiter", each Text.BeforeDelimiter([#"Transaction Date/Time"], "."), type text),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Inserted Text Before Delimiter",{{"Text Before Delimiter", Int64.Type}}),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Changed Type4", "Text Between Delimiters", each Text.BetweenDelimiters([#"Transaction Date/Time"], ".", "."), type text),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Inserted Text Between Delimiters",{{"Text Between Delimiters", Int64.Type}}),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Changed Type5", "Text After Delimiter", each Text.AfterDelimiter([#"Transaction Date/Time"], ".", 1), type text),
+				    #"Inserted Date" = Table.AddColumn(#"Inserted Text After Delimiter", "Date", each #date(Number.From([Text After Delimiter]), [Text Between Delimiters], [Text Before Delimiter]), type date),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Inserted Date",{{"Text After Delimiter", Int64.Type}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type6",{"Text Before Delimiter", "Text Between Delimiters", "Text After Delimiter"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns1", "VAT%", each Value.Divide([Collected VAT EUR],[Collected VAT EUR]+[Transaction Revenues EUR])),
+				    #"Changed Type7" = Table.TransformColumnTypes(#"Added Custom",{{"VAT%", Percentage.Type}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type7", {{"VAT%", 0}}),
+				    #"Sorted Rows" = Table.Sort(#"Replaced Errors",{{"VAT%", Order.Descending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_ResultType = Table
+

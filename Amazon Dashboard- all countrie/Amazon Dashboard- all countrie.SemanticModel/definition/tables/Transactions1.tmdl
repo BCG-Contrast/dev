@@ -1,0 +1,897 @@
+table Transactions1
+	lineageTag: 2b1b96dd-c57e-487a-bbbc-98f3194da7d6
+
+	measure 'Total Cost' = ```
+			
+			-SUMX(
+			    Transactions1,
+			    IF(Transactions1[Transaction Type] = "Order", 
+			       Transactions1[Quantity Sold] * RELATED('Item cost price'[Cost price EUR]),
+			       IF(Transactions1[Transaction Type] = "Refund", 
+			          -Transactions1[Quantity Sold] * RELATED('Item cost price'[Cost price EUR]), 
+			          0
+			       )
+			    )
+			)
+			
+			```
+		lineageTag: d48fa7a7-dfd2-4f69-b047-f7660d8e0461
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales fees (Transport+Fulfillment)%' = DIVIDE(SUM(Transactions1[Sales fees(Transport+Fulfillment)]),SUM(Transactions1[Transaction Revenues1]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 395fb21f-57c9-43c2-9f08-860edd30050d
+
+	measure 'Other Transaction Fees (Marketing)%' = DIVIDE(SUM(Transactions1[Other Transaction Fees1(Marketing)]),SUM(Transactions1[Transaction Revenues1]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 32b275e1-4a1e-4713-bddb-237d34ab2d88
+
+	measure Profits = [Total revenue]+SUM(Transactions1[Sales fees(Transport+Fulfillment)])+[Total Cost]+[Marketing Costs]
+		lineageTag: 8292f7ed-ba0b-4eb7-9868-5be40fb2395c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Orders count' = COUNTROWS(FILTER(Transactions1, Transactions1[Transaction Type] = "Order"))
+		formatString: 0
+		lineageTag: dc60da9c-dc0d-41a7-b250-442c892d38fc
+
+	measure 'Total cost %' = ```
+			DIVIDE([Total Cost],SUM(Transactions1[Transaction Revenues1]),0) 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 46593ebb-a1e5-4ccc-9f68-fd6b31158749
+
+	measure 'Profits %' = ```
+			DIVIDE([Profits],[Total revenue],0) 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e55c6213-5a8b-4bf2-b0f8-506b02fc48d9
+
+	measure 'Total revenue' = SUM(Transactions1[Transaction Revenues1])+SUM(Transactions1[Shipping Credits1])+SUM(Transactions1[Gift Wrap Credits1])+SUM(Transactions1[Promotion Discounts1])
+		lineageTag: d5cb72c0-bacf-4568-a5ed-b8c9f9fdc346
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average order size' = ```
+			
+			VAR FilteredOrders =
+			    FILTER(Transactions1, Transactions1[Transaction Type] = "Order")
+			
+			VAR DistinctOrders =
+			    SUMMARIZE(
+			        FilteredOrders,
+			        Transactions1[Order ID]
+			    )
+			
+			RETURN
+			    AVERAGEX(
+			        DistinctOrders,
+			        CALCULATE(SUM(Transactions1[Quantity Sold]))-[Refund number]
+			    )
+			
+			```
+		lineageTag: d65cb2fa-729e-4d1c-8ba9-db03f29b3a55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantity Sold (Negative/positive)' = ```
+			
+			SUMX(
+			    FILTER(
+			        Transactions1,
+			        Transactions1[Transaction Type] = "Order"
+			    ),
+			    Transactions1[Quantity Sold]
+			) - 
+			SUMX(
+			    FILTER(
+			        Transactions1,
+			        Transactions1[Transaction Type] = "Refund"
+			    ),
+			    Transactions1[Quantity Sold]
+			)
+			
+			```
+		formatString: 0
+		lineageTag: ab30dfd1-0439-4e33-92bc-c8a0e1e08e2d
+
+	measure 'Average basket size' = SUMX(FILTER(Transactions1,Transactions1[Transaction Type]="Order"), [Total revenue])/ SUMX(FILTER(Transactions1,Transactions1[Transaction Type]="Order"),Transactions1[Quantity Sold])
+		lineageTag: 6c934fc0-32d4-49dd-8301-36ca1ecb6277
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Other transaction Fees (Marketing) - positive' = -SUM(Transactions1[Other Transaction Fees1(Marketing)])
+		lineageTag: 729db519-d52c-48e3-9f68-85a58c6f64f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales fees (Transport + Fulfillment) - positive' = -SUM(Transactions1[Sales fees(Transport+Fulfillment)])
+		lineageTag: 547e1055-9286-4f7b-9835-3180f0fb8981
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue + Handling + Fulfillment' = [Total revenue]+[Marketing Costs]+ SUM(Transactions1[Sales fees(Transport+Fulfillment)])
+		lineageTag: df573487-6141-4ef9-b989-c197155163ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Refund number' = ```
+			SUMX(FILTER(Transactions1, Transactions1[Transaction Type] = "Refund"), Transactions1[Quantity Sold])
+			
+			```
+		formatString: 0
+		lineageTag: 05c3adfc-8608-43a7-8070-9703be210d1b
+
+	measure 'Quantity sold (type Order)' = SUMX(FILTER(Transactions1,Transactions1[Transaction Type]="Order"), Transactions1[Quantity Sold])
+		formatString: 0
+		lineageTag: d77ab3b1-b08b-4eec-922e-573ecf73da88
+
+	measure 'Refunds %' = [Refund number]/[Quantity sold (type Order)]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 923b1769-e389-4a49-a593-0a98f319d0fd
+
+	measure 'Total Cost - positive' = -[Total Cost]
+		lineageTag: 773a9f7b-e360-4a34-8f38-0236ebb92379
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'VAT% calculated1' = DIVIDE(SUM(Transactions1[Collected VAT1]),SUM(Transactions1[Transaction Revenues1]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d860c588-a9ec-4d98-b1a5-b5715b4a3bd7
+
+	column 'Transaction Date/Time'
+		dataType: string
+		lineageTag: 7de7656c-5597-49a0-8ffb-02fabff0cd9a
+		summarizeBy: none
+		sourceColumn: Transaction Date/Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e7aa5d3-bbe1-424c-a534-0696f5879cc0
+		summarizeBy: sum
+		sourceColumn: Invoice Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Type'
+		dataType: string
+		lineageTag: 010252b1-3e50-4da6-b229-b28b6189a563
+		summarizeBy: none
+		sourceColumn: Transaction Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: d0e39612-7265-4314-a909-70e39c6b579f
+		summarizeBy: none
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product SKU'
+		dataType: string
+		lineageTag: 8433dccf-70e5-4713-ba81-b6100a22e2ea
+		summarizeBy: none
+		sourceColumn: Product SKU
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Transactions1","TableItemName":"Product SKU (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Product Description'
+		dataType: string
+		lineageTag: 6048285f-8730-49b1-9ac5-dc7a26ea696d
+		summarizeBy: none
+		sourceColumn: Product Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantity Sold'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3916aad6-899d-4f00-83df-1b4f0383aef0
+		summarizeBy: sum
+		sourceColumn: Quantity Sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Marketplace'
+		dataType: string
+		lineageTag: 46c9ee3b-8268-4d39-82c6-0bf8939dfc94
+		summarizeBy: none
+		sourceColumn: Transaction Marketplace
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Cost'
+		dataType: string
+		lineageTag: 5b4b4e7e-79a4-4375-b179-d57d6d0c0791
+		summarizeBy: none
+		sourceColumn: Shipping Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Location'
+		dataType: string
+		lineageTag: 53dee109-5779-488c-acd9-093d03abbec9
+		summarizeBy: none
+		sourceColumn: Order Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 03e6b85c-9043-4ead-8e83-a3be3fc77018
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code'
+		dataType: string
+		lineageTag: 3f057a26-a079-4ba4-937f-56cd09decfce
+		summarizeBy: none
+		sourceColumn: Postal Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Collection Model'
+		dataType: string
+		lineageTag: 6cb178df-4b79-45e1-a0d1-1a4d8600320c
+		summarizeBy: none
+		sourceColumn: Tax Collection Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Miscellaneous1 (Withdrawals)'
+		dataType: double
+		lineageTag: 779633d7-e3a9-482e-afbc-676a82386302
+		summarizeBy: sum
+		sourceColumn: Miscellaneous1 (Withdrawals)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Amount1'
+		dataType: double
+		lineageTag: d08a8005-31f9-4281-bd39-45d5f8ca15eb
+		summarizeBy: sum
+		sourceColumn: Total Amount1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Other Transaction Fees1(Marketing)'
+		dataType: double
+		lineageTag: 96353732-a292-4332-be24-552690540413
+		summarizeBy: sum
+		sourceColumn: Other Transaction Fees1(Marketing)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fulfillment Fees1'
+		dataType: double
+		lineageTag: 20deb92a-9acc-4ef8-bb98-ecb549524c71
+		summarizeBy: sum
+		sourceColumn: Fulfillment Fees1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Fees1(Transport)'
+		dataType: double
+		lineageTag: e078f889-c67b-4a29-a5f1-8c478f771aee
+		summarizeBy: sum
+		sourceColumn: Sales Fees1(Transport)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Withheld Marketplace Tax1'
+		dataType: double
+		lineageTag: e297f715-d26b-4b70-9058-a7e02de85b90
+		summarizeBy: sum
+		sourceColumn: Withheld Marketplace Tax1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax on Promotion Discounts1'
+		dataType: double
+		lineageTag: 55801628-ad3d-41d3-a390-66f00bf82e59
+		summarizeBy: sum
+		sourceColumn: Tax on Promotion Discounts1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Promotion Discounts1'
+		dataType: double
+		lineageTag: 9c016d5e-4541-42c4-a1e7-ff1fe9786457
+		summarizeBy: sum
+		sourceColumn: Promotion Discounts1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gift Wrap Credits1'
+		dataType: double
+		lineageTag: 16cb5694-13cf-45cf-8eb5-4745a5700f5e
+		summarizeBy: sum
+		sourceColumn: Gift Wrap Credits1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax on Shipping Credits1'
+		dataType: double
+		lineageTag: ba3f320b-c204-4b93-b288-fe93c1085ad3
+		summarizeBy: sum
+		sourceColumn: Tax on Shipping Credits1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Shipping Credits1'
+		dataType: double
+		lineageTag: 08c9bf13-870a-45a8-8dee-09c4c031fe92
+		summarizeBy: sum
+		sourceColumn: Shipping Credits1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Collected VAT1'
+		dataType: double
+		lineageTag: 24956f3a-c299-43cc-a65c-5d5cb9b4617f
+		summarizeBy: sum
+		sourceColumn: Collected VAT1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transaction Revenues1'
+		dataType: double
+		lineageTag: fd3d1e82-aa69-41b4-a19d-df062e1c0006
+		summarizeBy: sum
+		sourceColumn: Transaction Revenues1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 58b3ae9c-887c-4409-8ceb-949a78faa64a
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tax on Gift Wrap Credits1'
+		dataType: double
+		lineageTag: 161d29d0-846d-480d-a966-792ab46ab299
+		summarizeBy: sum
+		sourceColumn: Tax on Gift Wrap Credits1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product SKU (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Transactions1'[Product SKU]),
+				"(Blank)",
+				'Transactions1'[Product SKU] IN {"21306-10-LXL",
+					"21306-10-SM"},
+				"21306",
+				'Transactions1'[Product SKU] IN {"M-211350001",
+					"M-211350002",
+					"M-211350003",
+					"M-211350004",
+					"M-211350005",
+					"M-211350006",
+					"M-211350007",
+					"M-211350008",
+					"M-211350009",
+					"M-211350010",
+					"M-211350011",
+					"M-211350012",
+					"M-21135-10-L-SC",
+					"M-21135-10-M-SC",
+					"M-21135-10-XL-SC",
+					"M-21135-10-XXL-SC",
+					"M-21135-11-L-WE",
+					"M-21135-11-M-WE",
+					"M-21135-11-XL-WE",
+					"M-21135-11-XXL-WE",
+					"M-21135-14-L-NV",
+					"M-21135-14-M-NV",
+					"M-21135-14-XL-NV",
+					"M-21135-14-XXL-NV"},
+				"M-21135",
+				'Transactions1'[Product SKU] IN {"M-211360001",
+					"M-211360002",
+					"M-211360003",
+					"M-211360004"},
+				"M-21136",
+				'Transactions1'[Product SKU] IN {"M-21165-11-39/42-Blau",
+					"M-21165-11-43/46-Blau",
+					"M-21165-11-47/49-Blau"},
+				"M-21165",
+				'Transactions1'[Product SKU] IN {"M-21302-10-3942",
+					"M-21302-10-4346",
+					"M-21302-10-4749",
+					"M-21302-11-3942",
+					"M-21302-11-4346",
+					"M-21302-11-4749",
+					"M-21302-12-3942",
+					"M-21302-12-4346",
+					"M-21302-12-4749"},
+				"M-21302",
+				'Transactions1'[Product SKU] IN {"M-21305-10-LXL",
+					"M-21305-10-SM",
+					"M-21305-11-LXL",
+					"M-21305-11-SM"},
+				"M-21305",
+				'Transactions1'[Product SKU] IN {"M-21309-10-2XL",
+					"M-21309-10-L",
+					"M-21309-10-M",
+					"M-21309-10-XL"},
+				"M-21309",
+				'Transactions1'[Product SKU] IN {"M-21310-10-LXL",
+					"M-21310-10-SM",
+					"M-21310-11-LXL",
+					"M-21310-11-SM"},
+				"M-21310",
+				'Transactions1'[Product SKU] IN {"M-21311-10-L",
+					"M-21311-10-M",
+					"M-21311-10-S",
+					"M-21311-10-XL"},
+				"M-21311",
+				'Transactions1'[Product SKU] IN {"M-21312-10-L",
+					"M-21312-10-M",
+					"M-21312-10-S",
+					"M-21312-10-XL"},
+				"M-21312",
+				'Transactions1'[Product SKU] IN {"M-21322-10-3538",
+					"M-21322-10-3942"},
+				"M-21322",
+				'Transactions1'[Product SKU] IN {"M-21346-BLACK-39/42",
+					"M-21346-BLACK-43/46",
+					"M-21346-BLACK-47/49"},
+				"M-21346",
+				'Transactions1'[Product SKU] IN {"M-21405-GR/WH/RO-110/116",
+					"M-21405-GR/WH/RO-122/128",
+					"M-21405-GR/WH/RO-134/140",
+					"M-21405-GR/WH/RO-98/104"},
+				"M-21405",
+				'Transactions1'[Product SKU] IN {"M-21406-GR/WE/SH-26/30",
+					"M-21406-GR/WE/SH-31/34",
+					"M-21406-GR/WE/SH-35/38"},
+				"M-21406",
+				'Transactions1'[Product SKU] IN {"M-21408-10-L",
+					"M-21408-10-M",
+					"M-21408-10-S",
+					"M-21408-10-XL"},
+				"M-21408",
+				'Transactions1'[Product SKU] IN {"M-21409-10-L",
+					"M-21409-10-M",
+					"M-21409-10-S",
+					"M-21409-10-XL"},
+				"M-21409",
+				'Transactions1'[Product SKU] IN {"M-21410-10-L",
+					"M-21410-10-M",
+					"M-21410-10-XL",
+					"M-21410-10-XXL"},
+				"M-21410",
+				'Transactions1'[Product SKU] IN {"M-21411-10-L",
+					"M-21411-10-M",
+					"M-21411-10-XL",
+					"M-21411-10-XXL"},
+				"M-21411",
+				'Transactions1'[Product SKU] IN {"M-21415-SC-39/42",
+					"M-21415-SC-43/46",
+					"M-21415-SC-47/49"},
+				"M-21415",
+				'Transactions1'[Product SKU] IN {"M-21439-SC-35/38",
+					"M-21439-SC-39/42",
+					"M-21439-SC-43/46",
+					"M-21439-WE-35/38",
+					"M-21439-WE-39/42",
+					"M-21439-WE-43/46",
+					"M-21442-10-37/41-SC",
+					"M-21442-11-37/41-WE"},
+				"M-21439",
+				'Transactions1'[Product SKU] IN {"M-21497-10-L"},
+				"M-21497",
+				'Transactions1'[Product SKU] IN {"M-21500-10-L",
+					"M-21500-10-M",
+					"M-21500-10-XL",
+					"M-21500-10-XXL"},
+				"M-21500",
+				'Transactions1'[Product SKU] IN {"M-21502-11-2XL",
+					"M-21502-11-3XL",
+					"M-21502-11-L",
+					"M-21502-11-M",
+					"M-21502-11-XL"},
+				"M-21502",
+				'Transactions1'[Product SKU] IN {"M-21503-10-L",
+					"M-21503-10-M",
+					"M-21503-10-S",
+					"M-21503-10-XL"},
+				"M-21503",
+				'Transactions1'[Product SKU] IN {"M-21506-10-35/38-Blau",
+					"M-21506-10-39/42-Blau",
+					"M-21506-11-35/38-SC",
+					"M-21506-11-39/42-SC"},
+				"M-21506",
+				'Transactions1'[Product SKU] IN {"M-21520-10-39/42",
+					"M-21520-10-43/46"},
+				"M-21520",
+				'Transactions1'[Product SKU] IN {"M21306-10-LXL",
+					"M21306-10-SM"},
+				"M21306",
+				'Transactions1'[Product SKU]
+			)
+		dataType: string
+		lineageTag: 1c7ceb55-6dec-483d-bcb7-08c09df898f0
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Transactions1"
+				          }
+				        },
+				        "Property": "Product SKU"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"2","Entity":"Transactions1"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"21306","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'21306-10-LXL'"}}],[{"Literal":{"Value":"'21306-10-SM'"}}]]}}},{"DisplayName":"M-21135","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-211350001'"}}],[{"Literal":{"Value":"'M-211350002'"}}],[{"Literal":{"Value":"'M-211350003'"}}],[{"Literal":{"Value":"'M-211350004'"}}],[{"Literal":{"Value":"'M-211350005'"}}],[{"Literal":{"Value":"'M-211350006'"}}],[{"Literal":{"Value":"'M-211350007'"}}],[{"Literal":{"Value":"'M-211350008'"}}],[{"Literal":{"Value":"'M-211350009'"}}],[{"Literal":{"Value":"'M-211350010'"}}],[{"Literal":{"Value":"'M-211350011'"}}],[{"Literal":{"Value":"'M-211350012'"}}],[{"Literal":{"Value":"'M-21135-10-L-SC'"}}],[{"Literal":{"Value":"'M-21135-10-M-SC'"}}],[{"Literal":{"Value":"'M-21135-10-XL-SC'"}}],[{"Literal":{"Value":"'M-21135-10-XXL-SC'"}}],[{"Literal":{"Value":"'M-21135-11-L-WE'"}}],[{"Literal":{"Value":"'M-21135-11-M-WE'"}}],[{"Literal":{"Value":"'M-21135-11-XL-WE'"}}],[{"Literal":{"Value":"'M-21135-11-XXL-WE'"}}],[{"Literal":{"Value":"'M-21135-14-L-NV'"}}],[{"Literal":{"Value":"'M-21135-14-M-NV'"}}],[{"Literal":{"Value":"'M-21135-14-XL-NV'"}}],[{"Literal":{"Value":"'M-21135-14-XXL-NV'"}}]]}}},{"DisplayName":"M-21136","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-211360001'"}}],[{"Literal":{"Value":"'M-211360002'"}}],[{"Literal":{"Value":"'M-211360003'"}}],[{"Literal":{"Value":"'M-211360004'"}}]]}}},{"DisplayName":"M-21165","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21165-11-39/42-Blau'"}}],[{"Literal":{"Value":"'M-21165-11-43/46-Blau'"}}],[{"Literal":{"Value":"'M-21165-11-47/49-Blau'"}}]]}}},{"DisplayName":"M-21302","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21302-10-3942'"}}],[{"Literal":{"Value":"'M-21302-10-4346'"}}],[{"Literal":{"Value":"'M-21302-10-4749'"}}],[{"Literal":{"Value":"'M-21302-11-3942'"}}],[{"Literal":{"Value":"'M-21302-11-4346'"}}],[{"Literal":{"Value":"'M-21302-11-4749'"}}],[{"Literal":{"Value":"'M-21302-12-3942'"}}],[{"Literal":{"Value":"'M-21302-12-4346'"}}],[{"Literal":{"Value":"'M-21302-12-4749'"}}]]}}},{"DisplayName":"M-21305","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21305-10-LXL'"}}],[{"Literal":{"Value":"'M-21305-10-SM'"}}],[{"Literal":{"Value":"'M-21305-11-LXL'"}}],[{"Literal":{"Value":"'M-21305-11-SM'"}}]]}}},{"DisplayName":"M-21309","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21309-10-2XL'"}}],[{"Literal":{"Value":"'M-21309-10-L'"}}],[{"Literal":{"Value":"'M-21309-10-M'"}}],[{"Literal":{"Value":"'M-21309-10-XL'"}}]]}}},{"DisplayName":"M-21310","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21310-10-LXL'"}}],[{"Literal":{"Value":"'M-21310-10-SM'"}}],[{"Literal":{"Value":"'M-21310-11-LXL'"}}],[{"Literal":{"Value":"'M-21310-11-SM'"}}]]}}},{"DisplayName":"M-21311","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21311-10-L'"}}],[{"Literal":{"Value":"'M-21311-10-M'"}}],[{"Literal":{"Value":"'M-21311-10-S'"}}],[{"Literal":{"Value":"'M-21311-10-XL'"}}]]}}},{"DisplayName":"M-21312","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21312-10-L'"}}],[{"Literal":{"Value":"'M-21312-10-M'"}}],[{"Literal":{"Value":"'M-21312-10-S'"}}],[{"Literal":{"Value":"'M-21312-10-XL'"}}]]}}},{"DisplayName":"M-21322","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21322-10-3538'"}}],[{"Literal":{"Value":"'M-21322-10-3942'"}}]]}}},{"DisplayName":"M-21346","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21346-BLACK-39/42'"}}],[{"Literal":{"Value":"'M-21346-BLACK-43/46'"}}],[{"Literal":{"Value":"'M-21346-BLACK-47/49'"}}]]}}},{"DisplayName":"M-21405","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21405-GR/WH/RO-110/116'"}}],[{"Literal":{"Value":"'M-21405-GR/WH/RO-122/128'"}}],[{"Literal":{"Value":"'M-21405-GR/WH/RO-134/140'"}}],[{"Literal":{"Value":"'M-21405-GR/WH/RO-98/104'"}}]]}}},{"DisplayName":"M-21406","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21406-GR/WE/SH-26/30'"}}],[{"Literal":{"Value":"'M-21406-GR/WE/SH-31/34'"}}],[{"Literal":{"Value":"'M-21406-GR/WE/SH-35/38'"}}]]}}},{"DisplayName":"M-21408","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21408-10-L'"}}],[{"Literal":{"Value":"'M-21408-10-M'"}}],[{"Literal":{"Value":"'M-21408-10-S'"}}],[{"Literal":{"Value":"'M-21408-10-XL'"}}]]}}},{"DisplayName":"M-21409","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21409-10-L'"}}],[{"Literal":{"Value":"'M-21409-10-M'"}}],[{"Literal":{"Value":"'M-21409-10-S'"}}],[{"Literal":{"Value":"'M-21409-10-XL'"}}]]}}},{"DisplayName":"M-21410","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21410-10-L'"}}],[{"Literal":{"Value":"'M-21410-10-M'"}}],[{"Literal":{"Value":"'M-21410-10-XL'"}}],[{"Literal":{"Value":"'M-21410-10-XXL'"}}]]}}},{"DisplayName":"M-21411","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21411-10-L'"}}],[{"Literal":{"Value":"'M-21411-10-M'"}}],[{"Literal":{"Value":"'M-21411-10-XL'"}}],[{"Literal":{"Value":"'M-21411-10-XXL'"}}]]}}},{"DisplayName":"M-21415","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21415-SC-39/42'"}}],[{"Literal":{"Value":"'M-21415-SC-43/46'"}}],[{"Literal":{"Value":"'M-21415-SC-47/49'"}}]]}}},{"DisplayName":"M-21439","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21439-SC-35/38'"}}],[{"Literal":{"Value":"'M-21439-SC-39/42'"}}],[{"Literal":{"Value":"'M-21439-SC-43/46'"}}],[{"Literal":{"Value":"'M-21439-WE-35/38'"}}],[{"Literal":{"Value":"'M-21439-WE-39/42'"}}],[{"Literal":{"Value":"'M-21439-WE-43/46'"}}],[{"Literal":{"Value":"'M-21442-10-37/41-SC'"}}],[{"Literal":{"Value":"'M-21442-11-37/41-WE'"}}]]}}},{"DisplayName":"M-21497","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21497-10-L'"}}]]}}},{"DisplayName":"M-21500","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21500-10-L'"}}],[{"Literal":{"Value":"'M-21500-10-M'"}}],[{"Literal":{"Value":"'M-21500-10-XL'"}}],[{"Literal":{"Value":"'M-21500-10-XXL'"}}]]}}},{"DisplayName":"M-21502","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21502-11-2XL'"}}],[{"Literal":{"Value":"'M-21502-11-3XL'"}}],[{"Literal":{"Value":"'M-21502-11-L'"}}],[{"Literal":{"Value":"'M-21502-11-M'"}}],[{"Literal":{"Value":"'M-21502-11-XL'"}}]]}}},{"DisplayName":"M-21503","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21503-10-L'"}}],[{"Literal":{"Value":"'M-21503-10-M'"}}],[{"Literal":{"Value":"'M-21503-10-S'"}}],[{"Literal":{"Value":"'M-21503-10-XL'"}}]]}}},{"DisplayName":"M-21506","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21506-10-35/38-Blau'"}}],[{"Literal":{"Value":"'M-21506-10-39/42-Blau'"}}],[{"Literal":{"Value":"'M-21506-11-35/38-SC'"}}],[{"Literal":{"Value":"'M-21506-11-39/42-SC'"}}]]}}},{"DisplayName":"M-21520","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M-21520-10-39/42'"}}],[{"Literal":{"Value":"'M-21520-10-43/46'"}}]]}}},{"DisplayName":"M21306","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"2"}},"Property":"Product SKU"}}],"Values":[[{"Literal":{"Value":"'M21306-10-LXL'"}}],[{"Literal":{"Value":"'M21306-10-SM'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column %VAT
+		dataType: int64
+		formatString: 0
+		lineageTag: e31daef8-ba27-4191-8e98-d34b75588da4
+		summarizeBy: sum
+		sourceColumn: %VAT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales fees(Transport+Fulfillment)'
+		dataType: double
+		lineageTag: 4184ac7a-17b0-46ce-abb0-22e6170d3f4f
+		summarizeBy: sum
+		sourceColumn: Sales fees(Transport+Fulfillment)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ASIN
+		dataType: string
+		lineageTag: 0ead9980-dcd0-44b6-9a96-d603b20238bf
+		summarizeBy: none
+		sourceColumn: ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent SKU'
+		dataType: string
+		lineageTag: c549b34b-2ad0-46b2-a17d-2c874b26652e
+		summarizeBy: none
+		sourceColumn: Parent SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product SKU final'
+		dataType: string
+		lineageTag: a32e5d03-5aae-4f39-bf80-faaf398eb3a6
+		summarizeBy: none
+		sourceColumn: Product SKU final
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item translator.Amazon'
+		dataType: string
+		lineageTag: ffe46035-f1bb-4e30-b6d5-b7fdc8f6f4bd
+		summarizeBy: none
+		sourceColumn: Item translator.Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 5097750e-817f-4d55-9d3d-5725920a56f5
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy '%VAT Hierarchy'
+		lineageTag: 0deecadb-5be3-4067-bab8-77c0ce16a370
+
+		level %VAT
+			lineageTag: 3dc2cf6e-acb5-4a47-8e16-158a38e85b25
+			column: %VAT
+
+		level 'Product SKU'
+			lineageTag: cbdce680-2e58-447e-b4c6-6114eb898b0c
+			column: 'Product SKU'
+
+	hierarchy 'Parent SKU Hierarchy'
+		lineageTag: 302cd21e-ebe7-4757-ae3b-1b5e4cd9498a
+
+		level 'Parent SKU'
+			lineageTag: e93608f2-b3cf-471a-b6ba-1ea8d9337e03
+			column: 'Parent SKU'
+
+		level 'Product SKU'
+			lineageTag: cdc38ed0-d829-4ff2-ab08-4a3ff4ca723c
+			column: 'Product SKU'
+
+		level 'Product SKU final'
+			lineageTag: 18746d7c-b951-43cd-a96b-da5435685423
+			column: 'Product SKU final'
+
+	partition Transactions1 = m
+		mode: import
+		source = ```
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"2023Jun3-2023Aug30CustomTransaction.csv_https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="2023Jun3-2023Aug30CustomTransaction.csv",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"2023Jun3-2023Aug30CustomTransaction.csv_https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/",[Delimiter=";", Columns=27, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}, {"Column14", type text}, {"Column15", type text}, {"Column16", type text}, {"Column17", type text}, {"Column18", type text}, {"Column19", type text}, {"Column20", type text}, {"Column21", type text}, {"Column22", type text}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}, {"Column26", type text}, {"Column27", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",7),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Promoted Headers","M-211350001","M-21135-10-M-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14","M-211350002","M-21135-10-L-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Replaced Value15","M-211350003","M-21135-10-XL-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value16","M-211350004","M-21135-10-XXL-SC",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Replaced Value17","M-211350005","M-21135-11-M-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Replaced Value18","M-211350006","M-21135-11-L-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Replaced Value19","M-211350007","M-21135-11-XL-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value20","M-211350008","M-21135-11-XXL-WE",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value21","M-211350009","M-21135-14-M-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value23" = Table.ReplaceValue(#"Replaced Value22","M-211350010","M-21135-14-L-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value24" = Table.ReplaceValue(#"Replaced Value23","M-211350011","M-21135-14-XL-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Replaced Value25" = Table.ReplaceValue(#"Replaced Value24","M-211350012","M-21135-14-XXL-NV",Replacer.ReplaceText,{"SKU"}),
+				    #"Headers Name Change" = Table.RenameColumns(
+				    #"Replaced Value25",
+				    {
+				        {"Datum/Uhrzeit", "Transaction Date/Time"},
+				        {"Abrechnungsnummer", "Invoice Number"},
+				        {"Typ", "Transaction Type"},
+				        {"Bestellnummer", "Order ID"},
+				        {"SKU", "Product SKU"},
+				        {"Beschreibung", "Product Description"},
+				        {"Menge", "Quantity Sold"},
+				        {"Marketplace", "Transaction Marketplace"},
+				        {"Versand", "Shipping Cost"},
+				        {"Ort der Bestellung", "Order Location"},
+				        {"Bundesland", "State"},
+				        {"Postleitzahl", "Postal Code"},
+				        {"Steuererhebungsmodell", "Tax Collection Model"},
+				        {"Umsätze", "Transaction Revenues"},
+				        {"Produktumsatzsteuer", "Collected VAT"},
+				        {"Gutschrift für Versandkosten", "Shipping Credits"},
+				        {"Steuer auf Versandgutschrift", "Tax on Shipping Credits"},
+				        {"Gutschrift für Geschenkverpackung", "Gift Wrap Credits"},
+				        {"Steuer auf Geschenkverpackungsgutschriften", "Tax on Gift Wrap Credits"},
+				        {"Rabatte aus Werbeaktionen", "Promotion Discounts"},
+				        {"Steuer auf Aktionsrabatte", "Tax on Promotion Discounts"},
+				        {"Einbehaltene Steuer auf Marketplace", "Withheld Marketplace Tax"},
+				        {"Verkaufsgebühren", "Sales Fees"},
+				        {"Gebühren zu Versand durch Amazon", "Fulfillment Fees"},
+				        {"Andere Transaktionsgebühren", "Other Transaction Fees"},
+				        {"Andere", "Miscellaneous"},
+				        {"Gesamt", "Total Amount"}
+				    }),
+				    #"Added Miscellaneous1" = Table.AddColumn(#"Headers Name Change", "Miscellaneous1", each let splitMiscellaneous = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)([Miscellaneous])), splitsplitMiscellaneous0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitMiscellaneous{0}?) in Text.Combine({Text.Reverse(Text.Middle(Text.Reverse([Miscellaneous]), 7)), Text.Combine(splitsplitMiscellaneous0, ".")}), type text),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Miscellaneous1",{{"Miscellaneous1", type number}}),
+				    #"Added Total Amount1" = Table.AddColumn(#"Changed Type1", "Total Amount1", each 
+				    let
+				        totalAmountText = [Total Amount] as text,
+				        splitTotalAmount = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(totalAmountText)),
+				        splitSplitTotalAmount0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitTotalAmount{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(totalAmountText), 7)), Text.Combine(splitSplitTotalAmount0, ".")}), 
+				    type text),
+				    #"Added Other Transaction Fees1" = Table.AddColumn(#"Added Total Amount1", "Other Transaction Fees1", each
+				    let
+				        feesText = [Other Transaction Fees] as text,
+				        splitFees = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(feesText)),
+				        splitSplitFees0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitFees{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(feesText), 7)), Text.Combine(splitSplitFees0, ".")}),
+				    type text),
+				    #"Added Fulfillment Fees1" = Table.AddColumn(#"Added Other Transaction Fees1", "Fulfillment Fees1", each
+				    let
+				        feesText = [Fulfillment Fees] as text,
+				        splitFees = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(feesText)),
+				        splitSplitFees0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitFees{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(feesText), 7)), Text.Combine(splitSplitFees0, ".")}),
+				    type text),
+				    #"Added Sales Fees1" = Table.AddColumn(#"Added Fulfillment Fees1", "Sales Fees1", each
+				    let
+				        feesText = [Sales Fees] as text,
+				        splitFees = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(feesText)),
+				        splitSplitFees0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitFees{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(feesText), 7)), Text.Combine(splitSplitFees0, ".")}),
+				    type text),
+				    #"Added Withheld Marketplace Tax1" = Table.AddColumn(#"Added Sales Fees1", "Withheld Marketplace Tax1", each
+				    let
+				        taxText = [Withheld Marketplace Tax] as text,
+				        splitTax = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(taxText)),
+				        splitSplitTax0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitTax{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(taxText), 7)), Text.Combine(splitSplitTax0, ".")}),
+				    type text),
+				    #"Added Tax on Promotion Discounts" = Table.AddColumn(#"Added Withheld Marketplace Tax1", "Tax on Promotion Discounts1", each
+				    let
+				        taxText = [Tax on Promotion Discounts] as text,
+				        splitTax = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(taxText)),
+				        splitSplitTax0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitTax{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(taxText), 7)), Text.Combine(splitSplitTax0, ".")}),
+				    type text),
+				    #"Added Promotion Discounts1" = Table.AddColumn(#"Added Tax on Promotion Discounts", "Promotion Discounts1", each
+				    let
+				        discountsText = [Promotion Discounts] as text,
+				        splitDiscounts = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(discountsText)),
+				        splitSplitDiscounts0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitDiscounts{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(discountsText), 7)), Text.Combine(splitSplitDiscounts0, ".")}),
+				    type text),
+				    #"Added Tax on Gift Wrap Credits1" = Table.AddColumn(#"Added Promotion Discounts1", "Tax on Gift Wrap Credits1", each
+				    let
+				        taxText = [Tax on Gift Wrap Credits] as text,
+				        splitTax = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(taxText)),
+				        splitSplitTax0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitTax{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(taxText), 7)), Text.Combine(splitSplitTax0, ".")}),
+				    type text),
+				    #"Added Gift Wrap Credits1" = Table.AddColumn(#"Added Tax on Gift Wrap Credits1", "Gift Wrap Credits1", each
+				    let
+				        creditsText = [Gift Wrap Credits] as text,
+				        splitCredits = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(creditsText)),
+				        splitSplitCredits0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitCredits{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(creditsText), 7)), Text.Combine(splitSplitCredits0, ".")}),
+				    type text),
+				    #"Added Tax on Shipping Credits1" = Table.AddColumn(#"Added Gift Wrap Credits1", "Tax on Shipping Credits1", each
+				    let
+				        taxText = [Tax on Shipping Credits] as text,
+				        splitTax = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(taxText)),
+				        splitSplitTax0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitTax{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(taxText), 7)), Text.Combine(splitSplitTax0, ".")}),
+				    type text),
+				    #"Added Shipping Credits1" = Table.AddColumn(#"Added Tax on Shipping Credits1", "Shipping Credits1", each
+				    let
+				        creditsText = [Shipping Credits] as text,
+				        splitCredits = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(creditsText)),
+				        splitSplitCredits0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitCredits{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(creditsText), 7)), Text.Combine(splitSplitCredits0, ".")}),
+				    type text),
+				    #"Added Collected VAT1" = Table.AddColumn(#"Added Shipping Credits1", "Collected VAT1", each
+				    let
+				        vatText = [Collected VAT] as text,
+				        splitVAT = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(vatText)),
+				        splitSplitVAT0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitVAT{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(vatText), 7)), Text.Combine(splitSplitVAT0, ".")}),
+				    type text),
+				    #"Added Transaction Revenues1" = Table.AddColumn(#"Added Collected VAT1", "Transaction Revenues1", each
+				    let
+				        revenuesText = [Transaction Revenues] as text,
+				        splitRevenues = List.Reverse(Splitter.SplitTextByDelimiter(".", QuoteStyle.None)(revenuesText)),
+				        splitSplitRevenues0 = Splitter.SplitTextByDelimiter(",", QuoteStyle.None)(splitRevenues{0}?)
+				    in
+				        Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(revenuesText), 7)), Text.Combine(splitSplitRevenues0, ".")}),
+				    type text),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Transaction Revenues1",{{"Quantity Sold", Int64.Type}, {"Invoice Number", Int64.Type}}),
+				    #"Added Custom Column" = Table.AddColumn(#"Changed Type2", "Date", each Text.Combine({Text.Middle([#"Transaction Date/Time"], 6, 4), "-", Text.Middle([#"Transaction Date/Time"], 3, 2), "-", Text.Start([#"Transaction Date/Time"], 2)}), type text),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Added Custom Column",{{"Date", type date}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Changed Type4",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1",  "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Reordered Columns",{{"Total Amount1", type number}, {"Other Transaction Fees1", type number}, {"Fulfillment Fees1", type number}, {"Sales Fees1", type number}, {"Withheld Marketplace Tax1", type number}, {"Tax on Promotion Discounts1", type number}, {"Promotion Discounts1", type number}, {"Tax on Gift Wrap Credits1", type number}, {"Gift Wrap Credits1", type number}, {"Tax on Shipping Credits1", type number}, {"Shipping Credits1", type number}, {"Collected VAT1", type number}, {"Transaction Revenues1", type number}}),
+				    #"Added SKU Column" = Table.AddColumn(#"Changed Type3", "SKU", each let splitProductSKU = Splitter.SplitTextByDelimiter("-", QuoteStyle.None)([Product SKU]) in Text.Combine({Text.Start([Product SKU], 5), Text.Middle(splitProductSKU{1}?, 3, 2), Text.Middle(splitProductSKU{0}?, 5)}), type text),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Added SKU Column",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1", "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns1",{"Transaction Revenues", "Collected VAT", "Shipping Credits", "Tax on Shipping Credits"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Columns", "SKU1", each if [SKU] = "M21306" then "M-21306" else if [SKU] = "21306" then "M-21306" else [SKU], type text),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Added Conditional Column",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU", "SKU1", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1", "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Added Custom" = Table.AddColumn(#"Reordered Columns2", "ASIN", each if Text.Length([SKU1]) = 10 then [SKU1] else null),
+				    #"Reordered Columns3" = Table.ReorderColumns(#"Added Custom",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU", "SKU1", "ASIN", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1", "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Added Custom1" = Table.AddColumn(#"Reordered Columns3", "SKU Final", each if Text.Length([SKU1]) = 7 then [SKU1] else null),
+				    #"Reordered Columns4" = Table.ReorderColumns(#"Added Custom1",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU", "SKU1", "SKU Final", "ASIN", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1", "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns4",{{"SKU Final", "SKU sale"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"SKU1", "SKU"}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Removed Columns1", "SKU Combined", each if [SKU sale] <> null then [SKU sale] else if [SKU based on ASIN] <> null then [SKU based on ASIN] else "null", type text),
+				    #"Reordered Columns6" = Table.ReorderColumns(#"Added Conditional Column1",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU sale", "ASIN",  "SKU Combined", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1", "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Reordered Columns6","Bestellung","Order",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Servicegebühr","Service fee",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","Erstattung","Refund",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","Anpassung","Adjustment",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","Liquidationen","Liquidations",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","Versand durch Amazon Lagergebühr","Shipping by amazon storage fee",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","Übertrag","Transfer",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Order_Wiedereinzug","Order Return",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value7","Gebührenerstattung","Fee Reimbursement",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value9","Refund_Wiedereinzug","Refund Collection",Replacer.ReplaceText,{"Transaction Type"}),
+				    #"Added Custom2" = Table.AddColumn(#"Replaced Value8", "%VAT", each if [Transaction Revenues1] = 0 then 0 else [Collected VAT1]*100/[Transaction Revenues1]),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom2",{{"%VAT", Int64.Type}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type5", {{"%VAT", null}}),
+				    #"Reordered Columns7" = Table.ReorderColumns(#"Replaced Errors",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU sale", "ASIN",  "SKU Combined", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1", "Fulfillment Fees1", "Other Transaction Fees1", "Miscellaneous1", "Total Amount1"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns7",{"Gift Wrap Credits", "Tax on Gift Wrap Credits", "Promotion Discounts", "Tax on Promotion Discounts", "Withheld Marketplace Tax", "Sales Fees", "Fulfillment Fees", "Other Transaction Fees", "Miscellaneous", "Total Amount"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns2",{{"Sales Fees1", "Sales Fees1(Transport)"}, {"Other Transaction Fees1", "Other Transaction Fees1(Marketing)"}, {"Miscellaneous1", "Miscellaneous1 (Withdrawals)"}}),
+				    #"Added Custom3" = Table.AddColumn(#"Renamed Columns2", "Sales fees(Transport+Fulfillment)", each [#"Sales Fees1(Transport)"]+[Fulfillment Fees1]),
+				    #"Reordered Columns8" = Table.ReorderColumns(#"Added Custom3",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "SKU sale", "ASIN",  "SKU Combined", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"}),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Reordered Columns8",{{"Sales fees(Transport+Fulfillment)", type number}}),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Changed Type6",{"SKU Combined"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Removed Columns3","21306-10-SM","M-21306-10-SM",Replacer.ReplaceText,{"Product SKU"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10","21306-10-LXL","M-21306-10-LXL",Replacer.ReplaceText,{"Product SKU"}),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Replaced Value11","MM-21306-10-SM","M-21306-10-SM",Replacer.ReplaceText,{"Product SKU"}),
+				    #"Replaced Value13" = Table.ReplaceValue(#"Replaced Value12","MM-21306-10-LXL","M-21306-10-LXL",Replacer.ReplaceText,{"Product SKU"}),
+				    #"Removed Columns4" = Table.RemoveColumns(#"Replaced Value13",{"SKU sale"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Columns4", {"ASIN"}, #"Item translator", {"ASIN"}, "Item translator", JoinKind.LeftOuter),
+				    #"Expanded Item translator" = Table.ExpandTableColumn(#"Merged Queries", "Item translator", {"Amazon"}, {"Item translator.Amazon"}),
+				    #"Reordered Columns5" = Table.ReorderColumns(#"Expanded Item translator",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "ASIN", "Item translator.Amazon", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"}),
+				    #"Added Custom4" = Table.AddColumn(#"Reordered Columns5", "Product SKU final", each if Text.Start([Product SKU],1) = "M" then [Product SKU] else if Text.Start([Product SKU],1) = "B" then [Item translator.Amazon] else null),
+				    #"Reordered Columns9" = Table.ReorderColumns(#"Added Custom4",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product SKU final", "ASIN", "Item translator.Amazon", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"}),
+				    #"Added Custom5" = Table.AddColumn(#"Reordered Columns9", "Parent SKU", each Text.Start([Product SKU final],7)),
+				    #"Reordered Columns10" = Table.ReorderColumns(#"Added Custom5",{"Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product SKU final", "ASIN", "Item translator.Amazon", "Parent SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"}),
+				    #"Replaced Value26" = Table.ReplaceValue(#"Reordered Columns10","Amazon.de","amazon.de",Replacer.ReplaceText,{"Transaction Marketplace"}),
+				    #"Replaced Value27" = Table.ReplaceValue(#"Replaced Value26","si-prod-marketplace-de.stores.amazon.de","WebShop",Replacer.ReplaceText,{"Transaction Marketplace"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Replaced Value27", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns11" = Table.ReorderColumns(#"Added Index",{"Index", "Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product SKU final", "ASIN", "Item translator.Amazon", "Parent SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"}),
+				    #"Replaced Value28" = Table.ReplaceValue(#"Reordered Columns11","M-21136-10-35/38","M-211360001",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value29" = Table.ReplaceValue(#"Replaced Value28","M-21136-10-39/42","M-211360002",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value30" = Table.ReplaceValue(#"Replaced Value29","M-21136-10-43/46","M-211360003",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value31" = Table.ReplaceValue(#"Replaced Value30","M-21136-10-47/49","M-211360004",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value32" = Table.ReplaceValue(#"Replaced Value31","M-21136-11-39/42-Blau","M-21165-11-39/42-Blau",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value33" = Table.ReplaceValue(#"Replaced Value32","M-21136-11-43/46-Blau","M-21165-11-43/46-Blau",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value34" = Table.ReplaceValue(#"Replaced Value33","M-21136-11-47/49-Blau","M-21165-11-47/49-Blau",Replacer.ReplaceText,{"Product SKU final"}),
+				    #"Replaced Value35" = Table.ReplaceValue(#"Replaced Value34","","amazon.de",Replacer.ReplaceValue,{"Transaction Marketplace"})
+				in
+				    #"Replaced Value35"
+				```
+
+	annotation PBI_ResultType = Table
+

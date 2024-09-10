@@ -1,0 +1,46 @@
+relationship 68e83f20-1a96-492f-abd7-18d262967406
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Sponsored Brands Campaign Repor'.Date
+	toColumn: LocalDateTable_be5aae14-b0d7-49a2-a5ce-e6982b1f965e.Date
+
+relationship 2a48fa4e-68ac-4cae-a7f4-ae81caf34048
+	fromColumn: 'Sponsored Display Advertised Pr1'.'Advertised ASIN'
+	toColumn: 'Item translator'.ASIN
+
+relationship e7cb8dc6-471f-4eaa-88f9-e5d4e8538049
+	fromColumn: Transactions1.'Product SKU final'
+	toColumn: 'Item translator'.Amazon
+
+relationship a9a779dc-8bfb-4a8f-9695-fdaf7d327463
+	fromColumn: 'Item translator'.'Parent SKU'
+	toColumn: 'Item cost price'.'Item No.'
+
+relationship df979c59-986e-441d-bae8-f2eac2310787
+	fromColumn: 'Sponsored Product Advertised Pr'.'Advertised SKU'
+	toColumn: 'Item translator'.Amazon
+
+relationship 6503a2aa-3803-4be6-8177-f5ffbd5118d1
+	fromColumn: 'All countries'.'Product SKU'
+	toColumn: 'Item translator'.Amazon
+
+relationship fe0bd32d-35f7-46d6-949c-d17fb382fb08
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DateTable.Date
+	toColumn: LocalDateTable_c9cf8af5-abc1-401b-be68-9599c1da0e2c.Date
+
+relationship 9236a5db-e43c-4ffd-868a-f01f7dde9274
+	fromColumn: 'Sponsored Display Advertised Pr1'.Date
+	toColumn: DateTable.Date
+
+relationship 8c82b0ae-a364-4423-baa1-e0ff80ca35e3
+	fromColumn: Transactions1.Date
+	toColumn: DateTable.Date
+
+relationship 0e5ab6d6-9a62-45f3-8cc6-bde8c134d3e2
+	fromColumn: 'Sponsored Product Advertised Pr'.Date
+	toColumn: DateTable.Date
+
+relationship 8a757ded-5fc2-4d2f-1ddd-97e8ed3de7d8
+	fromColumn: 'All countries'.Date
+	toColumn: DateTable.Date
+

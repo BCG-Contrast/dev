@@ -1,0 +1,200 @@
+table 'Item translator'
+	lineageTag: ca52b02b-77f7-47ef-bee5-bc51930c5bab
+
+	measure 'Marketing Costs' =
+			-(SUMX(
+			    RELATEDTABLE('Sponsored Display Advertised Pr1'),
+			    'Sponsored Display Advertised Pr1'[Spend]
+			) + SUMX(
+			    RELATEDTABLE('Sponsored Product Advertised Pr'),
+			    'Sponsored Product Advertised Pr'[Spend]
+			)// - [Marketin + branding]*[Quantity sold (type Order)]
+			)
+		lineageTag: 1d97463e-f5cd-42ae-9e8b-2c0a1c6b0366
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Branding costs' = DIVIDE([Total Spent],SUM(Transactions1[Quantity Sold]))
+		lineageTag: 212739c3-025c-4c3e-bb45-d2c4c63876b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Marketing Costs%' = DIVIDE([Marketing Costs],[Total revenue])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f590b646-363e-48fb-ac19-a91cf662dd59
+
+	measure 'Marketing yield' = IF([Marketing Costs]<> 0,[Total revenue]/-[Marketing Costs],BLANK())
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 428c5e66-b339-4ed1-af12-7eeaa9d4c0e6
+
+	measure 'Marketing Costs - positive' = -[Marketing Costs]
+		lineageTag: 55b45cd6-83fa-4d97-8c5b-5b3eb39bbb80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Marketing Costs% - positive' = -[Marketing Costs%]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9e992421-9b70-4269-9fb2-40e93bec7fb9
+
+	measure 'Marketin + branding' = SUM('Sponsored Brands Campaign Repor'[Spend])/CALCULATE(SUM(Transactions1[Quantity Sold]),Transactions1[Transaction Type]="Order",ALL(Transactions1[Product SKU final]))
+		lineageTag: 27377512-463c-4fed-b0da-b1b2f4a6ee38
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Navision - Item'
+		dataType: string
+		lineageTag: abc95b7d-1a48-4378-bde8-0e8df85f15f1
+		summarizeBy: none
+		sourceColumn: Navision - Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Navision - Item 2'
+		dataType: string
+		lineageTag: 761428fc-7b4b-492d-a93a-08e6b6350a07
+		summarizeBy: none
+		sourceColumn: Navision - Item 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIN
+		dataType: string
+		lineageTag: 943b76fb-656c-486f-84a4-4f359ebdbf73
+		summarizeBy: none
+		sourceColumn: ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amazon
+		dataType: string
+		lineageTag: 9d3def98-0c05-456b-b772-cff2e42d7d12
+		summarizeBy: none
+		sourceColumn: Amazon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Type'
+		dataType: string
+		lineageTag: 7d4ffd59-fefa-4a58-8e83-b597b182a66c
+		summarizeBy: none
+		sourceColumn: Product Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Description.1'
+		dataType: string
+		lineageTag: 385cb675-94ae-440d-b047-204e10541a5c
+		summarizeBy: none
+		sourceColumn: Description.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Colour
+		dataType: string
+		lineageTag: 8803d980-b3ae-47ae-a740-558024e6652f
+		summarizeBy: none
+		sourceColumn: Colour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: string
+		lineageTag: 273f5af3-566f-4a01-bea9-1565e39a4823
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent SKU'
+		dataType: string
+		lineageTag: 0fa224a9-3f7d-4eee-8dac-16681e182124
+		summarizeBy: none
+		sourceColumn: Parent SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent ASIN'
+		dataType: string
+		lineageTag: b02c0f2c-ae9b-4a9e-9b0d-5c251884b452
+		summarizeBy: none
+		sourceColumn: Parent ASIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Units pr. master carton'
+		dataType: string
+		lineageTag: 92781c1e-3713-4dc8-881f-a341daedc75d
+		summarizeBy: none
+		sourceColumn: Sales Units pr. master carton
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton - L'
+		dataType: string
+		lineageTag: 6a9c6693-4fda-41fd-a0cf-d5f9d21ba188
+		summarizeBy: none
+		sourceColumn: Carton - L
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton - W'
+		dataType: string
+		lineageTag: 6f23fc6d-5f15-40d5-a247-90427eb29ac1
+		summarizeBy: none
+		sourceColumn: Carton - W
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton - H'
+		dataType: string
+		lineageTag: 1219bbd7-c9f1-40c9-9201-d0d0386ab0ad
+		summarizeBy: none
+		sourceColumn: Carton - H
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton - KG'
+		dataType: string
+		lineageTag: 047a59f5-89ec-4031-b648-7c6069c50e34
+		summarizeBy: none
+		sourceColumn: Carton - KG
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Parent SKU Hierarchy'
+		lineageTag: 0b8df243-b398-4bf2-b6e1-95c1a36ae4af
+
+		level 'Parent SKU'
+			lineageTag: eabfe5df-7d6b-4849-a9b7-70c6ca7e2b68
+			column: 'Parent SKU'
+
+		level Amazon
+			lineageTag: 9b1a5161-511c-4044-b1d8-aa99e29d1d7c
+			column: Amazon
+
+	partition 'Item translator' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    #"Translator - Excel xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/" = Source{[Name="Translator - Excel.xlsx",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Translator - Excel xlsx_https://contrastcompany sharepoint com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"),
+				    Ark1_Sheet = #"Imported Excel Workbook"{[Item="Ark1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Ark1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Navision - Item", type text}, {"Navision - Item 2", type text}, {"ASIN", type text}, {"Amazon", type text}, {"Product Type", type text}, {"Description", type text} }),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type", {"ASIN"}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Removed Errors", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Removed Blank Rows", "Description", Splitter.SplitTextByEachDelimiter({"("}, QuoteStyle.Csv, false), {"Description.1", "Description.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Description.1", type text}, {"Description.2", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1",")","",Replacer.ReplaceText,{"Description.2"}),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Replaced Value", "Description.2", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"Description.2.1", "Description.2.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter1",{{"Description.2.1", type text}, {"Description.2.2", type text}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type2"," ","",Replacer.ReplaceText,{"Description.2.2"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1"," - ","",Replacer.ReplaceText,{"Description.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value2",{{"Description.2.1", "Colour"}, {"Description.2.2", "Size"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Parent SKU", each Text.Start([Amazon],7))
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+

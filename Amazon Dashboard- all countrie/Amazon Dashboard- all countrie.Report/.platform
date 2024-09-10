@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Report",
-    "displayName": "Purchase - new cube"
+    "displayName": "Amazon Dashboard- all countrie"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "8ff059a8-ad40-4810-b745-c1f7788a4562"
+    "logicalId": "903e6223-b64b-4318-bfe1-e8df35e0a3f7"
   }
 }

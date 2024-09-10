@@ -1,0 +1,156 @@
+table DateTable
+	lineageTag: 7b3f0f8f-7ee2-4a4d-94c2-7c995512055a
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 826ef458-c55e-4c9a-8fdc-09b084d03fe6
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: fe0bd32d-35f7-46d6-949c-d17fb382fb08
+			defaultHierarchy: LocalDateTable_c9cf8af5-abc1-401b-be68-9599c1da0e2c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 09a2e4db-0afa-4f07-85db-e872a283361a
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 28a41bfd-69bb-4e14-ad68-69fb5721ac5e
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 70db792d-2aaa-4061-a8aa-cb06dd4519b3
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 647a492e-04c4-4bf8-a624-39841c6c1a5c
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: edc7db5d-4094-464d-b52e-267162190f6f
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Day of Week]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: dc52e003-50d9-4de9-adb3-05ee9a34cce9
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Day of Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 37e44647-1d54-42f3-9cbb-220c87d8be54
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Number'
+		dataType: string
+		lineageTag: 318f5ae5-8994-4e1e-b356-d322e73c40f4
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Week Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number Name'
+		dataType: string
+		lineageTag: 9dfa0594-ce5d-472e-b73f-0e1b16540be2
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month Number Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Year Hierarchy'
+		lineageTag: 5d5bae67-9e48-47e7-9ad3-3fc6990b0af3
+
+		level Year
+			lineageTag: d4751e88-3828-4e8a-a75f-5d9a99467940
+			column: Year
+
+		level Quarter
+			lineageTag: 873fb3b5-67f5-4033-a090-88f80bbba03a
+			column: Quarter
+
+		level 'Month Number Name'
+			lineageTag: ce256848-d2e7-4589-8f9e-0a47accee6ca
+			column: 'Month Number Name'
+
+		level 'Week Number'
+			lineageTag: 7bde1889-59f8-431b-bd8f-5437296c8426
+			column: 'Week Number'
+
+		level 'Day of Month'
+			lineageTag: 403166bd-bbf5-4268-881b-66be09edff3e
+			column: 'Day of Month'
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR (MIN(Transactions1[Date]), MAX(Transactions1[Date])),
+				    "Year", YEAR ( [Date] ),
+				    "Month Number", MONTH ( [Date] ),
+				    "Month Name", FORMAT ( [Date], "MMMM" ),
+				    "Quarter", "Q"&QUARTER ( [Date] ),
+				    "Day of Week", WEEKDAY ( [Date] ),
+				    "Day of Month", DAY ( [Date] ),
+				    "Year Month", FORMAT ( [Date], "YYYY-MM" ),
+				    "Week Number", "Week " & WEEKNUM ( [Date] ),
+				    "Month Number Name", (MONTH ( [Date] ) & " - " & FORMAT( [Date], "MMMM" )
+				)
+				)
+
+	annotation PBI_Id = c27dced1978f419a9b17b89ffec67237
+

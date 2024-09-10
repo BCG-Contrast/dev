@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1604.9641461520121,
+        "y": 442.47130156677963
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 670.07580216680674,
+            "y": 703.13092766262446
+          },
+          "nodeIndex": "Item cost price",
+          "nodeLineageTag": "226d3f7b-dadd-44eb-b37c-eb3b62d4f80b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1642.4632270095367,
+            "y": 895.73719189724613
+          },
+          "nodeIndex": "Transactions1",
+          "nodeLineageTag": "2b1b96dd-c57e-487a-bbbc-98f3194da7d6",
+          "size": {
+            "height": 297.18133370552243,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1676.3711703017198,
+            "y": 1219.2545551507349
+          },
+          "nodeIndex": "Sponsored Display Advertised Pr1",
+          "nodeLineageTag": "db850d1e-aaa8-4a71-99ca-062d27cdd37a",
+          "size": {
+            "height": 388.78798827605033,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 163.62570505800295,
+            "y": 244.10980825257195
+          },
+          "nodeIndex": "Item inverntory1",
+          "nodeLineageTag": "425c6c98-ef04-491f-a9ca-c9b0ec8615e6",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 847.42614433253118,
+            "y": 229.00511120387739
+          },
+          "nodeIndex": "Sponsored Brands Campaign Repor",
+          "nodeLineageTag": "2670316d-960a-4b7a-a7f6-8d93988e2da7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1589.862509314288,
+            "y": 324.3776709820047
+          },
+          "nodeIndex": "Sponsored Product Advertised Pr",
+          "nodeLineageTag": "d5f8a8d3-dc0a-4943-97c2-91fbef539154",
+          "size": {
+            "height": 280.26933593865533,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1139.1633887480805,
+            "y": 660.76248198543135
+          },
+          "nodeIndex": "Item translator",
+          "nodeLineageTag": "ca52b02b-77f7-47ef-bee5-bc51930c5bab",
+          "size": {
+            "height": 496.00129741710691,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 158.80422102277976,
+            "y": 855.94633443838177
+          },
+          "nodeIndex": "Amazon aug23 - items",
+          "nodeLineageTag": "1b714905-c96c-4d16-883d-f51c5e51c142",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2337.3900547775938,
+            "y": 744.13893239893514
+          },
+          "nodeIndex": "DateTable",
+          "nodeLineageTag": "7b3f0f8f-7ee2-4a4d-94c2-7c995512055a",
+          "size": {
+            "height": 469.182631122629,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1883.0992711915035,
+            "y": 532.261873764098
+          },
+          "nodeIndex": "All countries",
+          "nodeLineageTag": "ee46b2c7-c657-474d-a5b8-5f5cd3f82737",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 79.553182037699827,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

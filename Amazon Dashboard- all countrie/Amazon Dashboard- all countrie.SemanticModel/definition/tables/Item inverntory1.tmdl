@@ -1,0 +1,44 @@
+table 'Item inverntory1'
+	lineageTag: 425c6c98-ef04-491f-a9ca-c9b0ec8615e6
+
+	column 'Item No'
+		dataType: string
+		lineageTag: c8849ed4-378e-4f49-b521-4793b49fe187
+		summarizeBy: none
+		sourceColumn: Item No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Name'
+		dataType: string
+		lineageTag: 377ff377-0629-4381-9c57-042f0548f6c7
+		summarizeBy: none
+		sourceColumn: Item Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 0f1ac94b-833c-4d72-8068-dc88b4e9c48e
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Item inverntory1' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://contrastcompany.sharepoint.com/sites/Milestone615", [ApiVersion = 15]),
+				    Custom1 = Source{[Name="Item inverntory.csv",#"Folder Path"="https://contrastcompany.sharepoint.com/sites/Milestone615/Delte dokumenter/General/Amazon Power BI data source/"]}[Content],
+				    #"Imported CSV" = Csv.Document(Custom1,[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Item No", type text}, {"Item Name", type text}, {"Item", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type1",{{"Item No", Order.Ascending}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Sorted Rows", each Text.StartsWith([Item No], "M"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

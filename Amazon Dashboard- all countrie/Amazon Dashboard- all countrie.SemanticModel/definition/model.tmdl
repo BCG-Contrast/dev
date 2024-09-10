@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Transactions1","Sponsored Display Advertised Pr1","Sponsored Product Advertised Pr","Sponsored Brands Campaign Repor","Item inverntory1","Item cost price","Item translator","Amazon aug23 - items","All countries"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.132.1053.0 (24.08)
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_1d0933be-6c6b-4409-ae86-2a15d7443de4
+ref table Transactions1
+ref table 'Sponsored Display Advertised Pr1'
+ref table 'Item inverntory1'
+ref table 'Item cost price'
+ref table 'Sponsored Brands Campaign Repor'
+ref table LocalDateTable_be5aae14-b0d7-49a2-a5ce-e6982b1f965e
+ref table 'Sponsored Product Advertised Pr'
+ref table 'Item translator'
+ref table 'Amazon aug23 - items'
+ref table DateTable
+ref table 'All countries'
+ref table LocalDateTable_c9cf8af5-abc1-401b-be68-9599c1da0e2c
+
+ref cultureInfo en-US
+
