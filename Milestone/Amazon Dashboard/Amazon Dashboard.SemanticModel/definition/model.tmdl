@@ -7,8 +7,8 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-/// Errors in queries that were loaded on 4/18/2024 1:16:28 PM.
-queryGroup 'Query Errors - 4/18/2024 1:16:28 PM'
+/// Errors in queries that were loaded on 10/6/2024 7:19:16 PM.
+queryGroup 'Query Errors - 10/6/2024 7:19:16 PM'
 
 	annotation PBI_QueryGroupOrder = 0
 
@@ -16,7 +16,7 @@ annotation PBI_QueryOrder = ["Transactions1","Sponsored Display Advertised Pr1",
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.132.1053.0 (24.08)
+annotation PBIDesktopVersion = 2.136.1202.0 (24.09)
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -43,6 +43,7 @@ ref table LocalDateTable_4bc69125-f2e9-44ec-8fa8-a96a46d94c13
 ref table LocalDateTable_00da6b4d-c0b8-4757-b382-56ab0d876e2a
 ref table 'Google Ads'
 ref table 'Meta Ads'
+ref table LocalDateTable_c6402a19-6b5d-4dfb-adca-b9a6503a3962
 
 ref cultureInfo en-US
 

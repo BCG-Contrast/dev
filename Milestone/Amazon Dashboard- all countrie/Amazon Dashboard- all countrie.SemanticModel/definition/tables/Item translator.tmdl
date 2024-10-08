@@ -122,42 +122,59 @@ table 'Item translator'
 		annotation SummarizationSetBy = Automatic
 
 	column 'Sales Units pr. master carton'
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: 92781c1e-3713-4dc8-881f-a341daedc75d
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Sales Units pr. master carton
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Carton - L'
-		dataType: string
+		dataType: double
 		lineageTag: 6a9c6693-4fda-41fd-a0cf-d5f9d21ba188
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Carton - L
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Carton - W'
-		dataType: string
+		dataType: double
 		lineageTag: 6f23fc6d-5f15-40d5-a247-90427eb29ac1
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Carton - W
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Carton - H'
-		dataType: string
+		dataType: double
 		lineageTag: 1219bbd7-c9f1-40c9-9201-d0d0386ab0ad
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Carton - H
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Carton - KG'
-		dataType: string
+		dataType: double
 		lineageTag: 047a59f5-89ec-4031-b648-7c6069c50e34
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Carton - KG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Variant code'
+		dataType: string
+		lineageTag: a5cdf0fd-dfd9-4a2f-a0a5-e7c939f57765
+		summarizeBy: none
+		sourceColumn: Variant code
 
 		annotation SummarizationSetBy = Automatic
 
@@ -192,9 +209,19 @@ table 'Item translator'
 				    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type2"," ","",Replacer.ReplaceText,{"Description.2.2"}),
 				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1"," - ","",Replacer.ReplaceText,{"Description.1"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value2",{{"Description.2.1", "Colour"}, {"Description.2.2", "Size"}}),
-				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Parent SKU", each Text.Start([Amazon],7))
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Parent SKU", each Text.Start([Amazon],7)),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Added Custom","-",null,Replacer.ReplaceValue,{"Carton - L"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","-",null,Replacer.ReplaceValue,{"Carton - W"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","-",null,Replacer.ReplaceValue,{"Carton - H"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","-",null,Replacer.ReplaceValue,{"Carton - KG"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","-",null,Replacer.ReplaceValue,{"Sales Units pr. master carton"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Replaced Value7",{{"Sales Units pr. master carton", Int64.Type}, {"Carton - L", type number}, {"Carton - W", type number}, {"Carton - H", type number}, {"Carton - KG", type number}}),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Changed Type3", "Text After Delimiter", each Text.AfterDelimiter([#"Navision - Item 2"], "-", 1), type text),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Text After Delimiter",{{"Text After Delimiter", "Variant code"}})
 				in
-				    #"Added Custom"
+				    #"Renamed Columns1"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

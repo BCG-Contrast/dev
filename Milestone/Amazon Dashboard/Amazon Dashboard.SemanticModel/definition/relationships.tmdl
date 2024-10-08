@@ -2,10 +2,6 @@ relationship 2a48fa4e-68ac-4cae-a7f4-ae81caf34048
 	fromColumn: 'Sponsored Display Advertised Pr1'.'Advertised ASIN'
 	toColumn: 'Item translator'.ASIN
 
-relationship e7cb8dc6-471f-4eaa-88f9-e5d4e8538049
-	fromColumn: Transactions1.'Product SKU final'
-	toColumn: 'Item translator'.Amazon
-
 relationship a9a779dc-8bfb-4a8f-9695-fdaf7d327463
 	fromColumn: 'Item translator'.'Parent SKU'
 	toColumn: 'Item cost price'.'Item No.'
@@ -49,10 +45,6 @@ relationship 9236a5db-e43c-4ffd-868a-f01f7dde9274
 	fromColumn: 'Sponsored Display Advertised Pr1'.Date
 	toColumn: DateTable.Date
 
-relationship 8c82b0ae-a364-4423-baa1-e0ff80ca35e3
-	fromColumn: Transactions1.Date
-	toColumn: DateTable.Date
-
 relationship 0e5ab6d6-9a62-45f3-8cc6-bde8c134d3e2
 	fromColumn: 'Sponsored Product Advertised Pr'.Date
 	toColumn: DateTable.Date
@@ -89,4 +81,13 @@ relationship fe4e1531-42b7-47ec-97ba-31d70f268256
 relationship 943ac088-38c5-411e-b4a8-c9aed7bc39d2
 	fromColumn: 'Google Ads'.Date
 	toColumn: DateTable.Date
+
+relationship 8b6a90c2-840a-40d0-b08c-efac3a24aa94
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Transactions1.Date
+	toColumn: LocalDateTable_c6402a19-6b5d-4dfb-adca-b9a6503a3962.Date
+
+relationship AutoDetected_ce978998-fb39-42ff-93ee-aa337955727c
+	fromColumn: Transactions1.ASIN
+	toColumn: 'Item translator'.ASIN
 

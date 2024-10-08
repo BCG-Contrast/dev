@@ -895,3 +895,5 @@ table Transactions1
 
 	annotation PBI_ResultType = Table
 
+	annotation PBI_NavigationStepName = Navigation
+

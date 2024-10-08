@@ -19,8 +19,8 @@ expression 'Errors in Transactions1' =
 		  #"Reordered Columns" = Table.ReorderColumns(#"Kept Errors", {"Row Number", "Index", "Transaction Date/Time", "Date", "Invoice Number", "Transaction Type", "Order ID", "Product SKU", "Product SKU final", "ASIN", "Item translator.Amazon", "Parent SKU", "Product Description", "Quantity Sold", "Transaction Marketplace", "Shipping Cost", "Order Location", "State", "Postal Code", "Tax Collection Model", "%VAT", "Transaction Revenues1", "Collected VAT1", "Shipping Credits1", "Tax on Shipping Credits1", "Gift Wrap Credits1", "Tax on Gift Wrap Credits1", "Promotion Discounts1", "Tax on Promotion Discounts1", "Withheld Marketplace Tax1", "Sales Fees1(Transport)", "Fulfillment Fees1", "Sales fees(Transport+Fulfillment)", "Other Transaction Fees1(Marketing)", "Miscellaneous1 (Withdrawals)", "Total Amount1"})
 		in
 		    #"Reordered Columns"
-	lineageTag: 5c262c70-0925-4881-9733-554b1548e1d8
-	queryGroup: 'Query Errors - 4/18/2024 1:16:28 PM'
+	lineageTag: 7b3366a4-6493-4e5b-a4b6-5a9659c3c4a0
+	queryGroup: 'Query Errors - 10/6/2024 7:19:16 PM'
 
 	annotation PBI_NavigationStepName = Navigation
 
