@@ -35,7 +35,7 @@
   ],
   "sections": [
     {
-      "config": "{\"objects\":{\"displayArea\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]},\"type\":1}",
+      "config": "{\"objects\":{\"displayArea\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]},\"visibility\":1,\"type\":1}",
       "displayName": "Page 4",
       "displayOption": 3,
       "filters": "[]",
