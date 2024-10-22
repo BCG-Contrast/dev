@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Ugerapport - bjørna"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ac196328-0451-408b-9428-95476c262250"
+  }
+}
