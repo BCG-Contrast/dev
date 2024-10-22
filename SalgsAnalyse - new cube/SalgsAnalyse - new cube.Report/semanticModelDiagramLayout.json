@@ -125,7 +125,7 @@
           },
           "nodeIndex": "Company",
           "size": {
-            "height": 176,
+            "height": 272,
             "width": 234
           },
           "zIndex": 36
@@ -188,7 +188,7 @@
           "nodeIndex": "Ecom Claim Cause",
           "nodeLineageTag": "a3c9d170-ca4c-4e91-acdd-189494dea0e4",
           "size": {
-            "height": 152,
+            "height": 176,
             "width": 234
           },
           "zIndex": 40
@@ -201,7 +201,7 @@
           "nodeIndex": "Ecom Currency",
           "nodeLineageTag": "343e7aa5-36b1-4c5d-b1b1-d65a14be883e",
           "size": {
-            "height": 152,
+            "height": 176,
             "width": 234
           },
           "zIndex": 41
@@ -240,7 +240,7 @@
           "nodeIndex": "Ecom Payment Term",
           "nodeLineageTag": "47a65e3e-9719-4ad8-af8a-09b351673ada",
           "size": {
-            "height": 176,
+            "height": 200,
             "width": 234
           },
           "zIndex": 44
@@ -279,7 +279,7 @@
           "nodeIndex": "Ecom Salesperson",
           "nodeLineageTag": "1c92a71d-11c5-438e-be16-016dfd052aed",
           "size": {
-            "height": 200,
+            "height": 224,
             "width": 234
           },
           "zIndex": 46
@@ -341,7 +341,7 @@
           },
           "nodeIndex": "Finance Budget",
           "size": {
-            "height": 272,
+            "height": 296,
             "width": 234
           },
           "zIndex": 51
@@ -366,7 +366,7 @@
           "nodeIndex": "Now Date Time",
           "nodeLineageTag": "f6155dfc-78eb-4d74-89ee-4842691955e3",
           "size": {
-            "height": 104,
+            "height": 128,
             "width": 234
           },
           "zIndex": 53
@@ -492,7 +492,7 @@
           },
           "nodeIndex": "Turnover Budget",
           "size": {
-            "height": 296,
+            "height": 72,
             "width": 234
           },
           "zIndex": 65
@@ -619,7 +619,7 @@
           "nodeIndex": "Purchase Orders",
           "nodeLineageTag": "36d80766-2b62-49a1-aed3-5df7e8f766ac",
           "size": {
-            "height": 605.68923384043728,
+            "height": 300,
             "width": 234
           },
           "zIndex": 66
@@ -801,7 +801,7 @@
           "nodeIndex": "Purchase Order",
           "nodeLineageTag": "3e1a5829-b137-4c1a-ba92-c697a2711202",
           "size": {
-            "height": 147.61642142291575,
+            "height": 248,
             "width": 234
           },
           "zIndex": 5
@@ -892,7 +892,7 @@
           "nodeIndex": "Factories",
           "nodeLineageTag": "f072b785-7874-45e2-adae-592042e824b7",
           "size": {
-            "height": 300,
+            "height": 200,
             "width": 234
           },
           "zIndex": 0
