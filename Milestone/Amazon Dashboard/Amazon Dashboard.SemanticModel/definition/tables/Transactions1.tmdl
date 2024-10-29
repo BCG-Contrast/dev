@@ -313,6 +313,11 @@ table Transactions1
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Measure 2'
+		lineageTag: 14b3bb48-1176-485d-a309-e4943acea107
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
 	column Index
 		dataType: int64
 		formatString: 0
@@ -336,11 +341,6 @@ table Transactions1
 		lineageTag: 8fae4326-d71a-415d-839f-6dbfc9fd3836
 		summarizeBy: none
 		sourceColumn: Date
-
-		variation Variation
-			isDefault
-			relationship: 8b6a90c2-840a-40d0-b08c-efac3a24aa94
-			defaultHierarchy: LocalDateTable_c6402a19-6b5d-4dfb-adca-b9a6503a3962.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -421,7 +421,7 @@ table Transactions1
 
 	column 'Quantity Sold'
 		dataType: int64
-		formatString: 0
+		formatString: #,0
 		lineageTag: 3aa9c804-ddb8-49cd-a163-026a85e55d5e
 		summarizeBy: sum
 		sourceColumn: Quantity Sold
