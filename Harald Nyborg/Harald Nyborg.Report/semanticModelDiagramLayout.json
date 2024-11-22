@@ -1037,8 +1037,8 @@
     {
       "ordinal": 1,
       "scrollPosition": {
-        "x": 0,
-        "y": 2318.5063642195942
+        "x": 926.9535419442002,
+        "y": 1462.7779064338965
       },
       "nodes": [
         {
@@ -2049,13 +2049,257 @@
         }
       ],
       "name": "Layout 1",
-      "zoomValue": 58.960372983928821,
+      "zoomValue": 44.230911415480705,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 2,
+      "scrollPosition": {
+        "x": 0,
+        "y": 72.052609962933076
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 374.85950941897619,
+            "y": 340.23894333132159
+          },
+          "nodeIndex": "Stock Transactions",
+          "nodeLineageTag": "072f0aea-e40b-447a-8747-00a398279977",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 90.688513871930127,
+            "y": 652.38910510434062
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 641.78138147624372,
+            "y": 18.02649616807912
+          },
+          "nodeIndex": "Company",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 514.85196170506742,
+            "y": 690.46318928391349
+          },
+          "nodeIndex": "Item",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 340.19088531836968
+          },
+          "nodeIndex": "Location",
+          "nodeLineageTag": "109a27a2-e008-42cc-8586-c90aff405594",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 799.00715246681671,
+            "y": 349.19659020554809
+          },
+          "nodeIndex": "Order",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 257.06541240765773,
+            "y": -10
+          },
+          "nodeIndex": "Variant",
+          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 2",
+      "zoomValue": 63.287087723233995,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 3,
+      "scrollPosition": {
+        "x": 0,
+        "y": 34.013972551593817
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 49.064842776455237,
+            "y": 343.71623148952074
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 335.47314564260125,
+            "y": 343.67798118969534
+          },
+          "nodeIndex": "Calendar Shipment Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 147.69120358693874,
+            "y": -10
+          },
+          "nodeIndex": "Precalculations",
+          "nodeLineageTag": "e6bdfb63-88cf-43be-a736-af6aca0ffe41",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 544.71615904031682,
+            "y": 697.31834745535593
+          },
+          "nodeIndex": "Sales Orders",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 697.36853272140161
+          },
+          "nodeIndex": "Purchase Orders",
+          "nodeLineageTag": "36d80766-2b62-49a1-aed3-5df7e8f766ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 3",
+      "zoomValue": 56.447393005377691,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 4,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 578.41040181545554,
+            "y": 48.378697769104917
+          },
+          "nodeIndex": "Calendar Expected Receipt Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 862.62216291713673,
+            "y": -9.9999999999999716
+          },
+          "nodeIndex": "Purchase Invoice",
+          "nodeLineageTag": "839a4511-cb52-4d39-bb31-f91e366a154f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 294.20225510460887,
+            "y": 125.88668757855758
+          },
+          "nodeIndex": "Purchase Orders",
+          "nodeLineageTag": "36d80766-2b62-49a1-aed3-5df7e8f766ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6.9978414653679977,
+            "y": 415.17859930048041
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 4",
+      "zoomValue": 70.955543900968792,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
       "tablesLocked": false
     }
   ],
-  "selectedDiagram": "Layout 1",
+  "selectedDiagram": "Layout 4",
   "defaultDiagram": "All tables"
 }
