@@ -943,8 +943,97 @@
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
       "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 390.32721396415843,
+            "y": 342.55217949537519
+          },
+          "nodeIndex": "Sales Forecast",
+          "nodeLineageTag": "9fa8b80d-8967-413e-a5b1-9548b05ca3c1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 103.33581315871925,
+            "y": 667.03922151249
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 604.62501630312613,
+            "y": 696.11089856314811
+          },
+          "nodeIndex": "Company",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 480.37222123401023,
+            "y": -10
+          },
+          "nodeIndex": "Customer",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 743.209313846588,
+            "y": 342.49222744110625
+          },
+          "nodeIndex": "Item",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 313.27529643841365
+          },
+          "nodeIndex": "Variant",
+          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
     }
   ],
-  "selectedDiagram": "All tables",
+  "selectedDiagram": "Layout 1",
   "defaultDiagram": "All tables"
 }
