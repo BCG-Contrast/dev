@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 5532.456377607411,
-        "y": 1446.0646708700776
+        "x": 3164.3704213728506,
+        "y": 370.01272820800978
       },
       "nodes": [
         {
@@ -18,7 +18,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 45
+          "zIndex": 27
         },
         {
           "location": {
@@ -31,7 +31,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 46
+          "zIndex": 28
         },
         {
           "location": {
@@ -43,7 +43,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 47
+          "zIndex": 29
         },
         {
           "location": {
@@ -56,7 +56,7 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 48
+          "zIndex": 30
         },
         {
           "location": {
@@ -68,7 +68,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 49
+          "zIndex": 31
         },
         {
           "location": {
@@ -80,7 +80,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 50
+          "zIndex": 32
         },
         {
           "location": {
@@ -92,7 +92,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 51
+          "zIndex": 33
         },
         {
           "location": {
@@ -104,7 +104,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 52
+          "zIndex": 34
         },
         {
           "location": {
@@ -116,7 +116,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 53
+          "zIndex": 35
         },
         {
           "location": {
@@ -128,7 +128,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 54
+          "zIndex": 36
         },
         {
           "location": {
@@ -141,7 +141,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 55
+          "zIndex": 37
         },
         {
           "location": {
@@ -154,7 +154,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 56
+          "zIndex": 38
         },
         {
           "location": {
@@ -166,7 +166,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 57
+          "zIndex": 39
         },
         {
           "location": {
@@ -178,7 +178,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 58
+          "zIndex": 40
         },
         {
           "location": {
@@ -191,7 +191,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 59
+          "zIndex": 41
         },
         {
           "location": {
@@ -204,7 +204,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 60
+          "zIndex": 42
         },
         {
           "location": {
@@ -217,7 +217,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 61
+          "zIndex": 43
         },
         {
           "location": {
@@ -230,7 +230,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 78
+          "zIndex": 61
         },
         {
           "location": {
@@ -243,7 +243,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 62
+          "zIndex": 44
         },
         {
           "location": {
@@ -256,7 +256,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 63
+          "zIndex": 45
         },
         {
           "location": {
@@ -269,7 +269,7 @@
             "height": 300,
             "width": 296.695413390401
           },
-          "zIndex": 79
+          "zIndex": 62
         },
         {
           "location": {
@@ -282,7 +282,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 64
+          "zIndex": 46
         },
         {
           "location": {
@@ -295,7 +295,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 65
+          "zIndex": 47
         },
         {
           "location": {
@@ -308,7 +308,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 66
+          "zIndex": 48
         },
         {
           "location": {
@@ -320,7 +320,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 67
+          "zIndex": 49
         },
         {
           "location": {
@@ -332,7 +332,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 68
+          "zIndex": 50
         },
         {
           "location": {
@@ -344,7 +344,7 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 69
+          "zIndex": 51
         },
         {
           "location": {
@@ -356,7 +356,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 70
+          "zIndex": 52
         },
         {
           "location": {
@@ -369,7 +369,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 71
+          "zIndex": 53
         },
         {
           "location": {
@@ -381,7 +381,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 72
+          "zIndex": 54
         },
         {
           "location": {
@@ -394,7 +394,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 73
+          "zIndex": 55
         },
         {
           "location": {
@@ -406,7 +406,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 74
+          "zIndex": 56
         },
         {
           "location": {
@@ -418,7 +418,19 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 75
+          "zIndex": 57
+        },
+        {
+          "location": {
+            "x": 1822.5355650835791,
+            "y": 1168.1851031658066
+          },
+          "nodeIndex": "Turnover Budget",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 58
         },
         {
           "location": {
@@ -430,7 +442,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 35
+          "zIndex": 17
         },
         {
           "location": {
@@ -442,7 +454,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 76
+          "zIndex": 59
         },
         {
           "location": {
@@ -454,7 +466,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 36
+          "zIndex": 18
         },
         {
           "location": {
@@ -467,7 +479,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 37
+          "zIndex": 19
         },
         {
           "location": {
@@ -480,7 +492,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 38
+          "zIndex": 20
         },
         {
           "location": {
@@ -493,7 +505,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 39
+          "zIndex": 21
         },
         {
           "location": {
@@ -506,7 +518,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 40
+          "zIndex": 22
         },
         {
           "location": {
@@ -519,7 +531,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 41
+          "zIndex": 23
         },
         {
           "location": {
@@ -532,12 +544,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 42
+          "zIndex": 24
         },
         {
           "location": {
-            "x": 6716.8883288921015,
-            "y": 2080.9661992496021
+            "x": 6317.6018152936476,
+            "y": 160.36263738663723
           },
           "nodeIndex": "Purchase Orders",
           "nodeLineageTag": "36d80766-2b62-49a1-aed3-5df7e8f766ac",
@@ -545,7 +557,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 43
+          "zIndex": 25
         },
         {
           "location": {
@@ -558,7 +570,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 77
+          "zIndex": 60
         },
         {
           "location": {
@@ -571,7 +583,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 44
+          "zIndex": 26
         },
         {
           "location": {
@@ -584,12 +596,12 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 20
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 7898.4546742184793,
-            "y": 2294.9981592415661
+            "x": 7767.1577575847514,
+            "y": 0
           },
           "nodeIndex": "Variant",
           "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
@@ -597,7 +609,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 21
+          "zIndex": 3
         },
         {
           "location": {
@@ -610,7 +622,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 22
+          "zIndex": 4
         },
         {
           "location": {
@@ -623,7 +635,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 23
+          "zIndex": 5
         },
         {
           "location": {
@@ -636,7 +648,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 24
+          "zIndex": 6
         },
         {
           "location": {
@@ -649,7 +661,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 25
+          "zIndex": 7
         },
         {
           "location": {
@@ -662,7 +674,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 26
+          "zIndex": 8
         },
         {
           "location": {
@@ -675,7 +687,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 27
+          "zIndex": 9
         },
         {
           "location": {
@@ -688,7 +700,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 28
+          "zIndex": 10
         },
         {
           "location": {
@@ -701,7 +713,7 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 29
+          "zIndex": 11
         },
         {
           "location": {
@@ -714,7 +726,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 30
+          "zIndex": 12
         },
         {
           "location": {
@@ -727,7 +739,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 31
+          "zIndex": 13
         },
         {
           "location": {
@@ -740,7 +752,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 32
+          "zIndex": 14
         },
         {
           "location": {
@@ -753,7 +765,7 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 33
+          "zIndex": 15
         },
         {
           "location": {
@@ -766,7 +778,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 34
+          "zIndex": 16
         },
         {
           "location": {
@@ -779,12 +791,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 19
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 13069.269520424486,
-            "y": 1397.5310396127472
+            "x": 13166.393266975461,
+            "y": 36
           },
           "nodeIndex": "Purchase Order",
           "nodeLineageTag": "3e1a5829-b137-4c1a-ba92-c697a2711202",
@@ -792,7 +804,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 80
+          "zIndex": 0
         },
         {
           "location": {
@@ -805,7 +817,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 0
         },
         {
           "location": {
@@ -818,7 +830,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 0
         },
         {
           "location": {
@@ -831,7 +843,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 0
         },
         {
           "location": {
@@ -844,7 +856,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 0
         },
         {
           "location": {
@@ -857,7 +869,7 @@
             "height": 248,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 0
         },
         {
           "location": {
@@ -870,7 +882,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 0
         },
         {
           "location": {
@@ -883,7 +895,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 0
         },
         {
           "location": {
@@ -896,7 +908,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 8
+          "zIndex": 0
         },
         {
           "location": {
@@ -909,7 +921,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 0
         },
         {
           "location": {
@@ -922,557 +934,17 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 10
-        },
-        {
-          "location": {
-            "x": 17405.566315152468,
-            "y": 857.51946965476884
-          },
-          "nodeIndex": "Calendar Expected Receipt Date",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 11
-        },
-        {
-          "location": {
-            "x": 17822.967104955685,
-            "y": 857.51946965476884
-          },
-          "nodeIndex": "Deals",
-          "nodeLineageTag": "99754c5d-395d-4b24-b828-bb90794c39d9",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 12
-        },
-        {
-          "location": {
-            "x": 16157.230964544706,
-            "y": 627.07268446453384
-          },
-          "nodeIndex": "Factory",
-          "nodeLineageTag": "9c07c530-260e-46c7-93ea-a78040c03fad",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 13
-        },
-        {
-          "location": {
-            "x": 16518.059152349917,
-            "y": 1108.5399648668074
-          },
-          "nodeIndex": "Factory Capacity",
-          "nodeLineageTag": "dfa6d759-f4f2-4aff-805d-f7eccadec8c1",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 14
-        },
-        {
-          "location": {
-            "x": 16988.165525349254,
-            "y": 598.46505342932517
-          },
-          "nodeIndex": "Supplier",
-          "nodeLineageTag": "817d1b31-f7e7-44ad-8336-c9d121a8105d",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 15
-        },
-        {
-          "location": {
-            "x": 16572.69824494698,
-            "y": 481.46728040227345
-          },
-          "nodeIndex": "Supplier Factory Certifications",
-          "nodeLineageTag": "4e9ee93f-7901-425a-9052-9d831d81f732",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 16
-        },
-        {
-          "location": {
-            "x": 16393.231264818649,
-            "y": 0
-          },
-          "nodeIndex": "Supplier Quality Control",
-          "nodeLineageTag": "40388b53-c176-411d-a903-696df7699667",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 17
-        },
-        {
-          "location": {
-            "x": 18240.3678947589,
-            "y": 871.51946965476884
-          },
-          "nodeIndex": "Variant Customers Items",
-          "nodeLineageTag": "84e76b08-915a-4079-9d60-938194edd069",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 18
-        },
-        {
-          "location": {
-            "x": 19307.733692158585,
-            "y": 50
-          },
-          "nodeIndex": "Absence Hours",
-          "nodeLineageTag": "a940a77e-a906-4635-98b4-d7276171759c",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 19704.416590858425,
-            "y": 74
-          },
-          "nodeIndex": "Contract",
-          "nodeLineageTag": "fd985ef4-56c8-483f-8620-3c19a7f7a03c",
-          "size": {
-            "height": 152,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 20101.09948955827,
-            "y": 74
-          },
-          "nodeIndex": "Item Certifications",
-          "nodeLineageTag": "9c83d38d-4a7d-4ddc-9e9b-eed4204e58d0",
-          "size": {
-            "height": 152,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 18514.3678947589,
-            "y": 0
-          },
-          "nodeIndex": "Pre Order / Style",
-          "nodeLineageTag": "f94887ae-1ab5-4ca7-9f4c-eff421ad6aa0",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 18911.050793458744,
-            "y": 0
-          },
-          "nodeIndex": "Sales Forecast",
-          "nodeLineageTag": "9fa8b80d-8967-413e-a5b1-9548b05ca3c1",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
           "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 55.599173134922388,
-      "pinKeyFieldsToTop": false,
-      "showExtraHeaderInfo": false,
-      "hideKeyFieldsWhenCollapsed": false,
-      "tablesLocked": false
-    },
-    {
-      "ordinal": 1,
-      "scrollPosition": {
-        "x": 0,
-        "y": 21.679769524628227
-      },
-      "nodes": [
-        {
-          "location": {
-            "x": 379.058920505491,
-            "y": 340.24563437876196
-          },
-          "nodeIndex": "Deals",
-          "nodeLineageTag": "99754c5d-395d-4b24-b828-bb90794c39d9",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 294.17754400944023,
-            "y": -10
-          },
-          "nodeIndex": "Deal",
-          "nodeLineageTag": "9797b6ca-f8b9-43fd-a0cc-aa1750d19e1e",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 466.01989475005257,
-            "y": 690.485750121368
-          },
-          "nodeIndex": "Calendar",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 10,
-            "y": 264.48282731841863
-          },
-          "nodeIndex": "Company",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 94.886229205930874,
-            "y": 611.38270949661444
-          },
-          "nodeIndex": "Customer",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 750.19722546831406,
-            "y": 466.01575130655891
-          },
-          "nodeIndex": "Employee",
-          "nodeLineageTag": "031f39b7-8213-4c3b-9b34-0a58b47e77c9",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 663.24158918253943,
-            "y": 64.02778962265927
-          },
-          "nodeIndex": "Lead",
-          "nodeLineageTag": "77848cf7-c5fd-479f-9012-79ef02b837bc",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        }
-      ],
-      "name": "Layout 1",
-      "zoomValue": 53.717982422604095,
-      "pinKeyFieldsToTop": false,
-      "showExtraHeaderInfo": false,
-      "hideKeyFieldsWhenCollapsed": false,
-      "tablesLocked": false
-    },
-    {
-      "ordinal": 2,
-      "scrollPosition": {
-        "x": 0,
-        "y": 66.666666666666671
-      },
-      "nodes": [
-        {
-          "location": {
-            "x": 397.48061743468133,
-            "y": 313.936220328643
-          },
-          "nodeIndex": "Expected Stock",
-          "nodeLineageTag": "e2a6163f-619d-421b-b446-bed1240652dd",
-          "size": {
-            "height": 248,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 10,
-            "y": 128.40657834209571
-          },
-          "nodeIndex": "Calendar",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 297.08895495158936,
-            "y": -10
-          },
-          "nodeIndex": "Company",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 110.4807809763937,
-            "y": 598.58237549501746
-          },
-          "nodeIndex": "Item",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 683.46785929911891,
-            "y": 465.90113428389259
-          },
-          "nodeIndex": "Location",
-          "nodeLineageTag": "109a27a2-e008-42cc-8586-c90aff405594",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 670.51405185962108,
-            "y": 694.33743449551594
-          },
-          "nodeIndex": "Variant",
-          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        }
-      ],
-      "name": "Layout 2",
-      "zoomValue": 60,
-      "pinKeyFieldsToTop": false,
-      "showExtraHeaderInfo": false,
-      "hideKeyFieldsWhenCollapsed": false,
-      "tablesLocked": false
-    },
-    {
-      "ordinal": 3,
-      "scrollPosition": {
-        "x": 0,
-        "y": 10.275054137898456
-      },
-      "nodes": [
-        {
-          "location": {
-            "x": 390.32721396415843,
-            "y": 342.55217949537519
-          },
-          "nodeIndex": "Sales Forecast",
-          "nodeLineageTag": "9fa8b80d-8967-413e-a5b1-9548b05ca3c1",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 743.209313846588,
-            "y": 342.49222744110625
-          },
-          "nodeIndex": "Item",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 103.33581315871925,
-            "y": 667.03922151249
-          },
-          "nodeIndex": "Calendar",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 604.62501630312613,
-            "y": 696.11089856314811
-          },
-          "nodeIndex": "Company",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 480.37222123401023,
-            "y": -10
-          },
-          "nodeIndex": "Customer",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 10,
-            "y": 313.27529643841365
-          },
-          "nodeIndex": "Variant",
-          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        }
-      ],
-      "name": "Layout 3",
-      "zoomValue": 56.447393005377691,
-      "pinKeyFieldsToTop": false,
-      "showExtraHeaderInfo": false,
-      "hideKeyFieldsWhenCollapsed": false,
-      "tablesLocked": false
-    },
-    {
-      "ordinal": 4,
-      "scrollPosition": {
-        "x": 0,
-        "y": 73.316695703860788
-      },
-      "nodes": [
-        {
-          "location": {
-            "x": 397.48061743468133,
-            "y": 313.936220328643
-          },
-          "nodeIndex": "Expected Stock",
-          "nodeLineageTag": "e2a6163f-619d-421b-b446-bed1240652dd",
-          "size": {
-            "height": 248,
-            "width": 234
-          },
-          "zIndex": 6
-        },
-        {
-          "location": {
-            "x": 10,
-            "y": 128.40657834209571
-          },
-          "nodeIndex": "Calendar",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 1
-        },
-        {
-          "location": {
-            "x": 297.08895495158936,
-            "y": -10
-          },
-          "nodeIndex": "Company",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 2
-        },
-        {
-          "location": {
-            "x": 110.4807809763937,
-            "y": 598.58237549501746
-          },
-          "nodeIndex": "Item",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 3
-        },
-        {
-          "location": {
-            "x": 683.46785929911891,
-            "y": 465.90113428389259
-          },
-          "nodeIndex": "Location",
-          "nodeLineageTag": "109a27a2-e008-42cc-8586-c90aff405594",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 4
-        },
-        {
-          "location": {
-            "x": 670.51405185962108,
-            "y": 694.33743449551594
-          },
-          "nodeIndex": "Variant",
-          "nodeLineageTag": "a29d28b3-a97e-441b-8a3d-297170d5810a",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 5
-        }
-      ],
-      "name": "Layout 4",
-      "zoomValue": 63.287087723233995,
+      "zoomValue": 96.659902302439789,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
       "tablesLocked": false
     }
   ],
-  "selectedDiagram": "Layout 4",
+  "selectedDiagram": "All tables",
   "defaultDiagram": "All tables"
 }
